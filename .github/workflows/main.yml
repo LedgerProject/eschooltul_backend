@@ -1,0 +1,22 @@
+name: CI
+
+env:
+  POSTGRES_USER: postgres
+  POSTGRES_PASSWORD: postgres
+  POSTGRES_DB: postgres
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  rubocop:
+    name: rubocop
+    runs-on: ubuntu-latest
+    container: mapreal19/parse-doc-ci # TODO: create dockerfile for "eschooltul"
+    steps:
+      - uses: actions/checkout@v2
+      - run: bundle install
+      - run: bundle exec rubocop
