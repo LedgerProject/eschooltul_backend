@@ -15,7 +15,7 @@ AllCops:
   Exclude:
     - 'bin/**/*'
     - 'config/**/*'
-    - 'db/**/*'
+    - 'db/schema.rb'
     - 'node_modules/**/*'
     - 'vendor/**/*'
 
