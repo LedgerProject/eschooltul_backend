@@ -1,0 +1,54 @@
+require:
+  - rubocop-rails
+  - rubocop-performance
+  - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 2.6
+  DisplayCopNames: true
+  NewCops: enable
+  Include:
+    - '**/Rakefile'
+    - '**/config.ru'
+    - 'Gemfile'
+    - '**/*.rb'
+  Exclude:
+    - 'bin/**/*'
+    - 'config/**/*'
+    - 'db/**/*'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+
+Layout/LineLength:
+  Max: 100
+
+Lint/AmbiguousBlockAssociation:
+  Exclude:
+    - "spec/**/*"
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+    - 'app/**/concerns/*'
+
+Rails:
+  Enabled: true
+
+RSpec/NestedGroups:
+  Max: 4
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+RSpec/ExampleLength:
+  Exclude:
+    - 'spec/**/*'
+
+RSpec/MultipleExpectations:
+  Max: 5
