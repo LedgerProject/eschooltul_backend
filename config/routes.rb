@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   devise_scope :user do
     authenticated :user do
       root to: "home#index"
+
+      resources :schools
     end
 
     unauthenticated do
