@@ -16,6 +16,7 @@ AllCops:
     - 'bin/**/*'
     - 'config/**/*'
     - 'db/schema.rb'
+    - 'db/migrate/20201210121539_create_active_storage_tables.active_storage.rb'
     - 'node_modules/**/*'
     - 'vendor/**/*'
 
