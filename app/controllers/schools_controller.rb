@@ -54,6 +54,6 @@ class SchoolsController < ApplicationController
   end
 
   def school_params
-    params.require(:school).permit(:name, :email, :address, :city)
+    params.require(:school).permit(:name, :email, :address, :city, :logo)
   end
 end
