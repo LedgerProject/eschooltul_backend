@@ -1,9 +1,5 @@
 class SchoolsController < ApplicationController
-  before_action :check_is_administration
-
-  def index
-    @schools = School.all
-  end
+  before_action :check_is_director
 
   def show
     @school = find_school
@@ -21,7 +17,7 @@ class SchoolsController < ApplicationController
     @school = School.new(school_params)
 
     if @school.save
-      redirect_to @school, notice: "School was successfully created."
+      redirect_to school_path, notice: "School was successfully created."
     else
       render :new
     end
@@ -31,26 +27,20 @@ class SchoolsController < ApplicationController
     @school = find_school
 
     if @school.update(school_params)
-      redirect_to @school, notice: "School was successfully updated."
+      redirect_to school_path, notice: "School was successfully updated."
     else
       render :edit
     end
   end
 
-  def destroy
-    @school.destroy!
-
-    redirect_to schools_url, notice: "School was successfully destroyed."
-  end
-
   private
 
-  def check_is_administration
-    head(:forbidden) unless current_user.administrator?
+  def check_is_director
+    head(:forbidden) unless current_user.director?
   end
 
   def find_school
-    @school = School.find(params[:id])
+    @school = School.first!
   end
 
   def school_params

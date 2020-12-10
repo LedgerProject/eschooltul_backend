@@ -1,8 +1,9 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
-
-<% if current_user.administrator? %>
-  <%= link_to("Schools", schools_path) %>
+<% if current_user.director? %>
+  <% if School.created? %>
+    <%= link_to("My School", school_path) %>
+  <% else %>
+    <%= link_to("New School", new_school_path) %>
+  <% end %>
 <% end %>
 
 <br>
