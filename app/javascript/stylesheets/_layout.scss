@@ -1,0 +1,7 @@
+.wrap {
+  @apply w-9/10 mx-auto my-0 ;
+
+  @media screen and (min-width: 1700px) {
+    @apply 2xl:w-full 2xl:max-w-screen-2xl;
+  }
+}

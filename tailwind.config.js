@@ -10,6 +10,9 @@ module.exports = {
       fontWeight: ['hover', 'focus'],
       fontFamily: {
         sans: ['Montserrat Alternates', ...defaultTheme.fontFamily.sans],
+      },
+      width: { 
+        '9/10': '90%', 
       }
     },
   },
