@@ -7,6 +7,10 @@ if Rails.env.development?
     joaquin.martinez@exponentiateam.com
   ].freeze
 
+  DIRECTORS = %w[
+    skinner@springfield.com
+  ].freeze
+
   TEACHERS = %w[
     mario.perez@exponentiateam.com
   ].freeze
@@ -23,5 +27,12 @@ if Rails.env.development?
 
     user = User.create!(email: email, password: "password", password_confirmation: "password")
     user.add_role(:teacher)
+  end
+
+  DIRECTORS.each do |email|
+    next if User.exists?(email: email)
+
+    user = User.create!(email: email, password: "password", password_confirmation: "password")
+    user.add_role(:director)
   end
 end

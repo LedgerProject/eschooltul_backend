@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     authenticated :user do
       root to: "home#index"
 
-      resources :schools
+      resource :school, except: :destroy
     end
 
     unauthenticated do

@@ -6,6 +6,10 @@ class User < ApplicationRecord
          :rememberable,
          :validatable
 
+  def director?
+    has_role?(:director)
+  end
+
   def administrator?
     has_role?(:administrator)
   end

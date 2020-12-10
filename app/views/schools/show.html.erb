@@ -1,3 +1,5 @@
+<%= image_tag(@school.logo, style: "width: 50px") %>
+
 <p>
   <strong>Name:</strong>
   <%= @school.name %>
@@ -18,5 +20,4 @@
   <%= @school.city %>
 </p>
 
-<%= link_to 'Edit', edit_school_path(@school) %> |
-<%= link_to 'Back', schools_path %>
+<%= link_to 'Edit', edit_school_path %>
