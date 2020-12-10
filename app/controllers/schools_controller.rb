@@ -1,11 +1,12 @@
 class SchoolsController < ApplicationController
-  before_action :set_school, only: [:show, :edit, :update, :destroy]
+  before_action :check_is_administration
 
   def index
     @schools = School.all
   end
 
   def show
+    @school = find_school
   end
 
   def new
@@ -13,45 +14,42 @@ class SchoolsController < ApplicationController
   end
 
   def edit
+    @school = find_school
   end
 
   def create
     @school = School.new(school_params)
 
-    respond_to do |format|
-      if @school.save
-        format.html { redirect_to @school, notice: 'School was successfully created.' }
-        format.json { render :show, status: :created, location: @school }
-      else
-        format.html { render :new }
-        format.json { render json: @school.errors, status: :unprocessable_entity }
-      end
+    if @school.save
+      redirect_to @school, notice: "School was successfully created."
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @school.update(school_params)
-        format.html { redirect_to @school, notice: 'School was successfully updated.' }
-        format.json { render :show, status: :ok, location: @school }
-      else
-        format.html { render :edit }
-        format.json { render json: @school.errors, status: :unprocessable_entity }
-      end
+    @school = find_school
+
+    if @school.update(school_params)
+      redirect_to @school, notice: "School was successfully updated."
+    else
+      render :edit
     end
   end
 
   def destroy
-    @school.destroy
-    respond_to do |format|
-      format.html { redirect_to schools_url, notice: 'School was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    @school.destroy!
+
+    redirect_to schools_url, notice: "School was successfully destroyed."
   end
 
   private
 
-  def set_school
+  def check_is_administration
+    head(:forbidden) unless current_user.administrator?
+  end
+
+  def find_school
     @school = School.find(params[:id])
   end
 
