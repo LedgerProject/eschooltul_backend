@@ -13,6 +13,15 @@ module.exports = {
       },
       width: { 
         '9/10': '90%', 
+      },
+      screens: {
+        'xs': '480px',
+        'sm': '600px',
+        'md': '840px',
+        'lg': '960px',
+        'xl': '1280px',
+        '2xl': '1440px',
+        'full': '1600px'
       }
     },
   },

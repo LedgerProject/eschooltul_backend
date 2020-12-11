@@ -1,20 +1,12 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Eschooltul</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag "application", media: 'all', 'data-turbolinks-track': 'reload' %>
-    
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <title>ESCHOOLTU</title>
+    <%= render "layouts/assets" %>
   </head>
-
   <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-    <%= yield %>
+    <div class="w-full flex flex-col min-h-screen">
+      <%= yield %>
+    </div>
   </body>
 </html>
