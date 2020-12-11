@@ -2,13 +2,20 @@ Role::NAMES.each do |name|
   Role.find_or_create_by!(name: name)
 end
 
+if User.count.zero?
+  director = User.create!(
+    email: "skinner@springfieldelementaryschool.com",
+    password: "password",
+    password_confirmation: "password"
+  )
+  director.add_role(:director)
+end
+
+School.create!(name: "Springfield Elementary School") unless School.created?
+
 if Rails.env.development?
   ADMINISTRATORS = %w[
     joaquin.martinez@exponentiateam.com
-  ].freeze
-
-  DIRECTORS = %w[
-    skinner@springfield.com
   ].freeze
 
   TEACHERS = %w[
@@ -27,12 +34,5 @@ if Rails.env.development?
 
     user = User.create!(email: email, password: "password", password_confirmation: "password")
     user.add_role(:teacher)
-  end
-
-  DIRECTORS.each do |email|
-    next if User.exists?(email: email)
-
-    user = User.create!(email: email, password: "password", password_confirmation: "password")
-    user.add_role(:director)
   end
 end

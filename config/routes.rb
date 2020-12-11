@@ -3,9 +3,9 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     authenticated :user do
-      root to: "home#index"
+      root to: "schools#show"
 
-      resource :school, except: :destroy
+      resource :school, except: %i[new create destroy]
     end
 
     unauthenticated do

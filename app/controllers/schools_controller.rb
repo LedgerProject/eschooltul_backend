@@ -1,26 +1,12 @@
 class SchoolsController < ApplicationController
-  before_action :check_is_director
+  before_action :check_is_director, except: :show
 
   def show
     @school = find_school
   end
 
-  def new
-    @school = School.new
-  end
-
   def edit
     @school = find_school
-  end
-
-  def create
-    @school = School.new(school_params)
-
-    if @school.save
-      redirect_to school_path, notice: "School was successfully created."
-    else
-      render :new
-    end
   end
 
   def update

@@ -1,4 +1,4 @@
-<%= image_tag(@school.logo, style: "width: 50px") %>
+<%= image_tag(@school.logo, style: "width: 50px") if @school.logo.attached? %>
 
 <p>
   <strong>Name:</strong>
@@ -20,4 +20,11 @@
   <%= @school.city %>
 </p>
 
-<%= link_to 'Edit', edit_school_path %>
+<% if current_user.director? %>
+  <%= link_to 'Edit', edit_school_path %>
+<% end %>
+
+<br>
+<br>
+
+<%= link_to("Log Out", destroy_user_session_path, method: :delete) %>
