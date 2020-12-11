@@ -14,6 +14,10 @@ gem "simple_form"
 gem "turbolinks", "~> 5"
 gem "webpacker", "~> 4.0"
 
+## Utilities
+gem 'nav_lynx' # selected class on links
+gem "font-awesome-sass", "~> 5.15.1"
+
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.2", require: false
 
