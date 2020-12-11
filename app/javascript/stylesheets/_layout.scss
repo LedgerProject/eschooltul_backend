@@ -27,10 +27,6 @@
   @apply h-16 flex justify-between py-4;
 
   @media screen and (min-width: 960px) {
-    @apply p-4 justify-end;
+    @apply justify-end;
   }
-}
-
-.main-content{
-  @apply bg-green-500;
 }

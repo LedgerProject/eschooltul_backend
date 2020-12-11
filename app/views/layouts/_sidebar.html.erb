@@ -35,6 +35,12 @@
         text: "Accounts"
       }
     %>
+    <%= render partial: "nav_link", locals: {
+        url: edit_user_password_path,
+        icon: ["fas", "cog"],
+        text: "Management"
+      }
+    %>
   </div>
   <div class="sidebar-bottom">
     <%= render partial: "nav_link", locals: {
