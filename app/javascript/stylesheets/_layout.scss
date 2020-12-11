@@ -7,14 +7,14 @@
 }
 
 .sidebar {
-  @apply w-60 hidden absolute top-0 left-0 z-50 h-full py-11 px-4;
+  @apply w-60 hidden absolute top-0 left-0 z-50 h-full py-11 px-4 flex flex-col justify-between;
 
   &.open{
-    @apply block;
+    @apply flex;
   }
 
   @media screen and (min-width: 960px){
-    @apply block static min-h-screen border-r border-gray-200;
+    @apply flex static min-h-screen border-r border-gray-200;
   }
   
 }
