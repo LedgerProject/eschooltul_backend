@@ -21,8 +21,13 @@
 </p>
 
 <% if current_user.director? %>
-  <%= link_to 'Edit', edit_school_path %>
+  <%= link_to "Edit", edit_school_path %>
 <% end %>
+
+<br>
+<br>
+
+<%= link_to "Settings: Edit Profile", edit_user_registration_path %>
 
 <br>
 <br>
