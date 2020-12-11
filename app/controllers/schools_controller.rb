@@ -1,4 +1,4 @@
-class SchoolsController < ApplicationController
+class SchoolsController < AuthenticatedController
   before_action :check_is_director, except: :show
 
   def show

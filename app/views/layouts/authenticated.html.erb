@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ESCHOOLTUL</title>
+    <%= render "layouts/assets" %>
+  </head>
+  <body>
+    <div class="w-full flex flex-col min-h-screen">
+      <div class="wrap min-h-screen flex relative"> 
+        <div class="sidebar">
+          <%= render "layouts/branding" %>
+        </div>
+        <div class="main">
+          <div class="header-bar"> Header bar </div>
+          <div class="main-content"><%= yield %></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

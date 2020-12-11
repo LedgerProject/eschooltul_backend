@@ -5,3 +5,28 @@
     @apply 2xl:w-full 2xl:max-w-screen-2xl;
   }
 }
+
+.sidebar {
+  @apply w-60 hidden absolute top-0 left-0 z-50 h-full py-11 px-4;
+
+  &.open{
+    @apply block;
+  }
+
+  @media screen and (min-width: 960px){
+    @apply block static min-h-screen border-r border-gray-200;
+  }
+  
+}
+
+.main {
+  @apply w-full;
+}
+
+.header-bar {
+  @apply h-16 bg-blue-500;
+}
+
+.main-content{
+  @apply bg-green-500;
+}
