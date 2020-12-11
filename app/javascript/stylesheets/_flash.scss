@@ -1,0 +1,11 @@
+.unauthenticated-flash {
+  @apply border-l-4 p-1 absolute top-16 w-full;
+
+  &.alert {
+    @apply bg-red-50 border-red-900;
+
+    p {
+      @apply text-red-900;
+    }
+  }
+}
