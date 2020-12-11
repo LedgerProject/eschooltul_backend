@@ -1,16 +1,25 @@
-<h2>Forgot your password?</h2>
-
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+<div class="wrap flex items-center justify-center min-h-screen">
+  <div class="max-w-xs w-full relative">
+    <h2 class="text-4xl font-bold text-center mb-20">Lost your password?</h2>
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <div class="mb-4">
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <%= f.email_field :email, 
+                          autofocus: true, 
+                          autocomplete: "email",
+                          placeholder: "Email address", 
+                          class: "unauthenticated-input" 
+        %>
+      </div>
+      <div class="mb-4">
+        <%= f.submit "Send reset password email", class: "unauthenticated-submit" %>
+      </div>
+      <%- if controller_name != 'sessions' %>
+        <%= link_to "Login", 
+                    new_session_path(resource_name),
+                    class: "block text-sm text-right hover:text-gray-500 focus:text-gray-500 hover:underline" 
+        %>
+      <% end %>
+    <% end %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

@@ -1,0 +1,18 @@
+input[type=email].unauthenticated-input,
+input[type=password].unauthenticated-input {
+  @apply block w-full m-0 border-blue-400 text-sm p-5 border-2;
+
+  &:focus {
+    @apply border-2 border-blue-600 ring-0;
+  }
+}
+
+input[type=submit].unauthenticated-submit {
+  @apply text-white uppercase py-5 block w-full bg-blue-500;
+
+  &:hover,
+  &:active,
+  &:focus {
+    @apply bg-blue-900 outline-none;
+  }
+}
