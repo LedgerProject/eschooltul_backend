@@ -1,0 +1,15 @@
+<!-- TODO: change email for name in current_user when name available -->
+<div class="header-bar">
+  <div class="lg:hidden text-lg" @click=" sidebarOpen = !sidebarOpen ">
+    <%= icon("fas", "bars") %>
+  </div>
+  <div class="flex items-center">
+    <div class="w-9 rounded-full bg-yellow-500"> 
+      <%= image_tag("user-icon.png") %>
+    </div>
+    <div class=" ml-2 w-full">
+      <p class="text-sm"><%= h truncate(current_user.email, :length => 20) %></p>
+      <p class="text-sm text-gray-400 capitalize"><%= current_user.roles.first.name %></p>
+    </div>
+  </div>
+</div>
