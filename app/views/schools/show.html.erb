@@ -6,7 +6,7 @@
     <!-- TODO: current_user.email -> current_user.name -->
     <p class="text-xl">Hello <%= h truncate(current_user.email, :length => 20) %></p>
   </div>
-  <div class="md:w-1/2 max-w-screen-xs md:max-w-none mb-4 mx-auto md:mx-0">
+  <div class="w-full md:w-1/2 max-w-screen-xs md:max-w-none mb-4 mx-auto md:mx-0">
     <p class="text-xl text-center mb-16"><%= Time.now.strftime("Today is %B, %e of %Y") %></p>
     <div class="mb-8">
       <% if @school.logo.attached? %>
@@ -18,7 +18,7 @@
     <h2 class="text-xl font-bold tracking-tighter mb-6 text-center"><%= @school.name %></h2>
     <p class="text-gray-400"><%= @school.address.nil? ? "Address" : @school.address %></p>
     <p class="text-gray-400"><%= @school.city.nil? ? "City" : @school.city %></p>
-    <p class="text-gray-400"><%= @school.email.nil? ? "Contact email" : @school.email %></p>
+    <p class="text-gray-400 truncate"><%= @school.email.nil? ? "Contact email" : @school.email %></p>
     <% if current_user.director? %>
       <div class="mt-4 text-right">
         <%= render partial: "secondary_button", locals: {
