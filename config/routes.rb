@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   devise_scope :user do
     authenticated :user do
       root to: "schools#show"
-
-      resource :school, except: %i[new create destroy]
+      get "/settings", to: "schools#edit"
+      
+      resource :school, only: %i[update]
     end
 
     unauthenticated do

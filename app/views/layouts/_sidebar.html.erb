@@ -1,7 +1,7 @@
 <!-- TODO: change urls -->
 <div class="sidebar" :class="{ 'open' : sidebarOpen }">
   <div class="sidebar-top">
-    <div class="flex justify-end text-lg mb-2 lg:hidden" @click=" sidebarOpen = !sidebarOpen ">
+    <div class="flex justify-end text-lg mb-2 lg:hidden cursor-pointer" @click=" sidebarOpen = !sidebarOpen ">
       <%= icon("fas", "times") %>
     </div>
     <%= render "layouts/branding" %>
@@ -42,12 +42,14 @@
       }
     %>
   </div>
-  <div class="sidebar-bottom">
-    <%= render partial: "nav_link", locals: {
-        url: edit_user_password_path,
-        icon: ["fas", "cog"],
-        text: "Settings"
-      }
-    %>
-  </div>
+  <% if current_user.director? %>
+    <div class="sidebar-bottom">
+      <%= render partial: "nav_link", locals: {
+          url: settings_path,
+          icon: ["fas", "cog"],
+          text: "Settings"
+        }
+      %>
+    </div>
+  <% end %>
 </div>

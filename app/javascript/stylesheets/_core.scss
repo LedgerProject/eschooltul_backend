@@ -5,3 +5,14 @@ body {
 p{
   @apply max-w-prose;
 }
+
+.triangle-top:before {
+  content: '';
+  top: -3px;
+  left: calc(50% - 3px);
+  width: 5px;
+  height: 5px;
+  transform: rotate(45deg);
+
+  @apply absolute border-l border-t border-gray-500 bg-white;
+}
