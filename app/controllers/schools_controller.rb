@@ -13,7 +13,7 @@ class SchoolsController < AuthenticatedController
     @school = find_school
 
     if @school.update(school_params)
-      redirect_to school_path, notice: "School was successfully updated."
+      redirect_to root_path, notice: "School was successfully updated."
     else
       render :edit
     end

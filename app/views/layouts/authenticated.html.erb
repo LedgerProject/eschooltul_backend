@@ -6,6 +6,7 @@
   </head>
   <body>
     <div class="w-full flex flex-col min-h-screen">
+      <%= render "layouts/flash" %>
       <div class="wrap min-h-screen flex relative" x-data="{ sidebarOpen: false, userSettingsOpen: false }"> 
         <%= render "layouts/sidebar" %>
         <div class="main">
