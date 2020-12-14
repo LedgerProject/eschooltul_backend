@@ -26,6 +26,16 @@ class CoursesController < AuthenticatedController
     end
   end
 
+  def duplicate
+    @course = find_course
+
+    duplicated_course = @course.deep_clone(include: :students)
+    duplicated_course.subject += " (Duplicate)"
+    duplicated_course.save!
+
+    redirect_to courses_url, notice: "Course was successfully duplicated."
+  end
+
   def update
     @course = find_course
 

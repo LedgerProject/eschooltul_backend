@@ -7,7 +7,9 @@ Rails.application.routes.draw do
       get "/settings", to: "schools#edit"
 
       resource :school, only: %i[update]
-      resources :courses
+      resources :courses do
+        post :duplicate, on: :member
+      end
     end
 
     unauthenticated do
