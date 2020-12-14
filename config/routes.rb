@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
       resource :school, only: %i[update]
       resources :courses
+      resources :accounts
     end
 
     unauthenticated do

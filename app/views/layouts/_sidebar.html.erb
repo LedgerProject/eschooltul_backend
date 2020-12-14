@@ -29,12 +29,14 @@
         text: "Ed. Record"
       }
     %>
-    <%= render partial: "nav_link", locals: {
-        url: edit_user_password_path,
-        icon: ["far", "address-card"],
-        text: "Accounts"
-      }
-    %>
+    <% if current_user.director? %>
+      <%= render partial: "nav_link", locals: {
+          url: accounts_path,
+          icon: ["far", "address-card"],
+          text: "Accounts"
+        }
+      %>
+    <% end %>
     <%= render partial: "nav_link", locals: {
         url: courses_path,
         icon: ["fas", "cog"],
