@@ -16,6 +16,7 @@ gem "webpacker", "~> 4.0"
 
 ## Utilities
 gem "font-awesome-sass", "~> 5.15.1"
+gem "nav_lynx"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.2", require: false
