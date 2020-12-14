@@ -1,0 +1,10 @@
+test:
+  adapter: postgresql
+  encoding: unicode
+  template: template0 # NOTE: Needed for CI. This template has UTF-8
+  pool: 5
+  timeout: 5000
+  host: postgres
+  username: postgres
+  password: postgres
+  database: eschooltul_test
