@@ -6,6 +6,14 @@ class User < ApplicationRecord
          :rememberable,
          :validatable
 
+  def self.teachers
+    with_role(:teacher)
+  end
+
+  def name
+    email
+  end
+
   def director?
     has_role?(:director)
   end

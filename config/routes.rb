@@ -5,8 +5,9 @@ Rails.application.routes.draw do
     authenticated :user do
       root to: "schools#show"
       get "/settings", to: "schools#edit"
-      
+
       resource :school, only: %i[update]
+      resources :courses
     end
 
     unauthenticated do

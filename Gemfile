@@ -16,6 +16,7 @@ gem "webpacker", "~> 4.0"
 
 ## Utilities
 gem "font-awesome-sass", "~> 5.15.1"
+gem "nav_lynx"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.2", require: false
@@ -23,6 +24,12 @@ gem "bootsnap", ">= 1.4.2", require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: %i[mri mingw x64_mingw]
+  gem "factory_bot_rails"
+  gem "rspec-rails", "~> 4.0.1"
+end
+
+group :test do
+  gem "shoulda-matchers", "~> 4.0"
 end
 
 group :development do

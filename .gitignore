@@ -12,6 +12,7 @@
 /tmp/*
 !/log/.keep
 !/tmp/.keep
+examples.txt
 
 # Ignore pidfiles, but keep the directory.
 /tmp/pids/*
