@@ -15,6 +15,6 @@
   </div>
   <div class="absolute top-full right-0 py-2 px-4 rounded bg-white border border-gray-500 triangle-top shadow-md" :class="{ 'hidden' : !userSettingsOpen }">
     <%= link_to("Logout", destroy_user_session_path, method: :delete, class: "block text-sm mb-2") %>
-    <%= link_to("Profile", destroy_user_session_path, class: "block text-sm") %>
+    <%= link_to("Profile", edit_user_registration_path, class: "block text-sm") %>
   </div>
 </div>
