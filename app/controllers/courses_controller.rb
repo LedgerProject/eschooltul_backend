@@ -1,6 +1,7 @@
 class CoursesController < AuthenticatedController
   def index
     @courses = Course.all
+    @students = Student.all
   end
 
   def show

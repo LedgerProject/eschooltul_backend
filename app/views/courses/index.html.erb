@@ -27,3 +27,16 @@
 <br>
 
 <%= link_to 'New Course', new_course_path %>
+
+<br>
+<br>
+
+Students
+
+<ul>
+  <% @students.each do |student| %>
+    <li>
+      Name: <%= student.full_name %>, Age: <%= student.age %>
+    </li>
+  <% end %>
+</ul>

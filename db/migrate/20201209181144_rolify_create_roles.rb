@@ -1,5 +1,4 @@
 class RolifyCreateRoles < ActiveRecord::Migration[6.0]
-  # rubocop:disable Metrics/MethodLength
   # rubocop:disable Rails/CreateTableWithTimestamps
   def change
     create_table(:roles) do |t|
@@ -17,6 +16,5 @@ class RolifyCreateRoles < ActiveRecord::Migration[6.0]
     add_index(:roles, %i[name resource_type resource_id])
     add_index(:users_roles, %i[user_id role_id])
   end
-  # rubocop:enable Metrics/MethodLength
   # rubocop:enable Rails/CreateTableWithTimestamps
 end
