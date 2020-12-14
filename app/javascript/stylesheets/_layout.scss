@@ -5,3 +5,28 @@
     @apply 2xl:w-full 2xl:max-w-screen-2xl;
   }
 }
+
+.sidebar {
+  @apply w-60 hidden absolute top-0 left-0 z-50 h-full pb-11 px-4 pt-2 flex flex-col justify-between bg-white border-r border-gray-200;
+
+  &.open{
+    @apply flex;
+  }
+
+  @media screen and (min-width: 960px){
+    @apply flex static min-h-screen border-r border-gray-200 py-11;
+  }
+  
+}
+
+.main {
+  @apply w-full;
+}
+
+.header-bar {
+  @apply h-16 flex justify-between py-4;
+
+  @media screen and (min-width: 960px) {
+    @apply justify-end;
+  }
+}

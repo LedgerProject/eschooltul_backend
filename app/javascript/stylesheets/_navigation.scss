@@ -1,0 +1,27 @@
+.nav-link {
+  @apply flex items-center py-3 text-gray-400 pl-4 mb-2;
+
+  .icon {
+    @apply block text-lg mr-6 w-6;
+  }
+
+  .text {
+    @apply block text-sm;
+  }
+
+  &:hover {
+    @apply text-blue-500;
+  }
+
+  &.selected {
+    @apply rounded bg-blue-50;
+
+    .icon {
+      @apply text-blue-400;
+    }
+
+    .text {
+      @apply text-blue-900 font-semibold;
+    }
+  }
+}

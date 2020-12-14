@@ -1,4 +1,4 @@
-class SchoolsController < ApplicationController
+class SchoolsController < AuthenticatedController
   before_action :check_is_director, except: :show
 
   def show
@@ -13,7 +13,7 @@ class SchoolsController < ApplicationController
     @school = find_school
 
     if @school.update(school_params)
-      redirect_to school_path, notice: "School was successfully updated."
+      redirect_to root_path, notice: "School was successfully updated."
     else
       render :edit
     end

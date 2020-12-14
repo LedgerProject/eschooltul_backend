@@ -1,0 +1,55 @@
+<!-- TODO: change urls -->
+<div class="sidebar" :class="{ 'open' : sidebarOpen }">
+  <div class="sidebar-top">
+    <div class="flex justify-end text-lg mb-2 lg:hidden cursor-pointer" @click=" sidebarOpen = !sidebarOpen ">
+      <%= icon("fas", "times") %>
+    </div>
+    <%= render "layouts/branding" %>
+    <%= render partial: "nav_link", locals: {
+        url: root_path,
+        icon: ["fas", "chart-line"],
+        text: "My school"
+      }
+    %>
+    <%= render partial: "nav_link", locals: {
+        url: edit_user_password_path,
+        icon: ["fas", "list-ul"],
+        text: "Grades"
+      }
+    %>
+    <%= render partial: "nav_link", locals: {
+        url: edit_user_password_path,
+        icon: ["fas", "award"],
+        text: "Evaluation"
+      }
+    %>
+    <%= render partial: "nav_link", locals: {
+        url: edit_user_password_path,
+        icon: ["far", "file"],
+        text: "Ed. Record"
+      }
+    %>
+    <%= render partial: "nav_link", locals: {
+        url: edit_user_password_path,
+        icon: ["far", "address-card"],
+        text: "Accounts"
+      }
+    %>
+    <%= render partial: "nav_link", locals: {
+        url: edit_user_password_path,
+        icon: ["fas", "cog"],
+        text: "Management"
+      }
+    %>
+  </div>
+  <% if current_user.director? %>
+    <div class="sidebar-bottom">
+      <%= render partial: "nav_link", locals: {
+          url: settings_path,
+          icon: ["fas", "cog"],
+          text: "Settings"
+        }
+      %>
+    </div>
+  <% end %>
+</div>

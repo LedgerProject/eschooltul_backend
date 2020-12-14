@@ -1,12 +1,10 @@
 <%= simple_form_for(school, url: school_path) do |f| %>
   <%= f.error_notification %>
-
   <%= f.input :logo %>
   <%= f.input :name %>
   <%= f.input :email %>
   <%= f.input :address %>
   <%= f.input :city %>
-
   <div class="actions">
     <%= f.button :submit %>
   </div>

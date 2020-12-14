@@ -8,4 +8,22 @@
       @apply text-red-900;
     }
   }
+
+  &.notice {
+    @apply bg-blue-50 border-blue-900;
+
+    p {
+      @apply text-blue-900;
+    }
+  }
 }
+
+.flash.notice {
+  @apply text-green-900 bg-green-50 border-green-500;
+}
+
+.flash.alert {
+  @apply text-yellow-900 bg-yellow-50 border-yellow-500;
+}
+
+

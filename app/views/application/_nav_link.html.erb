@@ -1,0 +1,4 @@
+<%= link_to( url, class: "nav-link #{current_page?(url) ? "selected" : nil }") do %>
+  <span class="icon"><%= icon(icon[0], icon[1]) %></span>
+  <span class="text"><%= text %></span>
+<% end %>

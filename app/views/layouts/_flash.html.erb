@@ -1,0 +1,15 @@
+<div id="flash-messages">
+  <% flash.each do |key, value| %>
+    <div
+      class="flash <%= key %> absolute top-20 right-20 px-4 py-3 border rounded z-50 flex items-center"
+      x-data="{isOpen: true }"
+      x-init="setTimeout(() => isOpen = false, 6000)"
+      x-show.transition.duration.700ms.opacity="isOpen"
+    >
+      <%= value %> 
+      <span class="close-tag ml-4 cursor-pointer" @click=" isOpen = false ">
+        <%= icon("fas", "times") %>
+      </span>
+    </div>
+  <% end %>
+</div>

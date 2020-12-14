@@ -1,0 +1,13 @@
+<div class="mb-12">
+  <% school = School.first %>
+  <div class="mb-2">
+    <% if school.logo.attached? %>
+      <%= image_tag(school.logo) %>
+    <% else %>
+      <%= image_tag("school-logo.png") %>
+    <% end %>
+  </div>
+  <h1 class="text-base text-center text-blue-900">
+    <%= school.name %>
+  </h1>
+</div>

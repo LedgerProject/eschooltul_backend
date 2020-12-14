@@ -16,3 +16,64 @@ input[type=submit].unauthenticated-submit {
     @apply bg-blue-900 outline-none;
   }
 }
+
+.simple_form {
+  @apply block max-w-screen-sm w-full;
+
+  @media screen and (min-width: 960px){
+    @apply pl-2;
+  }
+
+  @media screen and (min-width: 1280px){
+    @apply max-w-screen-xs;
+  }
+}
+
+div.input {
+  @apply flex flex-col mb-4;
+
+  @media screen and (min-width: 840px){
+    @apply flex-row items-center justify-between;
+  }
+
+  label {
+    @apply block text-sm text-gray-500 mb-1;
+
+    @media screen and (min-width: 840px){
+      @apply mb-0;
+    }
+  }
+
+  > input.file {
+    @apply block text-sm w-full;
+
+    @media screen and (min-width: 840px){
+      @apply max-w-xs;
+    }
+  }
+
+  > input.string,
+  > input.email {
+    @apply block px-3 py-2 border-blue-100 text-sm border-2 w-full bg-blue-50 rounded; 
+
+    &:focus {
+      @apply border-2 border-blue-300 ring-0;
+    }
+
+    @media screen and (min-width: 840px){
+      @apply max-w-xs;
+    }
+  }
+}
+
+.actions {
+  @apply text-right;
+
+  input.btn {
+    @apply bg-blue-500 rounded text-blue-50 uppercase;
+
+    &:hover {
+      @apply bg-blue-900
+    }
+  }
+}

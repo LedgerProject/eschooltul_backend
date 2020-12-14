@@ -1,0 +1,43 @@
+.btn {
+  @apply inline-block text-base py-3 px-4;
+
+  .icon {
+    @apply w-6;
+  }
+}
+
+.btn-xs {
+  @apply inline-block text-xs py-2 px-3;
+
+  .icon {
+    @apply w-4;
+  }
+}
+
+.btn-sm {
+  @apply inline-block text-sm py-2.5 px-3.5;
+
+  .icon {
+    @apply w-5;
+  }
+}
+
+.btn-lg {
+  @apply inline-block text-xl py-4 px-5;
+
+  .icon {
+    @apply w-7;
+  }
+}
+
+.btn-full {
+  @apply block w-full;
+}
+
+.btn-secondary {
+  @apply rounded-3xl;
+
+  .icon {
+    @apply ml-2 rounded-full inline-block text-center;
+  }
+}

@@ -1,0 +1,11 @@
+<%= link_to(
+  url, 
+  class: "btn-secondary #{button_style}"
+) do %>
+  <%= text %>
+  <% if local_assigns.has_key? :icon %>
+    <%= content_tag('span', class: "icon #{icon_style}") do  %>
+      <%= icon(icon[0], icon[1]) %>
+    <% end %>
+  <% end %>
+<% end %>
