@@ -1,0 +1,11 @@
+<!-- TODO: Eliminate Anonimo -->
+<div class="duration-200 transition-transform shadow-md hover:shadow-lg transform hover:scale-105 px-2 mb-3 sm:flex items-strech border border-gray-100"> 
+  <div class="border-b border-gray-100 py-1 sm:w-1/2 sm:border-b-0 sm:px-1">
+    <p class="text-lg font-semibold tracking-tight"><%= user.name.blank? ? "Anonimo" : user.name %></p>
+    <p class="text-sm text-gray-500 capitalize"># <%= user.roles.first.name %></p>
+  </div>
+  <div class="py-1 sm:w-1/2 sm:px-1">
+    <p class="text-lg truncate"><%= user.email %></p>
+    <!-- TODO: Delete button -->
+  </div>
+</div>
