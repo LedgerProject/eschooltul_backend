@@ -1,0 +1,29 @@
+.count-display, 
+.pagination {
+  @apply text-sm text-blue-900;
+}
+
+.pagination .page {
+  @apply mx-2;
+
+  @media screen and (min-width: 840px) {
+    @apply mx-1;
+  }
+}
+
+.pagination .current {
+  @apply text-blue-300;
+}
+
+.pagination .next {
+  @apply ml-1;
+}
+
+.pagination .prev {
+  @apply mr-1;
+}
+
+.pagination .last,
+.pagination .first { 
+  @apply hidden;
+}

@@ -5,9 +5,11 @@ ruby "2.6.6"
 
 gem "devise"
 gem "jbuilder", "~> 2.7"
+gem "kaminari" # Paginator
 gem "pg", ">= 0.18", "< 2.0"
 gem "puma", "~> 4.1" # Use Puma as the app server
 gem "rails", "~> 6.0.3", ">= 6.0.3.4"
+gem "ransack" # Search
 gem "rolify" # User roles
 gem "sass-rails", ">= 6"
 gem "simple_form"
@@ -16,7 +18,6 @@ gem "webpacker", "~> 4.0"
 
 ## Utilities
 gem "font-awesome-sass", "~> 5.15.1"
-gem "nav_lynx"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.2", require: false

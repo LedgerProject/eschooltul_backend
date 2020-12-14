@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   rolify
+  paginates_per 6
   devise :database_authenticatable,
          :registerable,
          :recoverable,
@@ -8,10 +9,6 @@ class User < ApplicationRecord
 
   def self.teachers
     with_role(:teacher)
-  end
-
-  def name
-    email
   end
 
   def director?
