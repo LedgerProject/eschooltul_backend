@@ -1,17 +1,19 @@
 class CoursesController < ApplicationController
-  before_action :set_course, only: %i[show edit update destroy]
-
   def index
     @courses = Course.all
   end
 
-  def show; end
+  def show
+    @course = find_course
+  end
 
   def new
     @course = Course.new
   end
 
-  def edit; end
+  def edit
+    @course = find_course
+  end
 
   def create
     @course = Course.new(course_params)
@@ -24,6 +26,8 @@ class CoursesController < ApplicationController
   end
 
   def update
+    @course = find_course
+
     if @course.update(course_params)
       redirect_to @course, notice: "Course was successfully updated."
     else
@@ -32,13 +36,14 @@ class CoursesController < ApplicationController
   end
 
   def destroy
+    @course = find_course
     @course.destroy
     redirect_to courses_url, notice: "Course was successfully destroyed."
   end
 
   private
 
-  def set_course
+  def find_course
     @course = Course.find(params[:id])
   end
 
