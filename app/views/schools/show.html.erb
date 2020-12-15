@@ -1,10 +1,9 @@
-<h1 class="text-5xl font-bold tracking-tighter">My school</h1>
+<h1 class="text-2xl md:text-5xl font-bold tracking-tighter">My school</h1>
 <p class="text-gray-400 tracking-widest">This is your main personal view</p>
 <div class="lg:p-2 xl:p-4 2xl:p-8 flex flex-col md:flex-row pt-4 lg:pt-2">
   <div class="md:w-1/2 mb-4">
     <!-- TODO: Class information -->
-    <!-- TODO: current_user.email -> current_user.name -->
-    <p class="text-xl">Hello <%= h truncate(current_user.email, :length => 20) %></p>
+    <p class="text-xl">Hello <%= current_user.name %></p>
   </div>
   <div class="w-full md:w-1/2 max-w-screen-xs md:max-w-none mb-4 mx-auto md:mx-0">
     <p class="text-xl text-center mb-16"><%= Time.now.strftime("Today is %B, %e of %Y") %></p>
@@ -16,9 +15,9 @@
       <% end %>
     </div>
     <h2 class="text-xl font-bold tracking-tighter mb-6 text-center"><%= @school.name %></h2>
-    <p class="text-gray-400"><%= @school.address.nil? ? "Address" : @school.address %></p>
-    <p class="text-gray-400"><%= @school.city.nil? ? "City" : @school.city %></p>
-    <p class="text-gray-400 truncate"><%= @school.email.nil? ? "Contact email" : @school.email %></p>
+    <p class="text-gray-400"><%= blank_or_nil(@school.address, "Address") %></p>
+    <p class="text-gray-400"><%= blank_or_nil(@school.city, "City") %></p>
+    <p class="text-gray-400 truncate"><%= blank_or_nil(@school.email, "Contact email") %></p>
     <% if current_user.director? %>
       <div class="mt-4 text-right">
         <%= render partial: "secondary_button", locals: {

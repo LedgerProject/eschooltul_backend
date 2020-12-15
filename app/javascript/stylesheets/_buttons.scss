@@ -41,3 +41,11 @@
     @apply ml-2 rounded-full inline-block text-center;
   }
 }
+
+.btn-primary {
+  @apply rounded-md;
+
+  .icon {
+    @apply ml-2;
+  }
+}

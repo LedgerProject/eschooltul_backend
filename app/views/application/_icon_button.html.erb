@@ -1,0 +1,7 @@
+<%= link_to(
+  url, 
+  method: local_assigns.has_key?(:method) ? method : nil,
+  data: local_assigns.has_key?(:data) ? data : nil,
+  class: "btn-icon #{local_assigns.has_key?(:style) ? style : nil}") do %>
+  <%= icon(icon[0], icon[1]) %>
+<% end %>

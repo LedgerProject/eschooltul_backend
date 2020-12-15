@@ -26,6 +26,16 @@ input[type=submit].unauthenticated-submit {
 
   @media screen and (min-width: 1280px){
     @apply max-w-screen-xs;
+
+    &.full{
+      @apply max-w-none;
+    }
+  }
+}
+
+.full-form .simple_form {
+  @media screen and (min-width: 1280px){
+    @apply max-w-none;
   }
 }
 
@@ -33,15 +43,19 @@ div.input {
   @apply flex flex-col mb-4;
 
   @media screen and (min-width: 840px){
-    @apply flex-row items-center justify-between;
+    @apply flex-row flex-wrap items-center justify-between;
   }
 
   label {
-    @apply block text-sm text-gray-500 mb-1;
+    @apply block text-sm text-gray-500 mb-1 flex-1;
 
     @media screen and (min-width: 840px){
       @apply mb-0;
     }
+  }
+
+  > .error {
+    @apply w-full my-2 p-2 bg-red-50 text-red-900;
   }
 
   > input.file {
@@ -53,7 +67,8 @@ div.input {
   }
 
   > input.string,
-  > input.email {
+  > input.email,
+  > input.password {
     @apply block px-3 py-2 border-blue-100 text-sm border-2 w-full bg-blue-50 rounded; 
 
     &:focus {
@@ -63,6 +78,34 @@ div.input {
     @media screen and (min-width: 840px){
       @apply max-w-xs;
     }
+  }
+
+  > .radio {
+    @apply text-sm capitalize;
+
+    @media screen and (min-width: 840px) {
+      @apply mr-4;
+    }
+
+    input.radio_buttons {
+      @apply mr-2;
+    }
+  }
+}
+
+select.select {
+  @apply block px-3 py-2 border-blue-100 text-sm border-2 w-full bg-blue-50 rounded;
+
+  &:focus {
+    @apply border-2 border-blue-300 ring-0;
+  }
+
+  @media screen and (min-width: 840px){
+    @apply max-w-xs;
+  }
+
+  option {
+    @apply capitalize;
   }
 }
 

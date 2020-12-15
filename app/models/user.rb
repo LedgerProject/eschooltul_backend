@@ -1,5 +1,7 @@
 class User < ApplicationRecord
+  before_destroy :validate_last_director
   rolify
+  paginates_per 6
   devise :database_authenticatable,
          :registerable,
          :recoverable,
@@ -12,8 +14,8 @@ class User < ApplicationRecord
     with_role(:teacher)
   end
 
-  def name
-    email
+  def complete_name
+    "#{name} #{first_surname} #{second_surname}"
   end
 
   def director?
@@ -22,6 +24,14 @@ class User < ApplicationRecord
 
   def administrator?
     has_role?(:administrator)
+  end
+
+  def validate_last_director
+    if has_role?(:director) && User.with_role(:director).count <= 1
+      throw(:abort)
+    else
+      true
+    end
   end
 
   def teacher?
