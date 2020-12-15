@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :courses do
         post :duplicate, on: :member
       end
+      resources :students
     end
 
     unauthenticated do
