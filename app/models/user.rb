@@ -32,6 +32,7 @@ class User < ApplicationRecord
     else
       true
     end
+  end
 
   def teacher?
     has_role?(:teacher)
