@@ -3,7 +3,7 @@
 <div class="lg:p-2 xl:p-4 2xl:p-8 flex flex-col md:flex-row pt-4 lg:pt-2">
   <div class="md:w-1/2 mb-4">
     <!-- TODO: Class information -->
-    <p class="text-xl">Hello <%= current_user.name %></p>
+    <p class="text-xl">Hello <%= current_user.complete_name %></p>
   </div>
   <div class="w-full md:w-1/2 max-w-screen-xs md:max-w-none mb-4 mx-auto md:mx-0">
     <p class="text-xl text-center mb-16"><%= Time.now.strftime("Today is %B, %e of %Y") %></p>
