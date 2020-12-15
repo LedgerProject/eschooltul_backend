@@ -35,12 +35,14 @@
         text: "Accounts"
       }
     %>
-    <%= render partial: "nav_link", locals: {
-        url: courses_path,
-        icon: ["fas", "cog"],
-        text: "Management"
-      }
-    %>
+    <% if current_user.director? || current_user.administrator? %>
+      <%= render partial: "nav_link", locals: {
+          url: courses_path,
+          icon: ["fas", "cog"],
+          text: "Management"
+        }
+      %>
+    <% end %>
   </div>
   <% if current_user.director? %>
     <div class="sidebar-bottom">
