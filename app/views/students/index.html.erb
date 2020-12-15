@@ -1,0 +1,47 @@
+<h1>Students</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Name</th>
+    <th>Age</th>
+    <th>First surname</th>
+    <th>Second surname</th>
+    <th>Address</th>
+    <th>Telephone</th>
+    <th>Diseases</th>
+    <th>Observations</th>
+    <th colspan="4"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @students.each do |student| %>
+    <tr>
+      <td><%= student.name %></td>
+      <td><%= student.age %></td>
+      <td><%= student.first_surname %></td>
+      <td><%= student.second_surname %></td>
+      <td><%= student.address %></td>
+      <td><%= student.telephone %></td>
+      <td><%= student.diseases %></td>
+      <td><%= student.observations %></td>
+      <td><%= link_to 'Show', student %></td>
+      <td><%= link_to 'Edit', edit_student_path(student) %></td>
+      <% unless current_user.teacher? %>
+        <td>
+          <% text = student.deactivated ? "Enable" : "Disable" %>
+          <%= link_to text, deactivate_student_path(student), method: :post %>
+        </td>
+        <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: t(:student_delete_message) } %></td>
+      <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<% unless current_user.teacher? %>
+  <%= link_to 'New Student', new_student_path %>
+<% end %>

@@ -31,3 +31,4 @@
 
 en:
   hello: "Hello world"
+  student_delete_message: "Attention: You are going to delete a digital file of the student. After deletion, the file cannot be recovered."

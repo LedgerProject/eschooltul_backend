@@ -25,7 +25,7 @@
       }
     %>
     <%= render partial: "nav_link", locals: {
-        url: edit_user_password_path,
+        url: students_path,
         icon: ["far", "file"],
         text: "Ed. Record"
       }
@@ -38,12 +38,14 @@
         }
       %>
     <% end %>
-    <%= render partial: "nav_link", locals: {
-        url: courses_path,
-        icon: ["fas", "cog"],
-        text: "Management"
-      }
-    %>
+    <% if current_user.director? || current_user.administrator? %>
+      <%= render partial: "nav_link", locals: {
+          url: courses_path,
+          icon: ["fas", "cog"],
+          text: "Management"
+        }
+      %>
+    <% end %>
   </div>
   <% if current_user.director? %>
     <div class="sidebar-bottom">
