@@ -1,6 +1,6 @@
 class StudentsController < AuthenticatedController
   def index
-    @students = Student.unscoped.all
+    @students = find_students
   end
 
   def show
@@ -50,6 +50,14 @@ class StudentsController < AuthenticatedController
   end
 
   private
+
+  def find_students
+    if current_user.teacher?
+      current_user.courses.flat_map(&:students).uniq
+    else
+      Student.unscoped.all
+    end
+  end
 
   def find_student
     Student.unscoped.find(params[:id])
