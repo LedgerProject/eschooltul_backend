@@ -13,3 +13,13 @@
   </div>
   <%= render partial: "accounts/accounts_table" %>
 </div>
+<div class="pt-4 lg:pt-2 lg:p-2 xl:p-4 2xl:p-8 w-full md:text-right">
+  <%= render partial: "primary_button", locals: {
+      url: new_account_path,
+      button_style: "bg-blue-500 hover:bg-blue-900 text-white btn",
+      icon: ["fas", "plus"],
+      icon_style: "",
+      text: "Create account"
+    }
+  %>
+</div>

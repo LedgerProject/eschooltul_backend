@@ -11,6 +11,10 @@ class User < ApplicationRecord
     with_role(:teacher)
   end
 
+  def complete_name
+    "#{name} #{first_surname} #{second_surname}"
+  end
+
   def director?
     has_role?(:director)
   end
