@@ -6,6 +6,8 @@ class User < ApplicationRecord
          :rememberable,
          :validatable
 
+  has_many :courses, dependent: :nullify
+
   def self.teachers
     with_role(:teacher)
   end
@@ -20,5 +22,9 @@ class User < ApplicationRecord
 
   def administrator?
     has_role?(:administrator)
+  end
+
+  def teacher?
+    has_role?(:teacher)
   end
 end

@@ -8,5 +8,9 @@ FactoryBot.define do
     telephone { "MyString" }
     diseases { "MyString" }
     observations { "MyText" }
+
+    trait :deactivated do
+      deactivated { true }
+    end
   end
 end
