@@ -1,6 +1,6 @@
 class StudentsController < AuthenticatedController
   def index
-    @students = Student.all
+    @students = Student.unscoped.all
   end
 
   def show
@@ -8,7 +8,7 @@ class StudentsController < AuthenticatedController
   end
 
   def new
-    @student = Student.new
+    @student = Student.unscoped.new
   end
 
   def edit
@@ -16,13 +16,22 @@ class StudentsController < AuthenticatedController
   end
 
   def create
-    @student = Student.new(student_params)
+    @student = Student.unscoped.new(student_params)
 
     if @student.save
       redirect_to @student, notice: "Student was successfully created."
     else
       render :new
     end
+  end
+
+  def deactivate
+    student = find_student
+    student.toggle(:deactivated)
+    student.save!
+
+    activation_message = student.deactivated ? "disabled" : "enabled"
+    redirect_to students_url, notice: "Student was #{activation_message}"
   end
 
   def update
@@ -43,7 +52,7 @@ class StudentsController < AuthenticatedController
   private
 
   def find_student
-    Student.find(params[:id])
+    Student.unscoped.find(params[:id])
   end
 
   def student_params

@@ -60,6 +60,28 @@ RSpec.describe "/students", type: :request do
     end
   end
 
+  describe "POST /deactivate" do
+    it "deactivates a student" do
+      student = create(:student)
+
+      post "/students/#{student.id}/deactivate"
+
+      student.reload
+      expect(student.deactivated).to be(true)
+    end
+
+    context "when is deactivated" do
+      it "activates a student" do
+        student = create(:student, :deactivated)
+
+        post "/students/#{student.id}/deactivate"
+
+        student.reload
+        expect(student.deactivated).to be(false)
+      end
+    end
+  end
+
   describe "DELETE /destroy" do
     it "destroys the requested student" do
       student = create(:student)

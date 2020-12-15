@@ -11,7 +11,7 @@
       <th>Telephone</th>
       <th>Diseases</th>
       <th>Observations</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -28,6 +28,10 @@
         <td><%= student.observations %></td>
         <td><%= link_to 'Show', student %></td>
         <td><%= link_to 'Edit', edit_student_path(student) %></td>
+        <td>
+          <% text = student.deactivated ? "Enable" : "Disable" %>
+          <%= link_to text, deactivate_student_path(student), method: :post %>
+        </td>
         <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: t(:student_delete_message) } %></td>
       </tr>
     <% end %>
