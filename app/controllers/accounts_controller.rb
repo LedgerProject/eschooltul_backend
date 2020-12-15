@@ -21,6 +21,16 @@ class AccountsController < AuthenticatedController
     end
   end
 
+  def edit; end
+
+  def update
+    if current_user.update(update_params)
+      redirect_to root_path, notice: "Your profile has been update successfully."
+    else
+      render :edit
+    end
+  end
+
   def destroy
     @user = find_user
 
@@ -42,6 +52,14 @@ class AccountsController < AuthenticatedController
       :email,
       :password,
       :password_confirmation,
+      :name,
+      :first_surname,
+      :second_surname
+    )
+  end
+
+  def update_params
+    params.require(:user).permit(
       :name,
       :first_surname,
       :second_surname

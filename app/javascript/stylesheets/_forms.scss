@@ -26,15 +26,11 @@ input[type=submit].unauthenticated-submit {
 
   @media screen and (min-width: 1280px){
     @apply max-w-screen-xs;
-
-    &.full{
-      @apply max-w-none;
-    }
   }
 }
 
 .full-form .simple_form {
-  @media screen and (min-width: 1280px){
+  @media screen and (min-width: 840px){
     @apply max-w-none;
   }
 }

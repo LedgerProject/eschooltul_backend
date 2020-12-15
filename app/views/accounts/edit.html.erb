@@ -1,0 +1,61 @@
+<div class="lg:p-2 xl:p-4 2xl:p-8 pt-4 lg:pt-2 w-full full-form">
+  <%= simple_form_for(current_user, url: account_path(current_user), html: { class: "mb-4" } ) do |f| %>
+    <div class="form-section py-2 border-t border-gray-200 xl:flex xl:items-stretch">
+      <div class="mb-3 xl:mb-0 xl:w-1/2">
+        <h3 class="text-xl md:text-sm font-bold text-gray-700 tracking-tighter">User information</h1>
+        <p class="text-gray-400 text-xs tracking-widest">Update your information</p>
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      </div>
+      <div class="xl:w-1/2">
+        <%= f.input :name %>
+        <%= f.input :first_surname %>
+        <%= f.input :second_surname %>
+      </div>
+    </div>
+    <div class="actions mb-8">
+      <%= f.button :submit, "Update information" %>
+    </div>
+  <% end %>
+  <%= simple_form_for(current_user, url: registration_path(current_user), html: { method: :put, class: "mb-4" }) do |f| %>
+    <div class="form-section py-2 border-t border-gray-200 xl:flex xl:items-stretch">
+      <div class="mb-3 xl:mb-0 xl:w-1/2">
+        <h3 class="text-xl md:text-sm font-bold text-gray-700 tracking-tighter">Login details</h1>
+        <p class="text-gray-400 text-xs tracking-widest">Setup the access data for your account</p>
+        <%= f.error_notification %>
+        <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+      </div>
+      <div class="xl:w-1/2">
+        <%= f.input :email, autofocus: true, disabled: !current_user.director? %>
+        <%= f.input :password, label: "New password" %>
+        <%= f.input :password_confirmation %>
+        <%= f.input :current_password %>
+      </div>
+    </div>
+    <div class="actions mb-8">
+      <%= f.button :submit, "Update account" %>
+    </div>
+  <% end %>
+  <div class="mb-8 py-2 border-t border-gray-200 xl:flex xl:items-stretch">
+    <div class="mb-3 xl:mb-0 xl:w-1/2">
+      <h3 class="text-xl md:text-sm font-bold text-gray-700 tracking-tighter">Cancel account</h1>
+      <p class="text-gray-400 text-xs tracking-widest">Want to close your account for good?</p>
+    </div>
+    <div class="xl:w-1/2 text-right">
+      <%= render partial: "secondary_button", locals: {
+          url: registration_path(current_user),
+          method: :delete,
+          data: { confirm: "Are you sure?" },
+          icon: ["far", "times-circle"],
+          button_style: "btn-sm bg-red-50 text-red-900 hover:bg-red-100",
+          icon_style: "",
+          text: "Close account"
+        }
+      %>
+    </div>
+  </div>
+</div>
+
+
+
+
