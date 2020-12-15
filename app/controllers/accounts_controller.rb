@@ -41,7 +41,7 @@ class AccountsController < AuthenticatedController
     params.require(:user).permit(
       :email,
       :password,
-      :password_confirm,
+      :password_confirmation,
       :name,
       :first_surname,
       :second_surname
