@@ -24,8 +24,12 @@ class AccountsController < AuthenticatedController
 
   def destroy
     @user = find_user
-    @user.destroy
-    redirect_to accounts_path, notice: "Account was successfully destroyed."
+
+    if @user.destroy
+      redirect_to accounts_path, notice: "Account was successfully destroyed."
+    else
+      redirect_to accounts_path, alert: "You can't destroy this account."
+    end
   end
 
   private
