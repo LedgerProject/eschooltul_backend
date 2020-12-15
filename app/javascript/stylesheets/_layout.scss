@@ -7,7 +7,8 @@
 }
 
 .sidebar {
-  @apply w-60 hidden absolute top-0 left-0 z-50 h-full pb-11 px-4 pt-2 flex flex-col justify-between bg-white border-r border-gray-200;
+  left: -5%;
+  @apply w-60 hidden absolute top-0 z-50 h-full pb-11 px-4 pt-2 flex flex-col justify-between bg-white border-r border-gray-200;
 
   &.open{
     @apply flex;

@@ -2,12 +2,8 @@ class CoursesController < AuthenticatedController
   before_action :check_permission
 
   def index
-    @courses = Course.all
+    @courses = Course.order(:name).page(params[:page])
     @students = Student.all
-  end
-
-  def show
-    @course = find_course
   end
 
   def new
