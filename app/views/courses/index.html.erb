@@ -1,29 +1,45 @@
 <h1>Management</h1>
 
+<%= link_to 'New Course', new_course_path %>
+
 <table>
   <thead>
-    <tr>
-      <th>Name</th>
-      <th>Subject</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
+  <tr>
+    <th>Name</th>
+    <th>Subject</th>
+    <th>User</th>
+    <th colspan="4"></th>
+  </tr>
   </thead>
 
   <tbody>
-    <% @courses.each do |course| %>
-      <tr>
-        <td><%= course.name %></td>
-        <td><%= course.subject %></td>
-        <td><%= course.user_id %></td>
-        <td><%= link_to 'Show', course %></td>
-        <td><%= link_to 'Edit', edit_course_path(course) %></td>
-        <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+  <% @courses.each do |course| %>
+    <tr>
+      <td><%= course.name %></td>
+      <td><%= course.subject %></td>
+      <td><%= course.user_id %></td>
+      <td><%= link_to 'Show', course %></td>
+      <td><%= link_to 'Duplicate', duplicate_course_path(course), method: :post %></td>
+      <td><%= link_to 'Edit', edit_course_path(course) %></td>
+      <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
   </tbody>
 </table>
 
 <br>
+<br>
 
-<%= link_to 'New Course', new_course_path %>
+<% @courses.each do |course| %>
+  <span>Students of this class (<%= course.full_name %>)</span>
+
+  <%= simple_form_for(course) do |f| %>
+    <%= f.collection_check_boxes(:student_ids, Student.all, :id, :full_name) do |student| %>
+      <%= student.label(class: "block") { student.check_box + " " + student.text } %>
+    <% end %>
+
+    <%= f.button :submit %>
+  <% end %>
+
+  <br>
+<% end %>
