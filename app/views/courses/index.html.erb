@@ -1,45 +1,68 @@
-<h1>Management</h1>
-
-<%= link_to 'New Course', new_course_path %>
-
-<table>
-  <thead>
-  <tr>
-    <th>Name</th>
-    <th>Subject</th>
-    <th>User</th>
-    <th colspan="4"></th>
-  </tr>
-  </thead>
-
-  <tbody>
-  <% @courses.each do |course| %>
-    <tr>
-      <td><%= course.name %></td>
-      <td><%= course.subject %></td>
-      <td><%= course.user_id %></td>
-      <td><%= link_to 'Show', course %></td>
-      <td><%= link_to 'Duplicate', duplicate_course_path(course), method: :post %></td>
-      <td><%= link_to 'Edit', edit_course_path(course) %></td>
-      <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-
-<br>
-<br>
-
-<% @courses.each do |course| %>
-  <span>Students of this class (<%= course.full_name %>)</span>
-
-  <%= simple_form_for(course) do |f| %>
-    <%= f.collection_check_boxes(:student_ids, Student.all, :id, :full_name) do |student| %>
-      <%= student.label(class: "block") { student.check_box + " " + student.text } %>
-    <% end %>
-
-    <%= f.button :submit %>
-  <% end %>
-
-  <br>
+<h1 class="text-2xl md:text-5xl font-bold tracking-tighter">Management</h1>
+<p class="text-gray-400 tracking-widest">Here you can manage your courses</p>
+<% if @courses.empty? %>
+  <div class="p-4 mt-20 2xl:p-8 w-full flex justify-center items-center">
+    <div class="w-full">
+      <%= image_tag("desk.svg", class: "w-1/2 max-w-xs mx-auto mb-4 sm:mb-8" ) %>
+      <div class="text-center">
+        <p class="text-sm mx-auto text-gray-400 mb-2 sm:mb-4 md:text-base">
+          There's no courses yet, be the first one on create!
+        </p>
+        <%= render partial: "primary_button", locals: {
+            url: new_course_path,
+            button_style: "bg-blue-500 hover:bg-blue-900 text-white btn",
+            icon: ["fas", "plus"],
+            icon_style: "",
+            text: "Create course"
+          }
+        %>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="pt-4 lg:pt-2 lg:p-2 xl:p-4 2xl:p-8 w-full">
+    <%= render partial: "courses/courses_table" %>
+  </div>
+  <div class="pt-4 lg:pt-2 lg:p-2 xl:p-4 2xl:p-8 w-full md:text-right">
+    <%= render partial: "primary_button", locals: {
+        url: new_course_path,
+        button_style: "bg-blue-500 hover:bg-blue-900 text-white btn",
+        icon: ["fas", "plus"],
+        icon_style: "",
+        text: "Create course"
+      }
+    %>
+  </div>
 <% end %>
+<div class="pt-4 lg:pt-2 lg:p-2 xl:p-4 2xl:p-8 w-full mt-8" x-data="{ selectedCourse: '' }">
+  <div class="mb-8">
+    <p class="text-sm font-bold tracking-tight mb-2">
+      Select a course to administrate students:
+    </p>
+    <select x-on:change=" selectedCourse = $event.target.value " >
+      <option value=""></option>
+      <% school_courses.each do |c| %>
+        <option value="<%= c.id %>"><%= c.full_name %></option>
+      <% end %>
+    </select>
+  </div>
+  <div class="">
+  <% school_courses.each do |course| %>
+    <template x-if=" selectedCourse === '<%= course.id.to_s %>'">
+      <div class="md:flex md:flex-col md:items-end">
+        <p class="text-sm font-semibold tracking-tight mb-2 border-b border-gray-200 w-full max-w-screen-sm xl:max-w-screen-xs">
+          Students: <%= course.full_name %>
+        </p>
+        <%= simple_form_for(course) do |f| %>
+          <%= f.collection_check_boxes(:student_ids, Student.all, :id, :full_name) do |student| %>
+            <%= student.label(class: "block mb-2") { student.check_box + " " + student.text } %>
+          <% end %>
+          <div class="actions mt-4">
+            <%= f.button :submit, class: "btn-xs" %>
+          </div>
+        <% end %>
+      <div>
+    </template>
+  <% end %>
+</div>
+</div>

@@ -1,5 +1,5 @@
 class AccountsController < AuthenticatedController
-  before_action :redirect_unless_director
+  before_action :redirect_unless_director, except: %i[edit update]
 
   def index
     @search = User.ransack(params[:q])
@@ -18,6 +18,16 @@ class AccountsController < AuthenticatedController
       redirect_to accounts_path, notice: "Account was successfully created."
     else
       render :new
+    end
+  end
+
+  def edit; end
+
+  def update
+    if current_user.update(update_params)
+      redirect_to root_path, notice: "Your profile has been update successfully."
+    else
+      render :edit
     end
   end
 
@@ -42,6 +52,14 @@ class AccountsController < AuthenticatedController
       :email,
       :password,
       :password_confirmation,
+      :name,
+      :first_surname,
+      :second_surname
+    )
+  end
+
+  def update_params
+    params.require(:user).permit(
       :name,
       :first_surname,
       :second_surname

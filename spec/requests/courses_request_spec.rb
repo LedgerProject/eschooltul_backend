@@ -10,7 +10,7 @@ RSpec.describe "Courses", type: :request do
 
         get "/courses"
 
-        expect(response).to have_http_status(:forbidden)
+        expect(response).to redirect_to root_path
       end
     end
   end

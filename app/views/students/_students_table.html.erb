@@ -1,0 +1,15 @@
+<div class="mt-12">
+    <div class="flex">
+      <div class="sm:hidden"><p class="text-sm text-gray-500 p-2">Records</p></div>
+      <div class="hidden sm:block w-2/5 px-1"><p class="text-sm text-gray-500 p-2">Student</p></div>
+      <div class="hidden sm:block w-2/5 px-1"><p class="text-sm text-gray-500 p-2">Contact</p></div>
+      <div class="hidden sm:block w-1/5 px-1"><p class="text-sm text-gray-500 p-2"></p></div>
+    </div>
+    <% @students.each do |s| %>
+      <%= render partial: "students/student", locals: { student: s } %>  
+    <%end %>
+</div>
+<!-- TODO: Display teacher students with kaminari -->
+<% unless current_user.teacher? %>
+  <%= render partial: "table_footer", locals: { elements: @students } %>
+<% end %>

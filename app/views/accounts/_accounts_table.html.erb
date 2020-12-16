@@ -7,5 +7,5 @@
     <% @users.each do |u| %>
       <%= render partial: "accounts/account", locals: { user: u } %>  
     <%end %>
-  </div>
-  <%= render partial: "table_footer", locals: { elements: @users } %>
+</div>
+<%= render partial: "table_footer", locals: { elements: @users } %>

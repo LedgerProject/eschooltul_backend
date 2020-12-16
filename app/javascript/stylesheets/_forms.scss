@@ -26,15 +26,11 @@ input[type=submit].unauthenticated-submit {
 
   @media screen and (min-width: 1280px){
     @apply max-w-screen-xs;
-
-    &.full{
-      @apply max-w-none;
-    }
   }
 }
 
 .full-form .simple_form {
-  @media screen and (min-width: 1280px){
+  @media screen and (min-width: 840px){
     @apply max-w-none;
   }
 }
@@ -68,7 +64,9 @@ div.input {
 
   > input.string,
   > input.email,
-  > input.password {
+  > input.password,
+  > input.integer,
+  > textarea.text {
     @apply block px-3 py-2 border-blue-100 text-sm border-2 w-full bg-blue-50 rounded; 
 
     &:focus {

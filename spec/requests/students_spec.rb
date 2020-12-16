@@ -17,16 +17,6 @@ RSpec.describe "/students", type: :request do
     end
   end
 
-  describe "GET /show" do
-    it "renders a successful response" do
-      student = create(:student)
-
-      get student_url(student)
-
-      expect(response).to be_successful
-    end
-  end
-
   describe "GET /new" do
     it "renders a successful response" do
       get new_student_url
@@ -55,7 +45,7 @@ RSpec.describe "/students", type: :request do
 
       it "redirects to the created student" do
         post students_url, params: { student: attributes_for(:student) }
-        expect(response).to redirect_to(student_url(Student.last))
+        expect(response).to redirect_to(students_url)
       end
     end
   end
