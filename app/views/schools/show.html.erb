@@ -45,9 +45,9 @@
       <% end %>
     </div>
     <h2 class="text-xl font-bold tracking-tighter mb-6 text-center"><%= @school.name %></h2>
-    <p class="text-gray-400"><%= blank_or_nil(@school.address, "Address") %></p>
-    <p class="text-gray-400"><%= blank_or_nil(@school.city, "City") %></p>
-    <p class="text-gray-400 truncate"><%= blank_or_nil(@school.email, "Contact email") %></p>
+    <p class="text-gray-400"><%= @school.address.presence || "Address" %></p>
+    <p class="text-gray-400"><%= @school.city.presence || "City" %></p>
+    <p class="text-gray-400 truncate"><%= @school.email.presence || "Contact email") %></p>
     <% if current_user.director? %>
       <div class="mt-4 text-right">
         <%= render partial: "secondary_button", locals: {
