@@ -34,6 +34,10 @@ class User < ApplicationRecord
     end
   end
 
+  def role
+    roles.first.name
+  end
+
   def teacher?
     has_role?(:teacher)
   end

@@ -9,7 +9,7 @@
       <%= render partial: "students/student", locals: { student: s } %>  
     <%end %>
 </div>
-<!-- TODO: Find a way to display teacher students with kaminari -->
+<!-- TODO: Display teacher students with kaminari -->
 <% unless current_user.teacher? %>
   <%= render partial: "table_footer", locals: { elements: @students } %>
 <% end %>

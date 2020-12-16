@@ -1,8 +1,8 @@
-<!-- TODO: Checkbox for multiple deleting -->
+<!-- TODO: Multiple account deleting -->
 <div class="shadow-md px-2 mb-3 sm:flex items-stretch border border-gray-100"> 
   <div class="border-b border-gray-100 py-1 sm:w-1/2 sm:border-b-0 sm:px-1 md:flex md:flex-col md:justify-center">
     <p class="text-lg font-semibold tracking-tight"><%= user.complete_name %></p>
-    <p class="text-sm text-gray-500 capitalize"># <%= user.roles.first.name %></p>
+    <p class="text-sm text-gray-500 capitalize"># <%= user.role %></p>
   </div>
   <div class="py-1 sm:w-1/2 sm:px-1 md:flex items-center justify-between">
     <p class="text-lg mb-2 md:mb-0 truncate"><%= user.email %></p>

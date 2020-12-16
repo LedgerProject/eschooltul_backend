@@ -8,7 +8,7 @@
     </div>
     <div class=" ml-2 w-full">
       <p class="text-sm"><%= current_user.complete_name %></p>
-      <p class="text-sm text-gray-400 capitalize"><%= current_user.roles.first.name %></p>
+      <p class="text-sm text-gray-400 capitalize"><%= current_user.role %></p>
     </div>
   </div>
   <div class="absolute top-full right-0 py-2 px-4 rounded bg-white border border-gray-500 triangle-top shadow-md" :class="{ 'hidden' : !userSettingsOpen }">

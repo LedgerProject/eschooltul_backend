@@ -1,11 +1,41 @@
 <h1 class="text-2xl md:text-5xl font-bold tracking-tighter">My school</h1>
 <p class="text-gray-400 tracking-widest">This is your main personal view</p>
 <div class="lg:p-2 xl:p-4 2xl:p-8 flex flex-col md:flex-row pt-4 lg:pt-2">
-  <div class="md:w-1/2 mb-4">
-    <!-- TODO: Class information -->
+  <div class="md:w-1/2 mb-4 pr-2">
     <p class="text-xl">Hello <%= current_user.complete_name %></p>
+    <div class="shadow-lg rounded-xl mt-9 py-5 px-6">
+      <h3 class="font-xl font-bold">Class information</h3>
+      <div class="flex my-4">
+        <div class="w-1/2">
+          <p class="text-gray-500">Class name<p>
+        </div>
+        <div class="w-1/2">
+          <p class="text-gray-500 text-right">Students<p>
+        </div>
+      </div>
+      <% school_courses.each do |course| %>
+          <div class="border-b border-gray-200 py-2 flex flex-wrap items-center">
+            <div class="w-4/5">
+              <p class="font-bold tracking-tight">
+                <%= icon("far", "user", class: "bg-gray-100 inline-block p-1 text-center rounded") %> 
+                <%= course.full_name %>
+              </p>
+            </div>
+            <div class="text-right w-1/5">
+              <p class="text-sm">
+                <%= course.students.count %> <%= icon("fas", "user-graduate", class: "text-gray-300 ml-1") %>
+              <p>
+            </div>
+            <div class="w-full">
+              <p class="text-gray-600 pl-5">
+                <%= current_user.teacher? ? course.user.role : course.user.complete_name %>
+              </p>
+            </div> 
+          </div>
+      <% end %>
+    </div>
   </div>
-  <div class="w-full md:w-1/2 max-w-screen-xs md:max-w-none mb-4 mx-auto md:mx-0">
+  <div class="w-full md:w-1/2 max-w-screen-xs md:max-w-none mb-4 mx-auto md:mx-0 pl-2">
     <p class="text-xl text-center mb-16"><%= Time.now.strftime("Today is %B, %e of %Y") %></p>
     <div class="mb-8">
       <% if @school.logo.attached? %>
