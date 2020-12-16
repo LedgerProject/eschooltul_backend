@@ -64,7 +64,9 @@ div.input {
 
   > input.string,
   > input.email,
-  > input.password {
+  > input.password,
+  > input.integer,
+  > textarea.text {
     @apply block px-3 py-2 border-blue-100 text-sm border-2 w-full bg-blue-50 rounded; 
 
     &:focus {
