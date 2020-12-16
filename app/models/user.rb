@@ -15,7 +15,7 @@ class User < ApplicationRecord
   end
 
   def complete_name
-    "#{name} #{first_surname} #{second_surname}"
+    [name, first_surname, second_surname].join(" ")
   end
 
   def director?
