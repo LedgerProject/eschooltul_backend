@@ -11,6 +11,7 @@ gem "puma", "~> 4.1" # Use Puma as the app server
 gem "rails", "~> 6.0.3", ">= 6.0.3.4"
 gem "ransack" # Search
 gem "rolify" # User roles
+gem "rollbar" # Error reporting
 gem "sass-rails", ">= 6"
 gem "simple_form"
 gem "turbolinks", "~> 5"
