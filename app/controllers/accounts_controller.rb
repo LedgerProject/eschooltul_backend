@@ -1,5 +1,5 @@
 class AccountsController < AuthenticatedController
-  before_action :redirect_unless_director
+  before_action :redirect_unless_director, except: %i[edit update]
 
   def index
     @search = User.ransack(params[:q])

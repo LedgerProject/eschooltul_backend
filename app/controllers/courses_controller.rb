@@ -52,12 +52,6 @@ class CoursesController < AuthenticatedController
 
   private
 
-  def check_permission
-    return if current_user.director? || current_user.administrator?
-
-    head(:forbidden)
-  end
-
   def find_course
     @course = Course.find(params[:id])
   end
