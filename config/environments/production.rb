@@ -73,7 +73,7 @@ Rails.application.configure do
     password: ENV["SENDGRID_API_KEY"],
     domain: "eschooltul.com",
     address: "smtp.sendgrid.net",
-    port: 587,
+    port: 465, # for SSL connections
     authentication: :plain,
     enable_starttls_auto: true
   }
