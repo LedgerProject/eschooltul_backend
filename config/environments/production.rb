@@ -61,7 +61,10 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "eschooltul_production"
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { host: "www.eschooltul.com" }
+  config.action_mailer.default_url_options = {
+    host: "www.eschooltul.com",
+    protocol: "https"
+  }
   config.action_mailer.asset_host = "https://www.eschooltul.com"
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
