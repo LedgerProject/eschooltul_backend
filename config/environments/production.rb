@@ -62,7 +62,7 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
   config.action_mailer.default_url_options = {
-    host: "www.eschooltul.com",
+    host: "https://www.eschooltul.com",
     protocol: "https"
   }
   config.action_mailer.asset_host = "https://www.eschooltul.com"
@@ -73,7 +73,7 @@ Rails.application.configure do
     password: ENV["SENDGRID_API_KEY"],
     domain: "eschooltul.com",
     address: "smtp.sendgrid.net",
-    port: 465, # for SSL connections
+    port: 587,
     authentication: :plain,
     enable_starttls_auto: true
   }
