@@ -13,6 +13,9 @@ Rails.application.routes.draw do
       end
       resources :students, except: %i[show] do
         post :deactivate, on: :member
+        collection do
+        resources :import_ed_record, only: %i[new create]
+        end      
       end
     end
 
