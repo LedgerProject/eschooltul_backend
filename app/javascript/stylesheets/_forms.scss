@@ -118,3 +118,7 @@ select.select {
     }
   }
 }
+
+.course-student-row label input{
+  @apply mr-1;
+}
