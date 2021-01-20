@@ -9,7 +9,12 @@
       <%= icon("fas", "user", class: "ml-2 text-blue-500") %>
     </p>
     <div class="text-right">
-      
+      <%= render partial: "icon_button", locals: {
+          url: grades_course_terms_path(course),
+          style: "btn-sm text-blue-500",
+          icon: ["far", "calendar-alt"],
+        }
+      %>
     </div>
   </div>
 </div>

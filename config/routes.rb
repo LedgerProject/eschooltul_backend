@@ -16,7 +16,9 @@ Rails.application.routes.draw do
       end
 
       namespace :grades do
-        resources :courses, only: %i[index]
+        resources :courses, only: %i[index] do 
+          resources :terms, except: %i[show]
+        end
       end
     end
 
