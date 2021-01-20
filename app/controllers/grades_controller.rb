@@ -1,0 +1,2 @@
+class GradesController < AuthenticatedController
+end

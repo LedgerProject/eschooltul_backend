@@ -33,32 +33,31 @@
       }
     %>
   </div>
-<% end %>
-<div class="pt-4 lg:pt-2 lg:p-2 xl:p-4 2xl:p-8 w-full mt-8" x-data="{ selectedCourse: '' }">
-  <div class="mb-8">
-    <select x-on:change=" selectedCourse = $event.target.value " class="select">
-      <option value="">Select a class</option>
-      <% school_courses.each do |c| %>
-        <option value="<%= c.id %>"><%= c.full_name %></option>
-      <% end %>
-    </select>
-  </div>
-  <div class="">
-  <% school_courses.each do |course| %>
-    <template x-if=" selectedCourse === '<%= course.id.to_s %>'">
-      <div>
-        <%= simple_form_for(course) do |f| %>
-          <%= f.collection_check_boxes(:student_ids, Student.all, :id, :full_name) do |student| %>
-            <div class="course-student-row shadow-md p-2 mb-3 border border-gray-100">
-              <%= student.label(class: "flex items-center") { student.check_box + " " + student.text } %>
+  <div class="pt-4 lg:pt-2 lg:p-2 xl:p-4 2xl:p-8 w-full mt-8" x-data="{ selectedCourse: '' }">
+    <div class="mb-8">
+      <select x-on:change=" selectedCourse = $event.target.value " class="select">
+        <option value="">Select a class</option>
+        <% school_courses.each do |c| %>
+          <option value="<%= c.id %>"><%= c.full_name %></option>
+        <% end %>
+      </select>
+    </div>
+    <div class="">
+    <% school_courses.each do |course| %>
+      <template x-if=" selectedCourse === '<%= course.id.to_s %>'">
+        <div>
+          <%= simple_form_for(course) do |f| %>
+            <%= f.collection_check_boxes(:student_ids, Student.all, :id, :full_name) do |student| %>
+              <div class="course-student-row shadow-md p-2 mb-3 border border-gray-100">
+                <%= student.label(class: "flex items-center") { student.check_box + " " + student.text } %>
+              </div>
+            <% end %>
+            <div class="actions mt-4">
+              <%= f.button :submit, class: "btn-xs" %>
             </div>
           <% end %>
-          <div class="actions mt-4">
-            <%= f.button :submit, class: "btn-xs" %>
-          </div>
-        <% end %>
-      <div>
-    </template>
-  <% end %>
-</div>
-</div>
+        <div>
+      </template>
+    <% end %>
+  </div>
+<% end %>

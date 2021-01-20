@@ -14,6 +14,10 @@ Rails.application.routes.draw do
       resources :students, except: %i[show] do
         post :deactivate, on: :member
       end
+
+      namespace :grades do
+        resources :courses, only: %i[index]
+      end
     end
 
     unauthenticated do
