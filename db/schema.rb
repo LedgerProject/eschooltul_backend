@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_16_151123) do
+ActiveRecord::Schema.define(version: 2021_01_20_120108) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,26 @@ ActiveRecord::Schema.define(version: 2020_12_16_151123) do
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
+  create_table "lesson_types", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "lessons", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.text "grading_method"
+    t.bigint "lesson_type_id"
+    t.bigint "course_id", null: false
+    t.bigint "term_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_lessons_on_course_id"
+    t.index ["lesson_type_id"], name: "index_lessons_on_lesson_type_id"
+    t.index ["term_id"], name: "index_lessons_on_term_id"
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
@@ -89,6 +109,14 @@ ActiveRecord::Schema.define(version: 2020_12_16_151123) do
     t.index ["deactivated"], name: "index_students_on_deactivated"
   end
 
+  create_table "terms", force: :cascade do |t|
+    t.string "name"
+    t.bigint "course_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_terms_on_course_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -116,4 +144,8 @@ ActiveRecord::Schema.define(version: 2020_12_16_151123) do
   add_foreign_key "course_students", "courses"
   add_foreign_key "course_students", "students"
   add_foreign_key "courses", "users"
+  add_foreign_key "lessons", "courses"
+  add_foreign_key "lessons", "lesson_types"
+  add_foreign_key "lessons", "terms"
+  add_foreign_key "terms", "courses"
 end
