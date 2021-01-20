@@ -39,6 +39,14 @@
           text: "Add record"
         }
       %>
+      <%= render partial: "primary_button", locals: {
+          url: new_import_ed_record_path,
+          button_style: "bg-blue-500 hover:bg-blue-900 text-white btn",
+          icon: ["fas", "arrow-up"],
+          icon_style: "",
+          text: "Import Records"
+        }
+      %>
     </div>
   <% end %>
 <% end %>

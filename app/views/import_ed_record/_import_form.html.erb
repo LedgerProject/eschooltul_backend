@@ -1,0 +1,8 @@
+<%= simple_form_for @import_student, url: import_ed_record_index_path do |f| %>
+
+    <%= f.input :attachment, as: :file, label_html: {style: 'display: none'} %>
+  
+    <div class="actions">
+        <%= f.button :submit, "Import records" %>
+    </div>
+  <% end %>
