@@ -1,5 +1,7 @@
 module Grades
   class LessonsController < GradesController
+    before_action :check_permission_on_this_course
+
     def index
       @course = find_course
       @terms = @course.terms

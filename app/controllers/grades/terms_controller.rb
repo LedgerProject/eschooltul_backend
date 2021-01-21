@@ -1,5 +1,7 @@
 module Grades
   class TermsController < GradesController
+    before_action :check_permission_on_this_course
+
     def index
       @course = find_course
       @terms = find_course.terms.order(:name).page(params[:page])

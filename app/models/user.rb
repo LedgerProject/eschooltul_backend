@@ -41,4 +41,8 @@ class User < ApplicationRecord
   def teacher?
     has_role?(:teacher)
   end
+
+  def course?(params)
+    teacher? && courses.find_by(id: params).nil?
+  end
 end
