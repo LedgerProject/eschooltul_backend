@@ -7,6 +7,7 @@ class Course < ApplicationRecord
   paginates_per 6
 
   validates :subject, uniqueness: { scope: :name }
+  validates :user, presence: true
 
   def full_name
     [name, subject].join(" ")
