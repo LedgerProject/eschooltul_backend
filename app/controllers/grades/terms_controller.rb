@@ -49,10 +49,6 @@ module Grades
 
     private
 
-    def find_course
-      Course.find(params[:course_id])
-    end
-
     def term_params
       params.require(:term).permit(:name)
     end

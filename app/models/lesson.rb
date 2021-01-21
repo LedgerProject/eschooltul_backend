@@ -3,5 +3,7 @@ class Lesson < ApplicationRecord
   belongs_to :course
   belongs_to :term, optional: true
 
-  validates :lesson_type, allow_nil: false
+  paginates_per 6
+
+  validates :lesson_type, presence: true
 end

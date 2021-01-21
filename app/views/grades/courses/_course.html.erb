@@ -10,6 +10,12 @@
     </p>
     <div class="text-right">
       <%= render partial: "icon_button", locals: {
+          url: grades_course_lessons_path(course),
+          style: "btn-sm text-green-500",
+          icon: ["fas", "book"],
+        }
+      %>
+      <%= render partial: "icon_button", locals: {
           url: grades_course_terms_path(course),
           style: "btn-sm text-blue-500",
           icon: ["far", "calendar-alt"],
