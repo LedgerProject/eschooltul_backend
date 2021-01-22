@@ -6,4 +6,5 @@ class Lesson < ApplicationRecord
   paginates_per 6
 
   validates :lesson_type, presence: true
+  validates :name, presence: true
 end
