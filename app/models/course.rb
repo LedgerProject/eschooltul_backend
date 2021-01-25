@@ -4,6 +4,7 @@ class Course < ApplicationRecord
   has_many :students, through: :course_students
   has_many :terms, dependent: :destroy
   has_many :lessons, dependent: :destroy
+  has_many :marks, as: :remarkable, dependent: :destroy
   paginates_per 6
 
   validates :subject, uniqueness: { scope: :name }
