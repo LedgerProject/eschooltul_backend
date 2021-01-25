@@ -17,6 +17,7 @@ gem "simple_form"
 gem "turbolinks", "~> 5"
 gem "wdm", ">= 0.1.0", platforms: %i[mingw mswin x64_mingw]
 gem "webpacker", "~> 4.0"
+gem 'react-rails'
 
 ## Utilities
 gem "deep_cloneable", "~> 3.0.0"

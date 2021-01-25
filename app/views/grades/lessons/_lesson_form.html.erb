@@ -5,8 +5,8 @@
   <%= f.input :name %>
   <%= f.input :description %>
   <%= f.input :grading_method %>
-  <%= f.association :lesson_type %>
-  <%= f.association :term %>
+  <%= f.association :lesson_type, prompt: "Choose type" %>
+  <%= f.association :term, collection: @course.terms, prompt: "Choose a term" %>
 
   <div class="actions">
     <%= f.button :submit %>
