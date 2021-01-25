@@ -19,6 +19,24 @@ Rails.application.routes.draw do
           end      
         end
       end
+      resources :students, except: %i[show] do
+        post :deactivate, on: :member
+        collection do
+          resources :import_ed_record, only: %i[new create]
+        end      
+      end
+
+      namespace :grades do
+        resources :courses, only: %i[index] do 
+          resources :terms, except: %i[show]
+          resources :lessons, except: %i[show] do 
+            collection do
+              resources :lesson_types, except: %i[show]
+            end
+          end 
+        end
+      end
+    end
 
       unauthenticated do
         root to: "devise/sessions#new", as: "root_unauthenticated"

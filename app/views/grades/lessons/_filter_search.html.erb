@@ -1,0 +1,14 @@
+<% unless @terms.empty? %>
+  <div class="my-4">
+    <%= search_form_for @search, url: grades_course_lessons_path do |f| %>
+      <div class="flex items-center">
+      <%= f.select :term_id_eq, 
+          options_from_collection_for_select(@course.terms, "id", "name", @search.term_id_eq),
+          { include_blank: "All terms" },
+          { class: "select" }
+      %>
+      <%= f.submit "Filter", class: "btn-primary btn-sm text-white bg-purple-500 uppercase" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>

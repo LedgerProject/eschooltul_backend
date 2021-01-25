@@ -2,10 +2,10 @@
     <div class="flex">
       <div class="sm:hidden"><p class="text-sm text-gray-500 p-2">Course</p></div>
       <div class="hidden sm:block w-1/2 px-1"><p class="text-sm text-gray-500 p-2">Course</p></div>
-      <div class="hidden sm:block w-1/2 px-1"><p class="text-sm text-gray-500 p-2">Teacher</p></div>
+      <div class="hidden sm:block w-1/2 px-1"><p class="text-sm text-gray-500 p-2">Number of students</p></div>
     </div>
     <% @courses.each do |c| %>
-      <%= render partial: "courses/course", locals: { course: c } %>  
+      <%= render partial: "grades/courses/course", locals: { course: c } %>  
     <%end %>
 </div>
 <%= render partial: "table_footer", locals: { elements: @courses } %>
