@@ -24,7 +24,7 @@
           }
         %>
         <%= render partial: "icon_button", locals: {
-            url: students_path(student),
+            url: student_path(student),
             style: "btn-sm text-red-500",
             method: :delete,
             icon: ["far", "trash-alt"],
