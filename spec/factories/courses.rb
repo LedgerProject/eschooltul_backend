@@ -1,8 +1,9 @@
 FactoryBot.define do
   factory :course do
     name { "3-B " }
-    subject { "Maths" }
-
+    sequence :subject do |i|
+      "Maths #{i}"
+    end
     user
   end
 end

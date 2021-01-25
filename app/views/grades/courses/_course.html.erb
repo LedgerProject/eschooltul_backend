@@ -1,0 +1,26 @@
+<div class="shadow-md px-2 mb-3 sm:flex items-stretch border border-gray-100"> 
+  <div class="border-b border-gray-100 py-1 sm:w-1/2 sm:border-b-0 sm:px-1 md:flex md:flex-col md:justify-center">
+    <p class="text-lg font-semibold tracking-tight"><%= course.name %></p>
+    <p class="text-sm text-gray-500 capitalize"><%= course.subject %></p>
+  </div>
+  <div class="py-1 sm:w-1/2 sm:px-1 md:flex items-center justify-between">
+    <p class="text-sm mb-2 md:mb-0 md:ml-2">
+      <%= course.students.count %>
+      <%= icon("fas", "user", class: "ml-2 text-blue-500") %>
+    </p>
+    <div class="text-right">
+      <%= render partial: "icon_button", locals: {
+          url: grades_course_lessons_path(course),
+          style: "btn-sm text-green-500",
+          icon: ["fas", "book"],
+        }
+      %>
+      <%= render partial: "icon_button", locals: {
+          url: grades_course_terms_path(course),
+          style: "btn-sm text-blue-500",
+          icon: ["far", "calendar-alt"],
+        }
+      %>
+    </div>
+  </div>
+</div>

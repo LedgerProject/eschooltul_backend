@@ -1,0 +1,11 @@
+<div class="mt-12">
+    <div class="flex">
+      <div class="sm:hidden"><p class="text-sm text-gray-500 p-2">Lesson type</p></div>
+      <div class="hidden sm:block w-full px-1"><p class="text-sm text-gray-500 p-2">Lesson type</p></div>
+    </div>
+    <% @lesson_types.each do |l| %>
+      <%= render partial: "grades/lesson_types/lesson_type", locals: { lesson_type: l } %>  
+    <%end %>
+</div>
+<%= render partial: "table_footer", locals: { elements: @lesson_types } %>
+

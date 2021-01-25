@@ -1,0 +1,14 @@
+<%= simple_form_for(@lesson, url: form_url) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :grading_method %>
+  <%= f.association :lesson_type %>
+  <%= f.association :term %>
+
+  <div class="actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

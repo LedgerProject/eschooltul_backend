@@ -7,6 +7,16 @@ input[type=password].unauthenticated-input {
   }
 }
 
+input[type=submit].search-submit {
+  @apply text-white uppercase py-5 block bg-blue-500;
+
+  &:hover,
+  &:active,
+  &:focus {
+    @apply bg-blue-900 outline-none;
+  }
+}
+
 input[type=submit].unauthenticated-submit {
   @apply text-white uppercase py-5 block w-full bg-blue-500;
 
@@ -27,6 +37,10 @@ input[type=submit].unauthenticated-submit {
   @media screen and (min-width: 1280px){
     @apply max-w-screen-xs;
   }
+}
+
+.error_notification {
+  @apply mb-2;
 }
 
 .full-form .simple_form {
@@ -117,4 +131,10 @@ select.select {
       @apply bg-blue-900
     }
   }
+}
+
+
+
+.course-student-row label input{
+  @apply mr-1;
 }
