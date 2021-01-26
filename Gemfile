@@ -10,14 +10,14 @@ gem "pg", ">= 0.18", "< 2.0"
 gem "puma", "~> 4.1" # Use Puma as the app server
 gem "rails", "~> 6.0.3", ">= 6.0.3.4"
 gem "ransack" # Search
+gem "react-rails"
 gem "rolify" # User roles
 gem "rollbar" # Error reporting
 gem "sass-rails", ">= 6"
 gem "simple_form"
 gem "turbolinks", "~> 5"
 gem "wdm", ">= 0.1.0", platforms: %i[mingw mswin x64_mingw]
-gem "webpacker", "~> 4.0"
-gem 'react-rails'
+gem "webpacker", "~> 5.0"
 
 ## Utilities
 gem "deep_cloneable", "~> 3.0.0"
