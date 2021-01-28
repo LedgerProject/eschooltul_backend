@@ -84,7 +84,6 @@ const studentsWithTerms = (course, marks, selectedTerm) => (
 
 
 const setCourseStudents = (course, selectedTerm) => {
-  console.log(selectedTerm);
   const marks = flatAllMarks(course.students);
   if(_.isEmpty(course.terms)){
     return studentsWithoutTerms(course, marks); 

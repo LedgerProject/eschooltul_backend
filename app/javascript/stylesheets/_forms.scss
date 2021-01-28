@@ -138,3 +138,32 @@ select.select {
 .course-student-row label input{
   @apply mr-1;
 }
+
+label.term-selector {
+  @apply block p-1 border-l border-r border-b border-blue-100 text-blue-500 text-center;
+
+  &.selected {
+    @apply  bg-blue-500 border-blue-500 text-white;
+  }
+
+  &:first-child {
+    @apply border-t rounded-t;
+  }
+
+  &:last-child {
+    @apply rounded-b
+  }
+
+  @media screen and (min-width: 600px){
+    min-width: 150px;
+    @apply inline-block border-t border-l-0;
+
+    &:first-child {
+      @apply border-l rounded-l rounded-t-none;
+    }
+  
+    &:last-child {
+      @apply rounded-r rounded-b-none;
+    }
+  }
+}
