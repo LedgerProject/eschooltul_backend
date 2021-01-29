@@ -52,9 +52,9 @@ const WithoutTerms = (props) => (
 
 const AllTerms = (props) => (
   <>
-    {props.terms.map((term, index) => (
+    {props.terms.map((term) => (
       <Fragment key={term.term.id}>
-        {term.lessons.map((lesson, index) => (
+        {term.lessons.map((lesson) => (
           <InputColumn 
             key={lesson.lesson.id} 
             mark={lesson.mark}
@@ -69,6 +69,13 @@ const AllTerms = (props) => (
         />
       </Fragment>
     ))}
+    {props.lessons.map((lesson) => (
+      <InputColumn 
+        key={lesson.lesson.id}
+        mark={lesson.mark}
+        onValueChange={props.onValueChange}
+      />
+    ))}
     <InputColumn 
       mark={props.courseMark}
       onValueChange={props.onValueChange}
@@ -78,7 +85,7 @@ const AllTerms = (props) => (
 
 const OneTerm = (props) => (
   <>
-    {props.term.lessons.map((lesson, index) => (
+    {props.term.lessons.map((lesson) => (
       <InputColumn 
         key={lesson.lesson.id} 
         mark={lesson.mark}
@@ -112,6 +119,7 @@ const StudentTableRow = (props) => (
         courseMark={props.courseMember.courseMark}
         terms={props.courseMember.terms} 
         onValueChange={props.onValueChange}
+        lessons={props.courseMember.lessons}
       />
     )}
 

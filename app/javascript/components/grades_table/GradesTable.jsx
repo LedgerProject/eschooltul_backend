@@ -23,32 +23,33 @@ const GradesTable = (props) => {
   const [selectedTerm, setSelectedTerm] = useState(undefined);
   const [courseMembers, setcourseMembers] = useState([]);
 
-  console.log("COURSES: ", data);
-
-  console.log("STUDENTS: ", courseMembers);
 
   useEffect(() => {
     setcourseMembers(
       setCourseStudents(selectedCourse, selectedTerm)
     );
   }, [selectedCourse, selectedTerm, data]);
+
+  const onSelectedCourse = (e) => {
+    setSelectedTerm(undefined); 
+    setSelectedCourse(props.courses[e.target.value])
+  };
   
   const onSelectTerm = (e) => {
-    if(e.target.value === -1){
+    const value = e.target.value;
+    if(_.lt(value, 0)){
       setSelectedTerm(undefined);  
       return;
     }
       
-    setSelectedTerm(selectedCourse.terms[e.target.value]);  
+    setSelectedTerm(selectedCourse.terms[value]);  
   };
 
 
   const onValueChange = (newMark) => {
-    console.log("MARK: ", newMark);
     const newData = [...data];
     const currentStudent = getCurrentStudent(newData, selectedCourse.id, newMark.student_id);
     const markIndex = findMark(currentStudent.marks, newMark);
-    console.log(markIndex);
     if(_.lt(markIndex, 0)){
       currentStudent.marks.push(newMark);
       setData([...newData]);
@@ -57,24 +58,6 @@ const GradesTable = (props) => {
 
     currentStudent.marks[markIndex].value = newMark.value;
     setData([...newData]);
-
-
-    /*if(_.isNil(newMark.id)){
-      const isNew = _.map((mark) => {
-        return compareMarks(newMark, mark);
-      })(currentStudent.marks);
-      if(_.isEmpty(_.compact(isNew))){
-        currentStudent.marks.push(newMark);
-      }else {
-        currentStudent.marks[_.findIndex({remarkable_type: newMark.remarkable_type, remarkable_id: newMark.remarkable_id })(currentStudent.marks)].value = newMark.value;
-      }
-      setData([...newData]);
-    } */
-  };
-
-  const onSelectedCourse = (e) => {
-    setSelectedTerm(undefined); 
-    setSelectedCourse(props.courses[e.target.value])
   };
 
   return (
@@ -94,6 +77,7 @@ const GradesTable = (props) => {
       )}
       <StudentsTable 
         courseMembers={courseMembers}
+        selectedTerm={selectedTerm}
         selectedCourse={selectedCourse}
         onValueChange={onValueChange}
       />

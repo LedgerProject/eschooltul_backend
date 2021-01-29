@@ -1,5 +1,5 @@
 import _ from 'lodash/fp';
-// TODO: Lessons without term when using terms
+
 const remarkable_types = {
   lesson: 'lesson',
   term: 'term',
@@ -17,34 +17,30 @@ const createMark = (id, value, student_id, remarkable_type, remarkable_id ) => (
 );
 
 const findMark = (marks, student_id, remarkable_type, remarkable_id) => {
-  
-  const currentMark = _.compact(_.map((mark) => {
-    if( _.isEqual(mark.student_id, student_id) 
-      && _.isEqual(mark.remarkable_type, remarkable_type)
-      && _.isEqual(mark.remarkable_id, remarkable_id) ) {
-        return mark;
-      }
-  })(marks));
-  console.log("current mark: ", currentMark);
+  const markIndex = _.findIndex({
+    student_id: student_id,
+    remarkable_id: remarkable_id,
+    remarkable_type: remarkable_type,
+  })(marks)
 
-  if(_.isEmpty(currentMark)) {
+  if(_.lt(markIndex, 0)) {
     return createMark(null, null, student_id, remarkable_type, remarkable_id);
   }
 
   return createMark(
-      currentMark[0].id,
-      currentMark[0].value, 
-      currentMark[0].student_id, 
-      currentMark[0].remarkable_type, 
-      currentMark[0].remarkable_id
-    )
+      marks[markIndex].id,
+      marks[markIndex].value, 
+      marks[markIndex].student_id, 
+      marks[markIndex].remarkable_type, 
+      marks[markIndex].remarkable_id
+    );
 };
 
-export const flatAllMarks = _.flow(
+const flatAllMarks = _.flow(
   _.flatMap('marks')
 );
 
-const setLessons = (lessons, marks, student_id, course_id) => (
+const setLessons = (lessons, marks, student_id) => (
   _.map((lesson) => {
     return {
       lesson: lesson,
@@ -53,11 +49,11 @@ const setLessons = (lessons, marks, student_id, course_id) => (
   })(lessons)
 );
 
-const setTerms = (terms, lessons, marks, student_id, course_id) => (
+const setTerms = (terms, lessons, marks, student_id) => (
   _.map((term) => {
     return {
       term: term,
-      lessons: setLessons(_.filter(['term_id', term.id])(lessons), marks, student_id, course_id),
+      lessons: setLessons(_.filter(['term_id', term.id])(lessons), marks, student_id),
       termMark: findMark(marks, student_id, remarkable_types.term, term.id),
     }
   })(terms)
@@ -67,7 +63,7 @@ const studentsWithoutTerms = (course, marks) => (
   _.map((student) => {
     return {
       student: student,
-      lessons: setLessons(course.lessons, marks, student.id, course.id),
+      lessons: setLessons(course.lessons, marks, student.id),
       courseMark: findMark(marks, student.id, remarkable_types.course, course.id),
     }
   })(course.students)
@@ -81,6 +77,7 @@ const studentsWithTerms = (course, marks, selectedTerm) => (
     return {
       student: student,
       terms: setTerms(terms, course.lessons, marks, student.id, course.id),
+      lessons: setLessons(_.filter(['term_id', null])(course.lessons), marks, student.id),
       courseMark: findMark(marks, student.id, remarkable_types.course, course.id),
     }
   })(course.students)

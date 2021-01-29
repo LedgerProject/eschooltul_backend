@@ -22,6 +22,10 @@
 
 .main {
   @apply w-full;
+
+  @media screen and (min-width: 960px){
+    width: calc(100% - 15rem);
+  }
 }
 
 .header-bar {

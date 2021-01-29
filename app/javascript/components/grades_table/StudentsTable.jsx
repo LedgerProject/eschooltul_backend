@@ -14,13 +14,13 @@ const widthToString = (width = 0) => BASE_TABLE_WIDTH + width + 'px';
 const calculateNumberOfLessons = _.flow(
   _.flatMap('lessons'),
   _.size,
-)
-// TODO: Lessons without term when using terms
-const calculateWidth = (courseMembers) => {
+);
+
+const calculateWidth = (courseMembers, isSelectedTerm) => {
   if(_.isEmpty(courseMembers)){
     return widthToString();
   }
-
+  
   const courseMember = courseMembers[0];
 
   if(_.isUndefined(courseMember.terms)){
@@ -31,33 +31,40 @@ const calculateWidth = (courseMembers) => {
 
   const numberOfterms = _.size(courseMember.terms);
   const numberOfLessons = calculateNumberOfLessons(courseMember.terms) + EXTRA_MARK;
+  const numberOfUntermedLessons = _.size(courseMember.lessons);
   const termsSize = numberOfterms * COLUMN_WIDTH;
-  const lessonsSize = numberOfLessons * COLUMN_WIDTH;
+  const lessonsSize = (numberOfLessons + numberOfUntermedLessons) * COLUMN_WIDTH;
+  const selectedTerm = isSelectedTerm ? COLUMN_WIDTH + COLUMN_WIDTH : 0;
   const borderSize = numberOfterms * BORDER_WIDTH;
 
-  return widthToString(termsSize + lessonsSize + borderSize);
+  return widthToString(termsSize + lessonsSize - selectedTerm + borderSize);
 }
 
 const StudentsTable = (props) => (
-  <div className="overflow-x-scroll w-full">
-    <div className="grades-table" style={{width: calculateWidth(props.courseMembers)}}>
-      {!_.isEmpty(props.courseMembers) && (
-        <StudentTableHeader 
-          isUndefined={_.isUndefined(props.courseMembers[0].terms)}
-          isAllTermsSelected={_.gt(_.size(props.courseMembers[0].terms), 1)}
-          courseMember={props.courseMembers[0]}
-        />
-      )}
-      <div className="grades-table-body">
-        {props.courseMembers.map((courseMember, index) => (
-          <StudentTableRow 
-            key={courseMember.student.id} 
-            courseMember={courseMember} 
-            isUndefined={_.isUndefined(courseMember.terms)}
-            isAllTermsSelected={_.gt(_.size(courseMember.terms), 1)}
-            onValueChange={props.onValueChange}
+  <>
+    <div className="overflow-x-scroll w-full max-w-full">
+      <div 
+        className="grades-table" 
+        style={{width: calculateWidth(props.courseMembers, !_.isUndefined(props.selectedTerm))}}
+      >
+        {!_.isEmpty(props.courseMembers) && (
+          <StudentTableHeader 
+            isUndefined={_.isUndefined(props.courseMembers[0].terms)}
+            isAllTermsSelected={_.gt(_.size(props.courseMembers[0].terms), 1)}
+            courseMember={props.courseMembers[0]}
           />
-        ))}
+        )}
+        <div className="grades-table-body">
+          {props.courseMembers.map((courseMember) => (
+            <StudentTableRow 
+              key={courseMember.student.id} 
+              courseMember={courseMember} 
+              isUndefined={_.isUndefined(courseMember.terms)}
+              isAllTermsSelected={_.gt(_.size(courseMember.terms), 1)}
+              onValueChange={props.onValueChange}
+            />
+          ))}
+        </div>
       </div>
     </div>
     <div className="mt-8 flex justify-end items-stretch">
@@ -74,7 +81,7 @@ const StudentsTable = (props) => (
         text="Terms"
       />
     </div>
-  </div>
+  </>
 );
 
 export default StudentsTable;

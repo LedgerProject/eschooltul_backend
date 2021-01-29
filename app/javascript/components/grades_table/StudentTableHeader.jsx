@@ -1,5 +1,5 @@
 import React from 'react';
-// TODO: Lessons without term when using terms
+
 const Column = (props) => (
   <div className={`flex flex-col ${props.className} w-32`}>
     <p className="text-center">{props.name}</p>
@@ -36,6 +36,13 @@ const AllTerms = (props) => (
         </div>
       </div>
     ))}
+    {props.lessons.map((lesson) => (
+      <Column 
+        key={lesson.lesson.id}
+        name={lesson.lesson.name}
+        className="justify-center"
+      />
+    ))}
     <Column name="Course" className="justify-center" />
   </>
 );
@@ -65,7 +72,10 @@ const StudentTableHeader = (props) => (
       <WithoutTerms lessons={props.courseMember.lessons} />
     )}
     {!props.isUndefined && props.isAllTermsSelected && (
-      <AllTerms terms={props.courseMember.terms} />
+      <AllTerms 
+        terms={props.courseMember.terms} 
+        lessons={props.courseMember.lessons}
+      />
     )}
     {!props.isUndefined && !props.isAllTermsSelected && (
       <OneTerm lessons={props.courseMember.terms[0].lessons} />
