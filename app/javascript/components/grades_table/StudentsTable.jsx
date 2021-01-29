@@ -15,11 +15,7 @@ const calculateNumberOfLessons = _.flow(
   _.flatMap('lessons'),
   _.size,
 )
-
-const markValue = (value) => (
-  _.isNil(value) ? "" : value.toString()
-) 
-
+// TODO: Lessons without term when using terms
 const calculateWidth = (courseMembers) => {
   if(_.isEmpty(courseMembers)){
     return widthToString();
@@ -42,7 +38,6 @@ const calculateWidth = (courseMembers) => {
   return widthToString(termsSize + lessonsSize + borderSize);
 }
 
-
 const StudentsTable = (props) => (
   <div className="overflow-x-scroll w-full">
     <div className="grades-table" style={{width: calculateWidth(props.courseMembers)}}>
@@ -60,6 +55,7 @@ const StudentsTable = (props) => (
             courseMember={courseMember} 
             isUndefined={_.isUndefined(courseMember.terms)}
             isAllTermsSelected={_.gt(_.size(courseMember.terms), 1)}
+            onValueChange={props.onValueChange}
           />
         ))}
       </div>

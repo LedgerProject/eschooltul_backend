@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-
+// TODO: Lessons without terms when using terms
 const fieldToString = (field) => {
   if (_.isNil(field)){
     return ""
@@ -12,18 +12,41 @@ const studentFullName = (student) => (
   `${fieldToString(student.name)} ${fieldToString(student.first_surname)} ${fieldToString(student.second_surname)}`
 );
 
+const markValueToString = (value) => (
+  _.isNil(value) ? "" : value.toString()
+);
+
 const InputColumn = (props) => (
   <div className={`flex flex-col justify-center w-32 ${props.className}`}>
-    <input type="text" className="w-16 h-8 mx-auto block" /*value={markValue(lesson.mark.value)} onChange={() => {}}*//>
+    <input 
+      type="text" 
+      className="w-16 h-8 mx-auto block" 
+      value={markValueToString(props.mark.value)} 
+      onChange={(e) => {
+        props.onValueChange({
+          id: props.mark.id,
+          remarkable_id: props.mark.remarkable_id,
+          remarkable_type: props.mark.remarkable_type,
+          student_id: props.mark.student_id,
+          value: e.target.value,
+        });
+      }}/>
   </div>
 );
 
 const WithoutTerms = (props) => (
   <>
     {props.lessons.map((lesson, index) => (
-      <InputColumn key={lesson.lesson.id} />
+      <InputColumn 
+        key={lesson.lesson.id} 
+        mark={lesson.mark}
+        onValueChange={props.onValueChange}
+      />
     ))}
-    <InputColumn />
+    <InputColumn 
+      mark={props.courseMark}
+      onValueChange={props.onValueChange}
+    />
   </>
 );
 
@@ -32,21 +55,40 @@ const AllTerms = (props) => (
     {props.terms.map((term, index) => (
       <Fragment key={term.term.id}>
         {term.lessons.map((lesson, index) => (
-          <InputColumn key={lesson.lesson.id} />
+          <InputColumn 
+            key={lesson.lesson.id} 
+            mark={lesson.mark}
+            onValueChange={props.onValueChange}
+          />
         ))}
-        <InputColumn key={term.term.id} className="border-r border-gray-200" />
+        <InputColumn 
+          key={term.term.id} 
+          className="border-r border-gray-200" 
+          mark={term.termMark}
+          onValueChange={props.onValueChange}
+        />
       </Fragment>
     ))}
-    <InputColumn />
+    <InputColumn 
+      mark={props.courseMark}
+      onValueChange={props.onValueChange}
+    />
   </>
 );
 
 const OneTerm = (props) => (
   <>
     {props.term.lessons.map((lesson, index) => (
-      <InputColumn key={lesson.lesson.id} />
+      <InputColumn 
+        key={lesson.lesson.id} 
+        mark={lesson.mark}
+        onValueChange={props.onValueChange}
+      />
     ))}
-    <InputColumn />
+    <InputColumn 
+      mark={props.term.termMark}
+      onValueChange={props.onValueChange}
+    />
   </>
 );
 
@@ -58,15 +100,26 @@ const StudentTableRow = (props) => (
       </p>
     </div>
     {props.isUndefined && (
-      <WithoutTerms lessons={props.courseMember.lessons} />
+      <WithoutTerms
+        courseMark={props.courseMember.courseMark}
+        lessons={props.courseMember.lessons} 
+        onValueChange={props.onValueChange}
+      />
     )}
 
     {!props.isUndefined && props.isAllTermsSelected && (
-      <AllTerms terms={props.courseMember.terms} />
+      <AllTerms 
+        courseMark={props.courseMember.courseMark}
+        terms={props.courseMember.terms} 
+        onValueChange={props.onValueChange}
+      />
     )}
 
     {!props.isUndefined && !props.isAllTermsSelected && (
-      <OneTerm term={props.courseMember.terms[0]} />
+      <OneTerm 
+        term={props.courseMember.terms[0]} 
+        onValueChange={props.onValueChange}
+      />
     )}
 
   </div>

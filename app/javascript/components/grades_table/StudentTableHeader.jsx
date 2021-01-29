@@ -1,5 +1,5 @@
 import React from 'react';
-
+// TODO: Lessons without term when using terms
 const Column = (props) => (
   <div className={`flex flex-col ${props.className} w-32`}>
     <p className="text-center">{props.name}</p>
