@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
-// TODO: Lessons without terms when using terms
+import _ from 'lodash/fp';
+
 const fieldToString = (field) => {
   if (_.isNil(field)){
     return ""
@@ -16,10 +17,13 @@ const markValueToString = (value) => (
   _.isNil(value) ? "" : value.toString()
 );
 
+const replaceDots = _.replace(',', '.');
+
 const InputColumn = (props) => (
   <div className={`flex flex-col justify-center w-32 ${props.className}`}>
     <input 
       type="text" 
+      maxLength={4}
       className="w-16 h-8 mx-auto block" 
       value={markValueToString(props.mark.value)} 
       onChange={(e) => {
@@ -28,7 +32,7 @@ const InputColumn = (props) => (
           remarkable_id: props.mark.remarkable_id,
           remarkable_type: props.mark.remarkable_type,
           student_id: props.mark.student_id,
-          value: e.target.value,
+          value: replaceDots(e.target.value),
         });
       }}/>
   </div>
@@ -36,7 +40,7 @@ const InputColumn = (props) => (
 
 const WithoutTerms = (props) => (
   <>
-    {props.lessons.map((lesson, index) => (
+    {props.lessons.map((lesson) => (
       <InputColumn 
         key={lesson.lesson.id} 
         mark={lesson.mark}

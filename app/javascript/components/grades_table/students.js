@@ -1,9 +1,9 @@
 import _ from 'lodash/fp';
 
 const remarkable_types = {
-  lesson: 'lesson',
-  term: 'term',
-  course: 'course'
+  lesson: 'Lesson',
+  term: 'Term',
+  course: 'Course'
 };
 
 const createMark = (id, value, student_id, remarkable_type, remarkable_id ) => (

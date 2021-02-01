@@ -3,6 +3,7 @@ import _ from 'lodash/fp';
 import StudentTableHeader from './StudentTableHeader';
 import StudentTableRow from './StudentsTableRow';
 import Button from './Button';
+import SubmitButton from './SubmitButton';
 
 const BASE_TABLE_WIDTH = 179;
 const COLUMN_WIDTH = 128;
@@ -67,19 +68,29 @@ const StudentsTable = (props) => (
         </div>
       </div>
     </div>
-    <div className="mt-8 flex justify-end items-stretch">
-      <Button 
-        url={`/grades/courses/${props.selectedCourse.id}/lessons`}
-        colors="bg-green-500 hover:bg-green-900"
-        icon="fas fa-book"
-        text="Lessons"
-      />
-      <Button 
-        url={`/grades/courses/${props.selectedCourse.id}/terms`}
-        colors="bg-blue-500 hover:bg-blue-900 ml-2"
-        icon="fas fa-calendar-alt"
-        text="Terms"
-      />
+    <div className="mt-8 flex justify-between items-stretch">
+      <div>
+        <SubmitButton 
+          onClick={props.onSave}
+          colors="bg-green-500 hover:bg-green-900"
+          icon="far fa-save"
+          text="Save grades"
+        />
+      </div>
+      <div>
+        <Button 
+          url={`/grades/courses/${props.selectedCourse.id}/lessons`}
+          colors="bg-purple-500 hover:bg-purple-900"
+          icon="fas fa-book"
+          text="Lessons"
+        />
+        <Button 
+          url={`/grades/courses/${props.selectedCourse.id}/terms`}
+          colors="bg-blue-500 hover:bg-blue-900 ml-2"
+          icon="fas fa-calendar-alt"
+          text="Terms"
+        />
+      </div>
     </div>
   </>
 );
