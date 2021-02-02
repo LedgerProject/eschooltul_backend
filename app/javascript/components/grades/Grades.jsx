@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import _ from 'lodash/fp';
-import CourseSelector from './CourseSelector';
-import TermSelector from './TermSelector';
-import setCourseStudents from './students';
-import StudentsTable from './StudentsTable';
+import getCourseMembers from './utils/grades';
+import CourseSelector from './filters/CourseSelector';
+import TermSelector from './filters/TermSelector';
+import Table from './table/Table';
+import GradesFooter from './GradesFooter';
 import Rails from '@rails/ujs';
 
 const getCurrentStudent = (data, selectedCourseID, studentID) => {
@@ -24,49 +25,57 @@ const getMarks = _.flow(
   _.flatMap('students'),
   _.flatMap('marks'),
   _.map((mark) => {
-    if(REGEXP.test(mark.value)){
+    if(REGEXP.test(mark.value) || _.isEmpty(mark.value)){
       return {
         remarkable_id: mark.remarkable_id,
         remarkable_type: mark.remarkable_type,
         student_id: mark.student_id,
-        value: parseFloat(mark.value),
+        value: _.isEmpty(mark.value) ? null : parseFloat(mark.value),
       }
     }
   }),
   _.compact
 );
 
-const GradesTable = (props) => {
-  const [data, setData] = useState(props.courses);
-  const [selectedCourse, setSelectedCourse] = useState(props.courses[0]);
+const Grades = ({courses, saveURL}) => {
+  const [data, setData] = useState(courses);
+  const [selectedCourse, setSelectedCourse] = useState(courses[0]);
   const [selectedTerm, setSelectedTerm] = useState(undefined);
-  const [courseMembers, setcourseMembers] = useState([]);
-
+  const [courseMembers, setCourseMemebers] = useState([]);
 
   useEffect(() => {
-    setcourseMembers(
-      setCourseStudents(selectedCourse, selectedTerm)
-    );
+    setCourseMemebers(getCourseMembers(selectedCourse, selectedTerm));
   }, [selectedCourse, selectedTerm, data]);
 
   const onSelectedCourse = (e) => {
-    setSelectedTerm(undefined); 
-    setSelectedCourse(props.courses[e.target.value])
+    setSelectedTerm(undefined);
+    setSelectedCourse(courses[e.target.value]);
   };
-  
-  const onSelectTerm = (e) => {
-    const value = e.target.value;
-    if(_.lt(value, 0)){
-      setSelectedTerm(undefined);  
+
+  const onSelectedTerm = (e) => {
+    setSelectedTerm( 
+      _.isUndefined(e.target.value) 
+      ? undefined 
+      : selectedCourse.terms[e.target.value]
+    );
+  };
+
+  const onValueChange = (newMark) => {
+    const newData = [...data];
+    const currentStudent = getCurrentStudent(newData, selectedCourse.id, newMark.student_id);
+    const markIndex = findMark(currentStudent.marks, newMark);
+    if(_.lt(markIndex, 0)){
+      currentStudent.marks.push(newMark);
+      setData([...newData]);
       return;
     }
-      
-    setSelectedTerm(selectedCourse.terms[value]);  
-  };
+
+    currentStudent.marks[markIndex].value = newMark.value;
+    setData([...newData]);
+  }
 
   const onSave = () => {
     const marks = getMarks(data);
-    console.log(marks);
     const params = new FormData();
     params.append('marks', JSON.stringify(marks));
     
@@ -82,21 +91,7 @@ const GradesTable = (props) => {
       error: () => {
         alert('Error al guardar'); // eslint-disable-line
       },
-    })
-  };
-
-  const onValueChange = (newMark) => {
-    const newData = [...data];
-    const currentStudent = getCurrentStudent(newData, selectedCourse.id, newMark.student_id);
-    const markIndex = findMark(currentStudent.marks, newMark);
-    if(_.lt(markIndex, 0)){
-      currentStudent.marks.push(newMark);
-      setData([...newData]);
-      return;
-    }
-
-    currentStudent.marks[markIndex].value = newMark.value;
-    setData([...newData]);
+    });
   };
 
   return (
@@ -104,25 +99,28 @@ const GradesTable = (props) => {
       <h1 className="text-2xl md:text-5xl font-bold tracking-tighter">Grades</h1>
       <p className="text-gray-400 tracking-widest mb-2">Here you can manage your grades</p>
       <CourseSelector 
-        courses={props.courses}
+        courses={courses}
         onSelectedCourse={onSelectedCourse}
       />
       { !_.isEmpty(selectedCourse.terms) && (
         <TermSelector 
           terms={selectedCourse.terms}
-          onSelectTerm={onSelectTerm}
           selectedTerm={selectedTerm}
+          onSelectedTerm={onSelectedTerm}
         />
       )}
-      <StudentsTable 
+      <Table 
         courseMembers={courseMembers}
         selectedTerm={selectedTerm}
         selectedCourse={selectedCourse}
         onValueChange={onValueChange}
+      />
+      <GradesFooter 
         onSave={onSave}
+        selectedCourseID={selectedCourse.id}
       />
     </>
-  )
+  );
 };
 
-export default GradesTable;
+export default Grades

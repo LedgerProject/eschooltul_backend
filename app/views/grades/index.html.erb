@@ -1,3 +1,4 @@
-<%= react_component("grades_table/GradesTable", {
-  courses: @courses
+<%= react_component("grades/Grades", {
+  courses: @courses,
+  saveURL: save_grades_path
 }) %>
