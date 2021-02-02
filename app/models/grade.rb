@@ -1,4 +1,4 @@
-class Grades
+class Grade
   include ActiveModel::Model
 
   def save_grades(marks)

@@ -5,7 +5,7 @@ class GradesController < AuthenticatedController
 
   def save
     marks = JSON.parse(params[:marks])
-    grades = Grades.new
+    grades = Grade.new
     grades.save_grades(marks)
 
     head :ok
