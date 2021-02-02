@@ -35,7 +35,7 @@ RSpec.describe "Lessons", type: :request do
       course = create(:course, user: teacher)
       sign_in(teacher)
 
-      get grades_course_lessons_path(course)
+      get grades_course_lessons_path(course_id: course.id)
 
       expect(response).to be_successful
     end
@@ -47,7 +47,7 @@ RSpec.describe "Lessons", type: :request do
       course = create(:course, user: teacher)
       sign_in(teacher)
 
-      get new_grades_course_lesson_path(course)
+      get new_grades_course_lesson_path(course_id: course.id)
 
       expect(response).to be_successful
     end
@@ -62,7 +62,7 @@ RSpec.describe "Lessons", type: :request do
         sign_in(teacher)
 
         expect do
-          post grades_course_lessons_path(course),
+          post grades_course_lessons_path(course_id: course.id),
                params: { lesson: valid_attributes(lesson_type.id) }
         end.to change(Lesson, :count).by(1)
       end
@@ -75,7 +75,7 @@ RSpec.describe "Lessons", type: :request do
         sign_in(teacher)
 
         expect do
-          post grades_course_lessons_path(course),
+          post grades_course_lessons_path(course_id: course.id),
                params: { lesson: valid_attributes(lesson_type.id, term.id) }
         end.to change(Lesson, :count).by(1)
       end
@@ -87,7 +87,7 @@ RSpec.describe "Lessons", type: :request do
         term = create(:term, course: course)
         sign_in(teacher)
 
-        post grades_course_lessons_path(course),
+        post grades_course_lessons_path(course_id: course.id),
              params: { lesson: valid_attributes(lesson_type.id, term.id) }
 
         expect(response).to redirect_to grades_course_lessons_path(course)
@@ -101,7 +101,8 @@ RSpec.describe "Lessons", type: :request do
         sign_in(teacher)
 
         expect do
-          post grades_course_lessons_path(course), params: { lesson: invalid_attributes }
+          post grades_course_lessons_path(course_id: course.id),
+               params: { lesson: invalid_attributes }
         end.to change(Lesson, :count).by(0)
       end
     end
@@ -114,7 +115,7 @@ RSpec.describe "Lessons", type: :request do
       lesson = create(:lesson, course: course)
       sign_in(teacher)
 
-      get edit_grades_course_lesson_path(course, lesson)
+      get edit_grades_course_lesson_path(course_id: course.id, id: lesson.id)
 
       expect(response).to be_successful
     end
@@ -129,7 +130,7 @@ RSpec.describe "Lessons", type: :request do
         sign_in(teacher)
         new_attributes = new_attributes(lesson)
 
-        patch grades_course_lesson_path(course, lesson),
+        patch grades_course_lesson_path(course_id: course.id, id: lesson.id),
               params: { lesson: new_attributes }
 
         lesson.reload
@@ -142,7 +143,8 @@ RSpec.describe "Lessons", type: :request do
         lesson = create(:lesson, course: course)
         sign_in(teacher)
 
-        patch grades_course_lesson_path(course, lesson), params: { lesson: new_attributes(lesson) }
+        patch grades_course_lesson_path(course_id: course.id, id: lesson.id),
+              params: { lesson: new_attributes(lesson) }
 
         expect(response).to redirect_to grades_course_lessons_path(course)
       end
@@ -155,7 +157,8 @@ RSpec.describe "Lessons", type: :request do
         lesson = create(:lesson, course: course)
         sign_in(teacher)
 
-        patch grades_course_lesson_path(course, lesson), params: { lesson: invalid_attributes }
+        patch grades_course_lesson_path(course_id: course.id, id: lesson.id),
+              params: { lesson: invalid_attributes }
 
         updated_lesson = Lesson.find_by(id: lesson.id)
         expect(lesson.name).to eq(updated_lesson.name)
@@ -171,7 +174,7 @@ RSpec.describe "Lessons", type: :request do
       sign_in(teacher)
 
       expect do
-        delete grades_course_lesson_path(course, lesson)
+        delete grades_course_lesson_path(course_id: course.id, id: lesson.id)
       end.to change(Lesson, :count).by(-1)
     end
   end

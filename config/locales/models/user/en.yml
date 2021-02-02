@@ -1,0 +1,19 @@
+en:
+  activerecord:
+    models:
+      user:
+        one: User
+        other: Users
+    attributes:
+      user:
+        email: Email
+        name: Name
+        first_surname: First surname
+        second_surname: Second surname
+  simple_form:
+    options:
+      user:
+        roles:
+          administrator: 'Administrator'
+          director: 'Director'
+          teacher: 'Teacher'

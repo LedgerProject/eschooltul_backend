@@ -1,7 +1,7 @@
 
 <div class="wrap flex items-center justify-center min-h-screen">
   <div class="max-w-xs w-full relative">
-    <h2 class="text-4xl font-bold text-center mb-20">Login</h2>
+    <h2 class="text-4xl font-bold text-center mb-20"><%= t("session.login")%></h2>
     <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <div class="mb-4">
         <% flash.each do |key, value| %>
@@ -12,14 +12,14 @@
         <%= f.email_field :email, 
                           autofocus: true,
                           autocomplete: "email", 
-                          placeholder: "Email address", 
+                          placeholder: t("session.email"), 
                           class: "unauthenticated-input" 
         %>
       </div>
       <div class="mb-4">
         <%= f.password_field :password, 
                              autocomplete: "current-password",
-                             placeholder: "Your password",
+                             placeholder: t("session.password"),
                              class: "unauthenticated-input"
         %>
       </div>
@@ -34,12 +34,12 @@
         </div>
       <% end %>
       <div class="mb-4">
-        <%= f.submit "Next", class: "unauthenticated-submit" %>
+        <%= f.submit t("session.next"), class: "unauthenticated-submit" %>
       </div>
     <% end %>
     <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
       <div>
-        <%= link_to "Lost your password?", 
+        <%= link_to t("session.lostpassword"), 
                     new_password_path(resource_name), 
                     class: "block text-sm text-right hover:text-gray-500 focus:text-gray-500 hover:underline" 
         %>

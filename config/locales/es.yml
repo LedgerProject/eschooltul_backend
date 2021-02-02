@@ -1,4 +1,32 @@
 es:
+  hello: Hola
+  name: Nombre
+  profile: Perfil
+
+  #Accounts
+  account: Cuenta
+  accounts: Cuentas
+  manageaccount: Aquí puede gestionar sus cuentas registradas
+  nameormail: Por nombre o email
+  createaccount: Crear cuenta
+  createaaccount: Crear una nueva cuenta
+  deleteconfirm: ¿Estás seguro de que quieres eliminar esta cuenta?
+  search: "Buscar:"
+  details: Datos de acceso
+  setupdetails: Configure los datos de acceso para la nueva cuenta
+  accountdetails: Datos de la cuenta
+  setupinformation: Configure la información de la nueva cuenta
+  newpassword: Nueva contraseña
+  userinformation: Información del usuario
+  updateuserinfo: Actualice su información
+  setupdetailsupdate: Configure los datos de acceso para su cuenta
+  cancelaccount: Cancelar cuenta
+  closeaccount: Cerrar cuenta
+  wantcancel: ¿Desea cancelar su cuenta definitivamente?
+  updateinfo: Actualizar información
+  updateaccount: Actualizar cuenta
+  areyousure: ¿Está seguro?
+
   activerecord:
     errors:
       messages:
@@ -43,18 +71,18 @@ es:
       short: "%-d de %b"
     month_names:
       -
-      - enero
-      - febrero
-      - marzo
-      - abril
-      - mayo
-      - junio
-      - julio
-      - agosto
-      - septiembre
-      - octubre
-      - noviembre
-      - diciembre
+      - Enero
+      - Febrero
+      - Marzo
+      - Abril
+      - Mayo
+      - Junio
+      - Julio
+      - Agosto
+      - Septiembre
+      - Octubre
+      - Noviembre
+      - Diciembre
     order:
       - :day
       - :month
@@ -227,12 +255,17 @@ es:
   details_and_information: Detalles e información
   search_input: "Buscar %{resource_name}"
   choose_lang: Inglés
+  load_file: Seleccionar archivo
   flash:
     actions:
+      activate:
+          notice: "%{resource_name} fue %{activation_message}"
       create:
         notice: "%{resource_name} se ha creado correctamente"
       update:
         notice: "%{resource_name} se ha actualizado correctamente"
+      duplicate:
+        notice: "%{resource_name} se ha duplicado correctamente"
       destroy:
         notice: "%{resource_name} se ha borrado correctamente"
         alert: "%{resource_name} no se puede borrar"
@@ -243,3 +276,7 @@ es:
     imports: 
       notice: Conceptos de facturación cargados correctamente
       alert: "Tipo de archivo desconocido: %{resource_name}"
+  
+  disabled: desactivado
+  enabled: activado
+  saved_failed: "Estudiantes no guardados: %{counter_failed}. Estudiantes guardados: %{counter_saved}"

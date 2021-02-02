@@ -13,7 +13,7 @@ RSpec.describe "Terms", type: :request do
       course = create(:course, user: teacher)
       sign_in(teacher)
 
-      get grades_course_terms_path(course)
+      get grades_course_terms_path(course_id: course.id)
 
       expect(response).to be_successful
     end
@@ -25,7 +25,7 @@ RSpec.describe "Terms", type: :request do
       course = create(:course, user: teacher)
       sign_in(teacher)
 
-      get new_grades_course_term_path(course)
+      get new_grades_course_term_path(course_id: course.id)
 
       expect(response).to be_successful
     end
@@ -39,7 +39,7 @@ RSpec.describe "Terms", type: :request do
         sign_in(teacher)
 
         expect do
-          post grades_course_terms_path(course), params: { term: valid_attributes }
+          post grades_course_terms_path(course_id: course.id), params: { term: valid_attributes }
         end.to change(Term, :count).by(1)
       end
 
@@ -48,7 +48,7 @@ RSpec.describe "Terms", type: :request do
         course = create(:course, user: teacher)
         sign_in(teacher)
 
-        post grades_course_terms_path(course), params: { term: valid_attributes }
+        post grades_course_terms_path(course_id: course.id), params: { term: valid_attributes }
 
         expect(response).to redirect_to grades_course_terms_path(course)
       end
@@ -61,7 +61,7 @@ RSpec.describe "Terms", type: :request do
         sign_in(teacher)
 
         expect do
-          post grades_course_terms_path(course), params: { term: invalid_attributes }
+          post grades_course_terms_path(course_id: course.id), params: { term: invalid_attributes }
         end.to change(Term, :count).by(0)
       end
     end
@@ -74,7 +74,7 @@ RSpec.describe "Terms", type: :request do
       term = create(:term, course: course)
       sign_in(teacher)
 
-      get edit_grades_course_term_path(course, term)
+      get edit_grades_course_term_path(course_id: course.id, id: term.id)
 
       expect(response).to be_successful
     end
@@ -88,7 +88,8 @@ RSpec.describe "Terms", type: :request do
         term = create(:term, course: course)
         sign_in(teacher)
 
-        patch grades_course_term_path(course, term), params: { term: new_attributes }
+        patch grades_course_term_path(course_id: course.id, id: term.id),
+              params: { term: new_attributes }
 
         term.reload
         expect(term.name).to eq(new_attributes[:name])
@@ -100,7 +101,8 @@ RSpec.describe "Terms", type: :request do
         term = create(:term, course: course)
         sign_in(teacher)
 
-        patch grades_course_term_path(course, term), params: { term: new_attributes }
+        patch grades_course_term_path(course_id: course.id, id: term.id),
+              params: { term: new_attributes }
 
         expect(response).to redirect_to grades_course_terms_path(course)
       end
@@ -113,7 +115,8 @@ RSpec.describe "Terms", type: :request do
         term = create(:term, course: course)
         sign_in(teacher)
 
-        patch grades_course_term_path(course, term), params: { term: invalid_attributes }
+        patch grades_course_term_path(course_id: course.id, id: term.id),
+              params: { term: invalid_attributes }
 
         updated_term = Term.find_by(id: term.id)
         expect(term.name).to eq(updated_term.name)
@@ -129,7 +132,7 @@ RSpec.describe "Terms", type: :request do
       sign_in(teacher)
 
       expect do
-        delete grades_course_term_path(course, term)
+        delete grades_course_term_path(course_id: course.id, id: term.id)
       end.to change(Term, :count).by(-1)
     end
   end

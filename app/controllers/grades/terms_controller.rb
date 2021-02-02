@@ -18,7 +18,7 @@ module Grades
 
       if @term.save
         redirect_to grades_course_terms_path(@course),
-                    notice: "Term was successfully created."
+                    notice: t("flash.actions.create.notice", resource_name: t("term.term"))
       else
         render :new
       end
@@ -35,7 +35,7 @@ module Grades
 
       if @term.update(term_params)
         redirect_to grades_course_terms_path(@course),
-                    notice: "Term was successfully updated."
+                    notice: t("flash.actions.update.notice", resource_name: t("term.term"))
       else
         render :edit
       end
@@ -46,7 +46,7 @@ module Grades
       @term.destroy
 
       redirect_to grades_course_terms_path,
-                  notice: "Term was successfully destroyed."
+                  notice: t("flash.actions.destroy.notice", resource_name: t("term.term"))
     end
 
     private

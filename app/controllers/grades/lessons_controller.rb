@@ -19,7 +19,7 @@ module Grades
 
       if @lesson.save
         redirect_to grades_course_lessons_path(@course),
-                    notice: "Lesson created successfully"
+                    notice: t("flash.actions.create.notice", resource_name: t("lesson.lesson"))
       else
         render :new
       end
@@ -36,7 +36,7 @@ module Grades
 
       if @lesson.update(lesson_params)
         redirect_to grades_course_lessons_path(@course),
-                    notice: "Lesson updated successfully"
+                    notice: t("flash.actions.update.notice", resource_name: t("lesson.lesson"))
       else
         render :edit
       end
@@ -48,7 +48,7 @@ module Grades
 
       @lesson.destroy
       redirect_to grades_course_lessons_path(@course),
-                  notice: "Lesson was successfully destroyed"
+                  notice: t("flash.actions.destroy.notice", resource_name: t("lesson.lesson"))
     end
 
     private

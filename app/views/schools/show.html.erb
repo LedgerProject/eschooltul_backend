@@ -1,16 +1,16 @@
-<h1 class="text-2xl md:text-5xl font-bold tracking-tighter">My school</h1>
-<p class="text-gray-400 tracking-widest">This is your main personal view</p>
+<h1 class="text-2xl md:text-5xl font-bold tracking-tighter"><%= t("school.myschool")%></h1>
+<p class="text-gray-400 tracking-widest"><%= t("school.personalview")%></p>
 <div class="lg:p-2 xl:p-4 2xl:p-8 flex flex-col md:flex-row pt-4 lg:pt-2">
   <div class="md:w-1/2 mb-4 pr-2">
-    <p class="text-xl">Hello <%= current_user.complete_name %></p>
+    <p class="text-xl"><%= t(:hello)%> <%= current_user.complete_name %></p>
     <div class="shadow-lg rounded-xl mt-9 py-5 px-6">
-      <h3 class="font-xl font-bold">Class information</h3>
+      <h3 class="font-xl font-bold"><%= t("school.classinformation")%></h3>
       <div class="flex my-4">
         <div class="w-1/2">
-          <p class="text-gray-500">Class name<p>
+          <p class="text-gray-500"><%= t("school.classname")%><p>
         </div>
         <div class="w-1/2">
-          <p class="text-gray-500 text-right">Students<p>
+          <p class="text-gray-500 text-right"><%= t("school.students")%><p>
         </div>
       </div>
       <% school_courses.each do |course| %>
@@ -36,7 +36,7 @@
     </div>
   </div>
   <div class="w-full md:w-1/2 max-w-screen-xs md:max-w-none mb-4 mx-auto md:mx-0 pl-2">
-    <p class="text-xl text-center mb-16"><%= Time.now.strftime("Today is %B, %e of %Y") %></p>
+    <p class="text-xl text-center mb-16"><%=t("school.todayis")%> <%= I18n.l(Date.today, format: :long) %></p>
     <div class="mb-8">
       <% if @school.logo.attached? %>
         <%= image_tag(@school.logo, class: "mx-auto") %>
@@ -45,9 +45,9 @@
       <% end %>
     </div>
     <h2 class="text-xl font-bold tracking-tighter mb-6 text-center"><%= @school.name %></h2>
-    <p class="text-gray-400"><%= @school.address.presence || "Address" %></p>
-    <p class="text-gray-400"><%= @school.city.presence || "City" %></p>
-    <p class="text-gray-400 truncate"><%= @school.email.presence || "Contact email" %></p>
+    <p class="text-gray-400"><%= @school.address.presence || t("school.address") %></p>
+    <p class="text-gray-400"><%= @school.city.presence || t("school.city") %></p>
+    <p class="text-gray-400 truncate"><%= @school.email.presence || t("school.contactemail") %></p>
     <% if current_user.director? %>
       <div class="mt-4 text-right">
         <%= render partial: "secondary_button", locals: {
@@ -55,7 +55,7 @@
             button_style: "btn-sm bg-blue-50 text-blue-900 hover:bg-blue-100",
             icon: ["fas", "arrow-right"],
             icon_style: "bg-blue-200",
-            text: "Edit school information"
+            text: t("school.editschool")
           }
         %>
       </div>

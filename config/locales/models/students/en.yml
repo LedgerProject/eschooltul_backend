@@ -1,0 +1,17 @@
+en:
+  activerecord:
+    models:
+      student:
+        one: Student
+        other: Students
+    attributes:
+      student:
+        email: Email
+        name: Name
+        address: Address
+        age: Age
+        first_surname: First surname
+        second_surname: Second surname
+        telephone: Telephone
+        diseases: Diseases
+        observations: Observations

@@ -1,8 +1,8 @@
 <div class="mt-12">
     <div class="flex">
-      <div class="sm:hidden"><p class="text-sm text-gray-500 p-2">Records</p></div>
-      <div class="hidden sm:block w-2/5 px-1"><p class="text-sm text-gray-500 p-2">Student</p></div>
-      <div class="hidden sm:block w-2/5 px-1"><p class="text-sm text-gray-500 p-2">Contact</p></div>
+      <div class="sm:hidden"><p class="text-sm text-gray-500 p-2"><%= t("student.records")%></p></div>
+      <div class="hidden sm:block w-2/5 px-1"><p class="text-sm text-gray-500 p-2"><%= t("student.student")%></p></div>
+      <div class="hidden sm:block w-2/5 px-1"><p class="text-sm text-gray-500 p-2"><%= t("student.contact")%></p></div>
       <div class="hidden sm:block w-1/5 px-1"><p class="text-sm text-gray-500 p-2"></p></div>
     </div>
     <% @students.each do |s| %>

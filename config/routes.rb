@@ -36,11 +36,9 @@ Rails.application.routes.draw do
           end 
         end
       end
-    end
-
       unauthenticated do
         root to: "devise/sessions#new", as: "root_unauthenticated"
       end
-    end
+    end      
   end
 end

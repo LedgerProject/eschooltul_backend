@@ -1,0 +1,19 @@
+es:
+  activerecord:
+    models:
+      user:
+        one: Usuario
+        other: Usuarios
+    attributes:
+      user:
+        email: Email
+        name: Nombre
+        first_surname: Primer apellido
+        second_surname: Segundo apellido
+  simple_form:
+    options:
+      user:
+        roles:
+          administrator: 'Administrador'
+          director: 'Director'
+          teacher: 'Profesor'

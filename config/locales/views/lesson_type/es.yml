@@ -1,0 +1,11 @@
+es:
+  lesson_type:
+    lesson_type_delete_message: "¿Está seguro que quiere eliminar este tipo de actividad? Si lo hace, no podrá recuperar los datos"
+    lesson_type: Tipo de actividad
+    lesson_types: Tipos de actividades
+    editlesson_type: Editar tipo de actividad
+    editalesson_type: Editar un tipo de actividad
+    createlesson_type: Crear tipo de actividad
+    createalesson_type: Crear un nuevo tipo de actividad
+    manage: Aquí puedes gestionar los tipos de actividad de este curso
+    nolesson_type: Todavía no hay tipos de actividad, ¡sé el primero en crear uno!

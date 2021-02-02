@@ -1,0 +1,10 @@
+en:
+  activerecord:
+    models:
+      term:
+        one: Term
+        other: Terms
+    attributes:
+      term:
+        name: Name
+        
