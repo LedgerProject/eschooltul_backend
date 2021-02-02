@@ -80,7 +80,7 @@ const Grades = ({courses, saveURL}) => {
     params.append('marks', JSON.stringify(marks));
     
     Rails.ajax({
-      url: '/grades/save',
+      url: saveURL,
       type: 'POST',
       data: params,
       success: () => {
