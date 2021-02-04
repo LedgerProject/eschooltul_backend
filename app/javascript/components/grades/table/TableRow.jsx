@@ -3,12 +3,8 @@ import _ from 'lodash/fp';
 import SingleRow from './row/SingleRow';
 import FullRow from './row/FullRow';
 
-const fieldToString = (field) => (
-  _.isNil(field) ? "" : field
-);
-
 const studentFullName = (student) => (
-  `${fieldToString(student.name)} ${fieldToString(student.first_surname)} ${fieldToString(student.second_surname)}`
+  `${_.toString(student.name)} ${_.toString(student.first_surname)} ${_.toString(student.second_surname)}`
 );
 
 const TableRow = ({courseMember, isUndefined, isAllTermsSelected, onValueChange}) => (

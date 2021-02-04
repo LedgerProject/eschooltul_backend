@@ -1,9 +1,7 @@
 import React from 'react';
 import _ from 'lodash/fp';
 
-const isSelected = (selectedTerm, termID = null) => (
-  _.isEqual(selectedTerm.id, termID) ? true : false
-);
+const isSelected = (selectedTerm, termID = null) => _.isEqual(selectedTerm.id, termID);
 
 const RadioButton = ({id, text, value, onChange, checked}) => (
   <label htmlFor={id} className={`term-selector ${checked ? "selected" : "" }`}>

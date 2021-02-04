@@ -19,21 +19,18 @@ const findMark = (marks, mark) => (
   })(marks)
 );
 
-const REGEXP = new RegExp(/^(\d{1}(\.\d{1,2})?|10)$/);
+const MARK_IS_PROPER_DEFINED = new RegExp(/^(\d{1}(\.\d{1,2})?|10)$/);
 
 const getMarks = _.flow(
   _.flatMap('students'),
   _.flatMap('marks'),
-  _.map((mark) => {
-    if(REGEXP.test(mark.value) || _.isEmpty(mark.value)){
-      return {
-        remarkable_id: mark.remarkable_id,
-        remarkable_type: mark.remarkable_type,
-        student_id: mark.student_id,
-        value: _.isEmpty(mark.value) ? null : parseFloat(mark.value),
-      }
-    }
-  }),
+  _.filter((mark) => MARK_IS_PROPER_DEFINED.test(mark.value) || _.isEmpty(mark.value)),
+  _.map((mark) => ({
+    remarkable_id: mark.remarkable_id,
+    remarkable_type: mark.remarkable_type,
+    student_id: mark.student_id,
+    value: _.isEmpty(mark.value) ? null : parseFloat(mark.value),
+  })),
   _.compact
 );
 
