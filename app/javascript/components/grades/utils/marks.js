@@ -3,11 +3,11 @@ import _ from 'lodash/fp';
 export const flatAllMarks = _.flatMap('marks');
 
 const createMark = (id, value, studentID, remarkableID, remarkableType) => ({
-  id: id,
-  value: value,
+  id,
+  value,
   student_id: studentID,
   remarkable_id: remarkableID,
-  remarkable_type: remarkableType
+  remarkable_type: remarkableType,
 });
 
 const findMark = (marks, studentID, remarkableID, remarkableType) => {
@@ -17,16 +17,16 @@ const findMark = (marks, studentID, remarkableID, remarkableType) => {
     remarkable_type: remarkableType,
   })(marks);
 
-  if(_.lt(markIndex, 0)) {
+  if (_.lt(markIndex, 0)) {
     return createMark(null, null, studentID, remarkableID, remarkableType);
   }
 
   return createMark(
     marks[markIndex].id,
-    marks[markIndex].value, 
-    marks[markIndex].student_id, 
-    marks[markIndex].remarkable_id, 
-    marks[markIndex].remarkable_type
+    marks[markIndex].value,
+    marks[markIndex].student_id,
+    marks[markIndex].remarkable_id,
+    marks[markIndex].remarkable_type,
   );
 };
 

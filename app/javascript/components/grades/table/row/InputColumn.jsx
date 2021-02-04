@@ -1,19 +1,15 @@
 import React from 'react';
 import _ from 'lodash/fp';
 
-const markValueToString = (value) => (
-  _.isNil(value) ? "" : value.toString()
-);
-
 const replaceDots = _.replace(',', '.');
 
-const InputColumn = ({className, mark, onValueChange}) => (
+const InputColumn = ({ className, mark, onValueChange }) => (
   <div className={`flex flex-col justify-center w-32 ${className}`}>
-    <input 
-      type="text" 
+    <input
+      type="text"
       maxLength={4}
-      className="w-16 h-8 mx-auto block text-center" 
-      value={markValueToString(mark.value)} 
+      className="w-16 h-8 mx-auto block text-center"
+      value={_.toString(mark.value)}
       onChange={(e) => {
         onValueChange({
           id: mark.id,
@@ -22,7 +18,8 @@ const InputColumn = ({className, mark, onValueChange}) => (
           student_id: mark.student_id,
           value: replaceDots(e.target.value),
         });
-      }}/>
+      }}
+    />
   </div>
 );
 

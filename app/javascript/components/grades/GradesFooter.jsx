@@ -2,10 +2,10 @@ import React from 'react';
 import SubmitButton from './buttons/SubmitButton';
 import Button from './buttons/Button';
 
-const GradesFooter = ({onSave, selectedCourseID}) => (
+const GradesFooter = ({ onSave, selectedCourseID }) => (
   <div className="mt-8 flex justify-between items-stretch">
     <div>
-      <SubmitButton 
+      <SubmitButton
         onClick={onSave}
         className="bg-green-500 hover:bg-green-900"
         iconClass="far fa-save"
@@ -13,13 +13,13 @@ const GradesFooter = ({onSave, selectedCourseID}) => (
       />
     </div>
     <div>
-      <Button 
+      <Button
         url={`/grades/courses/${selectedCourseID}/lessons`}
         className="bg-purple-500 hover:bg-purple-900"
         iconClass="fas fa-book"
         text="Lessons"
       />
-      <Button 
+      <Button
         url={`/grades/courses/${selectedCourseID}/terms`}
         className="bg-blue-500 hover:bg-blue-900 ml-2"
         iconClass="fas fa-calendar-alt"

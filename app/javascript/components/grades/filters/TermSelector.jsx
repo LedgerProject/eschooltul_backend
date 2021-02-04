@@ -3,14 +3,20 @@ import _ from 'lodash/fp';
 
 const isSelected = (selectedTerm, termID = null) => _.isEqual(selectedTerm.id, termID);
 
-const RadioButton = ({id, text, value, onChange, checked}) => (
-  <label htmlFor={id} className={`term-selector ${checked ? "selected" : "" }`}>
+const RadioButton = ({
+  id,
+  text,
+  value,
+  onChange,
+  checked,
+}) => (
+  <label htmlFor={id} className={`term-selector ${checked ? 'selected' : ''}`}>
     {text}
-    <input 
-      type="radio" 
-      name="term" 
-      id={id} 
-      value={value} 
+    <input
+      type="radio"
+      name="term"
+      id={id}
+      value={value}
       className="hidden"
       onChange={onChange}
       checked={checked}
@@ -18,9 +24,9 @@ const RadioButton = ({id, text, value, onChange, checked}) => (
   </label>
 );
 
-const TermSelector = ({terms, selectedTerm, onSelectedTerm}) => (
+const TermSelector = ({ terms, selectedTerm, onSelectedTerm }) => (
   <div className="mb-2 md:mb-4">
-    <RadioButton 
+    <RadioButton
       id="all"
       text="All"
       value={undefined}
@@ -28,7 +34,7 @@ const TermSelector = ({terms, selectedTerm, onSelectedTerm}) => (
       checked={_.isUndefined(selectedTerm)}
     />
     {terms.map((term, index) => (
-      <RadioButton 
+      <RadioButton
         key={term.id}
         id={term.name}
         text={term.name}

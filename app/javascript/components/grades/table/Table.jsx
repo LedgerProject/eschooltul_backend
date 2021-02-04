@@ -12,20 +12,20 @@ const widthToString = (width = 0) => `${BASE_TABLE_WIDTH + width}px`;
 
 const calculateNumberOfLessons = _.flow(
   _.flatMap('lessons'),
-  _.size
+  _.size,
 );
 
 // TODO: refactor this function
 const calculateTableWidth = (courseMembers, isSelectedTerm) => {
-  if(_.isEmpty(courseMembers)){
+  if (_.isEmpty(courseMembers)) {
     return widthToString();
   }
 
   const courseMember = courseMembers[0];
 
-  if(_.isUndefined(courseMember.terms)){
+  if (_.isUndefined(courseMember.terms)) {
     const numberOfLessons = _.size(courseMember.lessons) + EXTRA_MARK;
-    const additionalWidth = numberOfLessons * COLUMN_WIDTH; 
+    const additionalWidth = numberOfLessons * COLUMN_WIDTH;
     return widthToString(additionalWidth);
   }
 
@@ -40,34 +40,34 @@ const calculateTableWidth = (courseMembers, isSelectedTerm) => {
   return widthToString(termsSize + lessonsSize - selectedTerm + borderSize);
 };
 
-const Table = ({courseMembers, selectedTerm, onValueChange}) => (
+const Table = ({ courseMembers, selectedTerm, onValueChange }) => (
   <div className="overflow-x-scroll w-full max-w-full">
-      <div 
-        className="grades-table" 
-        style={{width: calculateTableWidth(courseMembers, !_.isUndefined(selectedTerm))}}
-      >
-        { !_.isEmpty(courseMembers) && (
-          <>
-            <TableHeader 
-              courseMember={courseMembers[0]}
-              isUndefined={_.isUndefined(courseMembers[0].terms)}
-              isAllTermsSelected={_.gt(_.size(courseMembers[0].terms), 1)}
+    <div
+      className="grades-table"
+      style={{ width: calculateTableWidth(courseMembers, !_.isUndefined(selectedTerm)) }}
+    >
+      { !_.isEmpty(courseMembers) && (
+      <>
+        <TableHeader
+          courseMember={courseMembers[0]}
+          isUndefined={_.isUndefined(courseMembers[0].terms)}
+          isAllTermsSelected={_.gt(_.size(courseMembers[0].terms), 1)}
+        />
+        <div className="grades-table-body">
+          { _.map((courseMember) => (
+            <TableRow
+              key={courseMember.student.id}
+              courseMember={courseMember}
+              isUndefined={_.isUndefined(courseMember.terms)}
+              isAllTermsSelected={_.gt(_.size(courseMember.terms), 1)}
+              onValueChange={onValueChange}
             />
-            <div className="grades-table-body">
-              { _.map((courseMember) => (
-                <TableRow 
-                  key={courseMember.student.id}
-                  courseMember={courseMember}
-                  isUndefined={_.isUndefined(courseMember.terms)}
-                  isAllTermsSelected={_.gt(_.size(courseMember.terms), 1)}
-                  onValueChange={onValueChange}
-                />
-              ))(courseMembers)}
-            </div>
-          </>
-        )}
-      </div>
+          ))(courseMembers)}
+        </div>
+      </>
+      )}
     </div>
+  </div>
 );
 
 export default Table;

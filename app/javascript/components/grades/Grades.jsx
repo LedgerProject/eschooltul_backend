@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import _ from 'lodash/fp';
+import Rails from '@rails/ujs';
 import getCourseMembers from './utils/grades';
 import CourseSelector from './filters/CourseSelector';
 import TermSelector from './filters/TermSelector';
 import Table from './table/Table';
 import GradesFooter from './GradesFooter';
-import Rails from '@rails/ujs';
 
 const getCurrentStudent = (data, selectedCourseID, studentID) => {
   const course = data[_.findIndex(['id', selectedCourseID])(data)];
@@ -15,7 +15,7 @@ const getCurrentStudent = (data, selectedCourseID, studentID) => {
 const findMark = (marks, mark) => (
   _.findIndex({
     remarkable_id: mark.remarkable_id,
-    remarkable_type: mark.remarkable_type
+    remarkable_type: mark.remarkable_type,
   })(marks)
 );
 
@@ -31,10 +31,10 @@ const getMarks = _.flow(
     student_id: mark.student_id,
     value: _.isEmpty(mark.value) ? null : parseFloat(mark.value),
   })),
-  _.compact
+  _.compact,
 );
 
-const Grades = ({courses, saveURL}) => {
+const Grades = ({ courses, saveURL }) => {
   const [data, setData] = useState(courses);
   const [selectedCourse, setSelectedCourse] = useState(courses[0]);
   const [selectedTerm, setSelectedTerm] = useState(undefined);
@@ -50,10 +50,10 @@ const Grades = ({courses, saveURL}) => {
   };
 
   const onSelectedTerm = (e) => {
-    setSelectedTerm( 
-      _.isUndefined(e.target.value) 
-      ? undefined 
-      : selectedCourse.terms[e.target.value]
+    setSelectedTerm(
+      _.isUndefined(e.target.value)
+        ? undefined
+        : selectedCourse.terms[e.target.value],
     );
   };
 
@@ -61,7 +61,7 @@ const Grades = ({courses, saveURL}) => {
     const newData = [...data];
     const currentStudent = getCurrentStudent(newData, selectedCourse.id, newMark.student_id);
     const markIndex = findMark(currentStudent.marks, newMark);
-    if(_.lt(markIndex, 0)){
+    if (_.lt(markIndex, 0)) {
       currentStudent.marks.push(newMark);
       setData([...newData]);
       return;
@@ -69,13 +69,13 @@ const Grades = ({courses, saveURL}) => {
 
     currentStudent.marks[markIndex].value = newMark.value;
     setData([...newData]);
-  }
+  };
 
   const onSave = () => {
     const marks = getMarks(data);
     const params = new FormData();
     params.append('marks', JSON.stringify(marks));
-    
+
     Rails.ajax({
       url: saveURL,
       type: 'POST',
@@ -95,24 +95,24 @@ const Grades = ({courses, saveURL}) => {
     <>
       <h1 className="text-2xl md:text-5xl font-bold tracking-tighter">Grades</h1>
       <p className="text-gray-400 tracking-widest mb-2">Here you can manage your grades</p>
-      <CourseSelector 
+      <CourseSelector
         courses={courses}
         onSelectedCourse={onSelectedCourse}
       />
       { !_.isEmpty(selectedCourse.terms) && (
-        <TermSelector 
+        <TermSelector
           terms={selectedCourse.terms}
           selectedTerm={selectedTerm}
           onSelectedTerm={onSelectedTerm}
         />
       )}
-      <Table 
+      <Table
         courseMembers={courseMembers}
         selectedTerm={selectedTerm}
         selectedCourse={selectedCourse}
         onValueChange={onValueChange}
       />
-      <GradesFooter 
+      <GradesFooter
         onSave={onSave}
         selectedCourseID={selectedCourse.id}
       />
@@ -120,4 +120,4 @@ const Grades = ({courses, saveURL}) => {
   );
 };
 
-export default Grades
+export default Grades;

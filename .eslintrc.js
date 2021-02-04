@@ -22,6 +22,7 @@ module.exports = {
     'no-use-before-define': 'error',
     'camelcase': 'off',
     'import/extensions': 'off',
+    'import/no-unresolved': 'off',
     'no-unused-vars': ['error', { 'argsIgnorePattern': '^_' }],
     "jsx-a11y/label-has-associated-control": ["error", {
       "required": {
@@ -32,6 +33,7 @@ module.exports = {
     'jsx-a11y/no-static-element-interactions': 'off',
     'react/jsx-filename-extension': ['error', { 'extensions': ['.tsx', '.jsx'] }],
     'react/require-default-props': 'off',
+    'react/prop-types': 'off'
   },
   settings: {
     'import/resolver': {
