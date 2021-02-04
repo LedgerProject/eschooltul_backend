@@ -18,9 +18,7 @@ Rails.application.routes.draw do
         end      
       end
 
-      resources :grades, only: %i[index] do 
-        post :save, on: :collection
-      end
+      resources :grades, only: %i[index create]
 
       namespace :grades do
         resources :courses, only: %i[index] do 

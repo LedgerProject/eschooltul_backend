@@ -3,7 +3,7 @@ class GradesController < AuthenticatedController
     @courses = find_courses
   end
 
-  def save
+  def create
     marks = JSON.parse(params[:marks])
     grades = Grade.new
     grades.save_grades(marks)
@@ -22,8 +22,38 @@ class GradesController < AuthenticatedController
   private
 
   def find_courses
-    return Course.teacher_grades if current_user.teacher?
+    return teacher_grades if current_user.teacher?
 
-    Course.grades
+    all_grades
+  end
+
+  def teacher_grades
+    Course.where(user_id: current_user.id)
+          .includes(:terms, :students, :lessons)
+          .map  do |course|
+      course.as_json.merge({
+                             terms: course.terms.as_json,
+                             students: with_marks(course.students),
+                             lessons: course.lessons.as_json
+                           })
+    end
+  end
+
+  def all_grades
+    Course.includes(:terms, :students, :lessons)
+          .map do |course|
+      course.as_json.merge({
+                             terms: course.terms.as_json,
+                             students: with_marks(course.students),
+                             lessons: course.lessons.as_json
+                           })
+    end
+  end
+
+  def with_marks(students)
+    students.includes(:marks)
+            .map do |student|
+      student.as_json.merge({ marks: student.marks.as_json })
+    end
   end
 end

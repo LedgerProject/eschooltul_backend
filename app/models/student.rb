@@ -1,13 +1,6 @@
 class Student < ApplicationRecord
   default_scope { where(deactivated: false) }
 
-  scope :with_marks, lambda {
-    includes(:marks)
-      .map do |student|
-      student.as_json.merge({ marks: student.marks.as_json })
-    end
-  }
-
   paginates_per 6
 
   has_many :course_students, dependent: :delete_all
