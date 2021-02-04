@@ -1,0 +1,8 @@
+es:
+  session:
+    email: "Correo electrónico"
+    password: "Tu contraseña"
+    login: "Inicio sesión"
+    next: "Siguiente"
+    lostpassword: "¿Olvidaste tu contraseña?"
+    resetpassword: "Email para nueva contraseña"

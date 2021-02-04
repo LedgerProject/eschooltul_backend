@@ -1,0 +1,18 @@
+en:
+  edrecord:
+    edrecord: "Educational Record"
+    manageed: "Here you can manage the educational record of students"
+    firstrecord: "There's no records yet, be the first one on add new ones!"
+    askdirector: "There's no records yet, ask your director or an administrator to start adding records!"
+    addrecord: "Add Record"
+    importrecord: "Import Records"
+    importnewrecord: "Import new records"
+    records: "Records"
+    student: "Estudent"
+    contact: "Contact"
+    addedrecord: "Add educational record"
+    addarecord: "Add a new record"
+    editrecord: "Edit educational record"
+    editarecord: "Edit a record"
+    yearsold: "%{student_age} years old"
+    

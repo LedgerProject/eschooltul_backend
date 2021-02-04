@@ -1,0 +1,11 @@
+es:
+  term:
+    term_delete_message: "¿Está seguro que quiere eliminar este periodo? Si lo hace, no podrá recuperar los datos"
+    term: Periodo
+    terms: Periodos
+    editterm: Editar periodo
+    editaterm: Editar un periodo
+    createterm: Crear periodo
+    createaterm: Crear un periodo
+    manage: Aquí puedes gestionar los periodos de este curso
+    noterm: Todavía no hay periodos, ¡sé el primero en crear uno!

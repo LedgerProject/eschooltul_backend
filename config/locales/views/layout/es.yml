@@ -1,0 +1,9 @@
+es:
+  layout:
+    myschool: "Mi colegio"
+    grades: Notas
+    evaluation: Evaluación
+    edrecord: "Expedientes académicos"
+    accounts: Cuentas
+    management: Gestión
+    settings: Ajustes

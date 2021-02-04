@@ -1,0 +1,22 @@
+es:
+  course:
+    management: Gestión
+    manage: "Aquí puede gestionar sus cursos"
+    courseyet: "De momento no están disponibles los cursos"
+    coursefirst: "se el primero en crear un curso!"
+    createcourse: "Crear curso"
+    grades: "Notas"
+    course: "Curso"
+    numberstudents: "Número de estudiantes"
+    createacourse: "Cree un nuevo curso"
+    createcourse: "Crear curso"
+    managementcourses: "Aquí puede gestionar sus cursos"
+    firstcourse: "De momento, no hay cursos. Sé el primero en añadir uno!"
+    selectclass: "Seleccione una clase"
+    createacourse: "Cree un nuevo curso"
+    editcourse: "Editar curso"
+    editacourse: "Editar un curso"
+    editcurrentcourse: "Editar el curso actual"
+    course: "Curso"
+    teacher: "Profesor"
+    confirm_delete_course: "¿Está seguro de que quiere eliminar este curso?"

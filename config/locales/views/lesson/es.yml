@@ -1,0 +1,14 @@
+es:
+  lesson:
+    lesson_delete_message: "¿Está seguro que quiere eliminar esta actividad? Si lo hace, no podrá recuperar los datos"
+    lesson: Actividad
+    lessons: Actividades
+    type: Tipo
+    term: Periodo
+    editlesson: Editar actividad
+    editalesson: Editar una actividad
+    manage: Aquí puede gestionar las actividades de este curso
+    nolesson: No hay actividades
+    createlesson: Crear actividad
+    createalesson: Crear una actividad
+    lessontype: Tipos de actividades

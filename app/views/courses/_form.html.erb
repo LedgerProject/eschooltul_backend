@@ -3,7 +3,7 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
   <%= f.input :name %>
   <%= f.input :subject %>
-  <%= f.association :user, collection: User.teachers.map { |t| [t.complete_name, t.id] }, label: "Teacher" %>
+  <%= f.association :user, collection: User.teachers.map { |t| [t.complete_name, t.id] }, label: t(:teacher) %>
   <div class="actions">
     <%= f.button :submit %>
   </div>

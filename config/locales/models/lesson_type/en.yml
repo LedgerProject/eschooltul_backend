@@ -1,0 +1,10 @@
+en:
+  activerecord:
+    models:
+      lesson_type:
+        one: Lesson type
+        other: Lesson types
+    attributes:
+      lesson_type:
+        name: Name
+        

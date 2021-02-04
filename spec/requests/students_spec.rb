@@ -29,7 +29,7 @@ RSpec.describe "/students", type: :request do
     it "render a successful response" do
       student = create(:student)
 
-      get edit_student_url(student)
+      get edit_student_url(id: student.id)
 
       expect(response).to be_successful
     end
@@ -77,14 +77,14 @@ RSpec.describe "/students", type: :request do
       student = create(:student)
 
       expect do
-        delete student_url(student)
+        delete student_url(id: student.id)
       end.to change(Student, :count).by(-1)
     end
 
     it "redirects to the students list" do
       student = create(:student)
 
-      delete student_url(student)
+      delete student_url(id: student.id)
 
       expect(response).to redirect_to(students_url)
     end

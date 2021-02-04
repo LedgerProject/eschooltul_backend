@@ -1,0 +1,11 @@
+es:
+  activerecord:
+    models:
+      course:
+        one: Curso
+        other: Cursos
+    attributes:
+      course:
+        name: Nombre
+        subject: Asignatura
+        teacher: Profesor

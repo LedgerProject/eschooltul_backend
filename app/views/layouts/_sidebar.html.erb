@@ -8,32 +8,32 @@
     <%= render partial: "nav_link", locals: {
         url: root_path,
         icon: ["fas", "chart-line"],
-        text: "My school"
+        text: t("layout.myschool")
       }
     %>
     <%= render partial: "nav_link", locals: {
         url: grades_courses_path,
         icon: ["fas", "list-ul"],
-        text: "Grades"
+        text: t("layout.grades")
       }
     %>
     <%= render partial: "nav_link", locals: {
         url: edit_user_password_path,
         icon: ["fas", "award"],
-        text: "Evaluation"
+        text: t("layout.evaluation")
       }
     %>
     <%= render partial: "nav_link", locals: {
         url: students_path,
         icon: ["far", "file"],
-        text: "Ed. Record"
+        text: t("layout.edrecord")
       }
     %>
     <% if current_user.director? %>
       <%= render partial: "nav_link", locals: {
           url: accounts_path,
           icon: ["far", "address-card"],
-          text: "Accounts"
+          text: t("layout.accounts")
         }
       %>
     <% end %>
@@ -41,7 +41,7 @@
       <%= render partial: "nav_link", locals: {
           url: courses_path,
           icon: ["fas", "cog"],
-          text: "Management"
+          text: t("layout.management")
         }
       %>
     <% end %>
@@ -51,7 +51,7 @@
       <%= render partial: "nav_link", locals: {
           url: settings_path,
           icon: ["fas", "cog"],
-          text: "Settings"
+          text: t("layout.settings")
         }
       %>
     </div>

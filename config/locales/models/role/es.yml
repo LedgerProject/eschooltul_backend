@@ -1,0 +1,12 @@
+es:
+  activerecord:
+    models:
+      role:
+        one: Rol
+        other: Roles
+    attributes:
+      role:
+        roles:
+          administrator: Administrador
+          director: Director
+          teacher: Profesor

@@ -18,7 +18,8 @@ class CoursesController < AuthenticatedController
     @course = Course.new(course_params)
 
     if @course.save
-      redirect_to courses_url, notice: "Course was successfully created."
+      redirect_to courses_url,
+                  notice: t("flash.actions.create.notice", resource_name: t("course.course"))
     else
       render :new
     end
@@ -31,14 +32,16 @@ class CoursesController < AuthenticatedController
     duplicated_course.subject += " (Duplicate)"
     duplicated_course.save!
 
-    redirect_to courses_url, notice: "Course was successfully duplicated."
+    redirect_to courses_url,
+                notice: t("flash.actions.duplicate.notice", resource_name: t("course.course"))
   end
 
   def update
     @course = find_course
 
     if @course.update(course_params)
-      redirect_to courses_url, notice: "Course was successfully updated."
+      redirect_to courses_url,
+                  notice: t("flash.actions.update.notice", resource_name: t("course.course"))
     else
       render :edit
     end
@@ -47,7 +50,8 @@ class CoursesController < AuthenticatedController
   def destroy
     @course = find_course
     @course.destroy
-    redirect_to courses_url, notice: "Course was successfully destroyed."
+    redirect_to courses_url,
+                notice: t("flash.actions.destroy.notice", resource_name: t("course.course"))
   end
 
   private

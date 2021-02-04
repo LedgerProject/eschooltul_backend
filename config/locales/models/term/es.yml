@@ -1,0 +1,9 @@
+es:
+  activerecord:
+    models:
+      term:
+        one: Periodo
+        other: Periodos
+    attributes:
+      term:
+        name: Nombre

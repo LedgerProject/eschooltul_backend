@@ -1,0 +1,13 @@
+en:
+  activerecord:
+    models:
+      lesson:
+        one: Lesson
+        other: Lessons
+    attributes:
+      lesson:
+        name: Name
+        description: Description
+        grading_method: Grading method
+        lesson_type: Lesson type
+        term: Term
