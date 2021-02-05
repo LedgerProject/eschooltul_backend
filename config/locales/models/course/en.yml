@@ -1,0 +1,11 @@
+en:
+  activerecord:
+    models:
+      course:
+        one: Course
+        other: Courses
+    attributes:
+      course:
+        name: Name
+        subject: Subject
+        teacher: Teacher

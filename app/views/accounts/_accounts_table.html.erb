@@ -1,8 +1,8 @@
 <div class="mt-12">
     <div class="flex">
-      <div class="sm:hidden"><p class="text-sm text-gray-500 p-2">Accounts</p></div>
-      <div class="hidden sm:block w-1/2 px-1"><p class="text-sm text-gray-500 p-2">Name</p></div>
-      <div class="hidden sm:block w-1/2 px-1"><p class="text-sm text-gray-500 p-2">Email</p></div>
+      <div class="sm:hidden"><p class="text-sm text-gray-500 p-2"><%= t(:accounts)%></p></div>
+      <div class="hidden sm:block w-1/2 px-1"><p class="text-sm text-gray-500 p-2"><%= t(:name)%></p></div>
+      <div class="hidden sm:block w-1/2 px-1"><p class="text-sm text-gray-500 p-2"><%= t(:email)%></p></div>
     </div>
     <% @users.each do |u| %>
       <%= render partial: "accounts/account", locals: { user: u } %>  

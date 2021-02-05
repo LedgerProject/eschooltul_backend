@@ -1,0 +1,14 @@
+en:
+  activerecord:
+    models:
+      school:
+        one: School
+        other: Schools
+    attributes:
+      school:
+        email: "Email"
+        name: Name
+        address: Address
+        city: City
+        
+        

@@ -15,7 +15,8 @@ class AccountsController < AuthenticatedController
 
     if @user.save
       @user.add_role role
-      redirect_to accounts_path, notice: "Account was successfully created."
+      redirect_to accounts_path,
+                  notice: t("flash.actions.create.notice", resource_name: t(:account))
     else
       render :new
     end
@@ -25,7 +26,7 @@ class AccountsController < AuthenticatedController
 
   def update
     if current_user.update(update_params)
-      redirect_to root_path, notice: "Your profile has been update successfully."
+      redirect_to root_path, notice: t("flash.actions.update.notice", resource_name: t(:profile))
     else
       render :edit
     end
@@ -35,9 +36,10 @@ class AccountsController < AuthenticatedController
     @user = find_user
 
     if @user.destroy
-      redirect_to accounts_path, notice: "Account was successfully destroyed."
+      redirect_to accounts_path,
+                  notice: t("flash.actions.destroy.notice", resource_name: t(:account))
     else
-      redirect_to accounts_path, alert: "You can't destroy this account."
+      redirect_to accounts_path, alert: t("flash.actions.destroy.alert", resource_name: t(:account))
     end
   end
 

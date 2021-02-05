@@ -1,0 +1,8 @@
+en:
+  session:
+    email: "Email address"
+    password: "Your password"
+    login: "Login"
+    next: "Next"
+    lostpassword: "Lost your password?"
+    resetpassword: "Send reset password email"

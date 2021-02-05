@@ -1,0 +1,9 @@
+es:
+  activerecord:
+    models:
+      lesson_type:
+        one: Tipo de actividad
+        other: Tipos de actividades
+    attributes:
+      lesson_type:
+        name: Nombre

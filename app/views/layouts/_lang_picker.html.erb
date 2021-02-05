@@ -1,0 +1,6 @@
+<% other_locale = locale == :es ? :en : :es %>
+<% other_url = root_path == request.env['PATH_INFO'] ? root_url(other_locale) : url_for(locale: other_locale) %>
+
+<%= link_to(t(:choose_lang), other_url, class: classes, data: { turbolinks: false } ) %>
+
+

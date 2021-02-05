@@ -2,8 +2,8 @@
   <%= simple_form_for(current_user, url: account_path(current_user), html: { class: "mb-4" } ) do |f| %>
     <div class="form-section py-2 border-t border-gray-200 xl:flex xl:items-stretch">
       <div class="mb-3 xl:mb-0 xl:w-1/2">
-        <h3 class="text-xl md:text-sm font-bold text-gray-700 tracking-tighter">User information</h1>
-        <p class="text-gray-400 text-xs tracking-widest">Update your information</p>
+        <h3 class="text-xl md:text-sm font-bold text-gray-700 tracking-tighter"><%= t(:userinformation)%></h1>
+        <p class="text-gray-400 text-xs tracking-widest"><%= t(:updateuserinfo)%></p>
         <%= f.error_notification %>
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
       </div>
@@ -14,42 +14,42 @@
       </div>
     </div>
     <div class="actions mb-8">
-      <%= f.button :submit, "Update information" %>
+      <%= f.button :submit, t(:updateinfo) %>
     </div>
   <% end %>
   <%= simple_form_for(current_user, url: registration_path(current_user), html: { method: :put, class: "mb-4" }) do |f| %>
     <div class="form-section py-2 border-t border-gray-200 xl:flex xl:items-stretch">
       <div class="mb-3 xl:mb-0 xl:w-1/2">
-        <h3 class="text-xl md:text-sm font-bold text-gray-700 tracking-tighter">Login details</h1>
-        <p class="text-gray-400 text-xs tracking-widest">Setup the access data for your account</p>
+        <h3 class="text-xl md:text-sm font-bold text-gray-700 tracking-tighter"><%= t(:details)%></h1>
+        <p class="text-gray-400 text-xs tracking-widest"><%= t(:setupdetailsupdate)%></p>
         <%= f.error_notification %>
         <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
       </div>
       <div class="xl:w-1/2">
         <%= f.input :email, autofocus: true, disabled: !current_user.director? %>
-        <%= f.input :password, label: "New password" %>
+        <%= f.input :password, label: t(:newpassword) %>
         <%= f.input :password_confirmation %>
         <%= f.input :current_password %>
       </div>
     </div>
     <div class="actions mb-8">
-      <%= f.button :submit, "Update account" %>
+      <%= f.button :submit, t(:updateaccount) %>
     </div>
   <% end %>
   <div class="mb-8 py-2 border-t border-gray-200 xl:flex xl:items-stretch">
     <div class="mb-3 xl:mb-0 xl:w-1/2">
-      <h3 class="text-xl md:text-sm font-bold text-gray-700 tracking-tighter">Cancel account</h1>
-      <p class="text-gray-400 text-xs tracking-widest">Want to close your account for good?</p>
+      <h3 class="text-xl md:text-sm font-bold text-gray-700 tracking-tighter"><%= t(:cancelaccount)%></h1>
+      <p class="text-gray-400 text-xs tracking-widest"><%= t(:wantcancel)%></p>
     </div>
     <div class="xl:w-1/2 text-right">
       <%= render partial: "secondary_button", locals: {
           url: registration_path(current_user),
           method: :delete,
-          data: { confirm: "Are you sure?" },
+          data: { confirm: t(:areyousure) },
           icon: ["far", "times-circle"],
           button_style: "btn-sm bg-red-50 text-red-900 hover:bg-red-100",
           icon_style: "",
-          text: "Close account"
+          text: t(:closeaccount)
         }
       %>
     </div>

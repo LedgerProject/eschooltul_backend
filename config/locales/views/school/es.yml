@@ -1,0 +1,15 @@
+es:
+  school:
+    school: "Colegio"
+    myschool: "Mi colegio"
+    personalview: "Esta es su vista personal"
+    classinformation: "Información de la clase"
+    classname: "Clase"
+    students: "Estudiantes"
+    todayis: "Hoy es"
+    address: "Dirección"
+    city: "Ciudad"
+    contactemail: "Email de contacto"
+    editschool: "Editar información del colegio"
+    changeinformation: "Cambie la información básica del colegio"
+    

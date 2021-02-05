@@ -1,8 +1,8 @@
 <%= simple_form_for(user, url: form_url ) do |f| %>
   <div class="form-section mb-8 py-2 border-t border-gray-200 xl:flex xl:items-stretch">
     <div class="mb-3 xl:mb-0 xl:w-1/2">
-      <h1 class="text-2xl md:text-base font-bold text-gray-700 tracking-tighter">Create account</h1>
-      <p class="text-gray-400 text-xs tracking-widest">Create a new account</p>
+      <h1 class="text-2xl md:text-base font-bold text-gray-700 tracking-tighter"><%= t(:createaccount)%></h1>
+      <p class="text-gray-400 text-xs tracking-widest"><%= t(:createaaccount)%></p>
     </div>
     <div class="xl:w-1/2">
       <%= f.error_notification %>
@@ -11,8 +11,8 @@
   </div>
   <div class="form-section mb-8 py-2 border-t border-gray-200 xl:flex xl:items-stretch">
     <div class="mb-3 xl:mb-0 xl:w-1/2">
-      <h3 class="text-xl md:text-sm font-bold text-gray-700 tracking-tighter">Login details</h1>
-      <p class="text-gray-400 text-xs tracking-widest">Setup the access data for new account</p>
+      <h3 class="text-xl md:text-sm font-bold text-gray-700 tracking-tighter"><%= t(:details)%></h1>
+      <p class="text-gray-400 text-xs tracking-widest"><%= t(:setupdetails)%></p>
     </div>
     <div class="xl:w-1/2">
       <%= f.input :email %>
@@ -22,14 +22,14 @@
   </div>
   <div class="form-section mb-8 py-2 border-t border-gray-200 xl:flex xl:items-stretch">
     <div class="mb-3 xl:mb-0 xl:w-1/2">
-      <h3 class="text-xl md:text-sm font-bold text-gray-700 tracking-tighter">Account details</h1>
-      <p class="text-gray-400 text-xs tracking-widest">Setup the information data for new account</p>
+      <h3 class="text-xl md:text-sm font-bold text-gray-700 tracking-tighter"><%= t(:accountdetails)%></h1>
+      <p class="text-gray-400 text-xs tracking-widest"><%= t(:setupinformation)%></p>
     </div>
     <div class="xl:w-1/2">
       <%= f.input :name %>
       <%= f.input :first_surname %>
       <%= f.input :second_surname %>
-      <%= f.association :roles, as: :radio_buttons %>
+      <%= f.association :roles, collection: [:administrator, :director, :teacher], as: :radio_buttons %>
     </div>
   </div>
   <div class="actions">

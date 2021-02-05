@@ -1,0 +1,18 @@
+es:
+  student:
+    edrecord: "Expedientes académicos"
+    manageed: "Aquí puede gestionar los expedientes académicos de los estudiantes"
+    firstrecord: "De momento, no hay expedientes. ¡Sé el primero en añadir uno!"
+    askdirector: "De momento, no hay expedientes, pregunta a tu director o administrador para empezar a añadirlos"
+    addrecord: "Añadir Expediente"
+    importrecord: "Importar Expedientes"
+    importnewrecord: "Importar nuevos expedientes"
+    records: "Expedientes"
+    student: "Estudiante"
+    contact: "Contacto"
+    addedrecord: "Añadir expediente académico"
+    addarecord: "Añadir un nuevo expediente"
+    editrecord: "Editar expediente académico"
+    editarecord: "Editar un expediente"
+    yearsold: "%{student_age} años"
+    student_delete_message: "¿Está seguro que quiere eliminar este estudiante? Si lo hace, no podrá recuperar los datos."

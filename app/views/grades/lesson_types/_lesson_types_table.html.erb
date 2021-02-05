@@ -1,7 +1,7 @@
 <div class="mt-12">
     <div class="flex">
-      <div class="sm:hidden"><p class="text-sm text-gray-500 p-2">Lesson type</p></div>
-      <div class="hidden sm:block w-full px-1"><p class="text-sm text-gray-500 p-2">Lesson type</p></div>
+      <div class="sm:hidden"><p class="text-sm text-gray-500 p-2"><%= t("lesson_type.lesson_type")%></p></div>
+      <div class="hidden sm:block w-full px-1"><p class="text-sm text-gray-500 p-2"><%= t("lesson_type.lesson_type")%></p></div>
     </div>
     <% @lesson_types.each do |l| %>
       <%= render partial: "grades/lesson_types/lesson_type", locals: { lesson_type: l } %>  

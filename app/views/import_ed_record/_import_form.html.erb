@@ -1,8 +1,8 @@
 <%= simple_form_for @import_student, url: import_ed_record_index_path do |f| %>
 
-    <%= f.input :attachment, as: :file, label_html: {style: 'display: none'} %>
-  
+    <%= render partial: "input_file", locals: {text: t(:load_file), form: f, accept: ".csv, .xls, .xlsx", attribute: :attachment} %>
+
     <div class="actions">
-        <%= f.button :submit, "Import records" %>
+        <%= f.button :submit, t("edrecord.importrecord") %>
     </div>
   <% end %>

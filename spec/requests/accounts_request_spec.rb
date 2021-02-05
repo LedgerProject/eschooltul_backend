@@ -30,7 +30,7 @@ RSpec.describe "Accounts", type: :request do
       teacher = create(:user, :teacher)
       sign_in(director)
 
-      delete account_path(teacher)
+      delete account_path(id: teacher.id)
 
       expect(response).to redirect_to(accounts_path)
       expect(User.with_role(:teacher).count).to be(0)
@@ -41,7 +41,7 @@ RSpec.describe "Accounts", type: :request do
         director = create(:user, :director)
         sign_in(director)
 
-        delete account_path(director)
+        delete account_path(id: director.id)
 
         expect(response).to redirect_to(accounts_path)
         expect(User.with_role(:director).count).to be(1)

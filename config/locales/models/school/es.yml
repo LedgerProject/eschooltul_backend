@@ -1,0 +1,13 @@
+es:
+  activerecord:
+    models:
+      school:
+        one: Colegio
+        other: colegios
+    attributes:
+      school:
+        email: "Correo electrónico"
+        name: Nombre
+        address: Dirección
+        city: Ciudad
+        

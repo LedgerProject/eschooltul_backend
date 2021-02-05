@@ -1,9 +1,9 @@
 <div class="mt-12">
     <div class="flex">
-      <div class="sm:hidden"><p class="text-sm text-gray-500 p-2">Lesson</p></div>
-      <div class="hidden sm:block w-1/3 px-1"><p class="text-sm text-gray-500 p-2">Lesson</p></div>
-      <div class="hidden sm:block w-1/3 px-1"><p class="text-sm text-gray-500 p-2">Type</p></div>
-      <div class="hidden sm:block w-1/3 px-1"><p class="text-sm text-gray-500 p-2">Term</p></div>
+      <div class="sm:hidden"><p class="text-sm text-gray-500 p-2"><%= t("lesson.lesson")%></p></div>
+      <div class="hidden sm:block w-1/3 px-1"><p class="text-sm text-gray-500 p-2"><%= t("lesson.lesson")%></p></div>
+      <div class="hidden sm:block w-1/3 px-1"><p class="text-sm text-gray-500 p-2"><%= t("lesson.type")%></p></div>
+      <div class="hidden sm:block w-1/3 px-1"><p class="text-sm text-gray-500 p-2"><%= t("lesson.term")%></p></div>
     </div>
     <% @lessons.each do |l| %>
       <%= render partial: "grades/lessons/lesson", locals: { lesson: l } %>  

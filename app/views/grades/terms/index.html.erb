@@ -1,19 +1,19 @@
-<h1 class="text-2xl md:text-5xl font-bold tracking-tighter">Terms</h1>
-<p class="text-gray-400 tracking-widest">Here you can manage the terms of this course</p>
+<h1 class="text-2xl md:text-5xl font-bold tracking-tighter"><%= t("term.terms")%></h1>
+<p class="text-gray-400 tracking-widest"><%= t("term.manage")%></p>
 <% if @terms.empty?%>
   <div class="p-4 mt-20 2xl:p-8 w-full flex justify-center items-center">
     <div class="w-full">
       <%= image_tag("desk.svg", class: "w-1/2 max-w-xs mx-auto mb-4 sm:mb-8" ) %>
       <div class="text-center">
         <p class="text-sm mx-auto text-gray-400 mb-2 sm:mb-4 md:text-base">
-          There's no terms yet, be the first one on create!
+        <%= t("term.noterm")%>
         </p>
         <%= render partial: "primary_button", locals: {
             url: new_grades_course_term_path(@course),
             button_style: "bg-blue-500 hover:bg-blue-900 text-white btn",
             icon: ["fas", "plus"],
             icon_style: "",
-            text: "Create term"
+            text: t("term.createterm")
           }
         %>
       </div>
@@ -29,7 +29,7 @@
         button_style: "bg-blue-500 hover:bg-blue-900 text-white btn",
         icon: ["fas", "plus"],
         icon_style: "",
-        text: "Create term"
+        text: t("term.createterm")
       }
     %>
   </div>

@@ -1,7 +1,7 @@
 <div class="shadow-md px-2 mb-3 sm:flex items-stretch border <%= student.deactivated? ?  "border-yellow-300" : "border-gray-100" %>"> 
   <div class="border-b border-gray-100 py-1 sm:w-2/5 sm:border-b-0 sm:px-1 md:flex md:flex-col md:justify-center">
     <p class="text-lg font-semibold tracking-tight"><%= student.full_name %></p>
-    <p class="text-sm text-gray-500 capitalize"><%= "#{student.age} years old" %></p>
+    <p class="text-sm text-gray-500 capitalize"><%= t("student.yearsold", student_age: student.age) %></p>
   </div>
   <div class="py-1 sm:w-2/5 sm:border-b-0 sm:px-1 md:flex md:flex-col md:justify-center">
     <p class="text-sm text-gray-500"><%= student.address %></p>
@@ -29,7 +29,7 @@
             method: :delete,
             icon: ["far", "trash-alt"],
             data: {
-              confirm: t(:student_delete_message),
+              confirm: t("student.student_delete_message"),
             }
           }
         %>

@@ -1,6 +1,7 @@
 <%= simple_form_for(school, url: school_path) do |f| %>
   <%= f.error_notification %>
-  <%= f.input :logo %>
+  
+  <%= School.human_attribute_name("logo") %> <%= render partial: "input_file", locals: {text: t(:load_file), form: f, accept: ".jpg, .png, .jpeg", attribute: :attachment} %>
   <%= f.input :name %>
   <%= f.input :email %>
   <%= f.input :address %>

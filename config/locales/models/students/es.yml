@@ -1,0 +1,18 @@
+es:
+  activerecord:
+    models:
+      student:
+        one: Estudiante
+        other: Estudiantes
+    attributes:
+      student:
+        email: Email
+        name: Nombre
+        address: Dirección
+        age: Edad
+        first_surname: Primer apellido
+        second_surname: Segundo apellido
+        telephone: Teléfono
+        diseases: Enfermedades
+        observations: Observaciones
+        
