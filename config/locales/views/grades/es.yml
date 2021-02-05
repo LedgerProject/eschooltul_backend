@@ -1,0 +1,11 @@
+es:
+  grades:
+    title: Calificaciones
+    subtitle: Gestiona las calificaciones
+    all: Todos
+    term: Evaluacion
+    course: Curso
+    student: Estudiante
+    lessons: Lecciones
+    terms: Evaluaciones
+    save: Guardar calificaciones

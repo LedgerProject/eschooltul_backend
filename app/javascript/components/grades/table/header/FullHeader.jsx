@@ -1,6 +1,7 @@
 import React from 'react';
 import _ from 'lodash/fp';
 import Column from './Column';
+import I18n from '../../../../i18n-js/index.js.erb';
 
 const FullHeader = ({ courseTerms, courseLessons }) => (
   <>
@@ -15,7 +16,7 @@ const FullHeader = ({ courseTerms, courseLessons }) => (
               className="justify-end"
             />
           ))(courseTerm.lessons)}
-          <Column name="Term" className="justify-end" />
+          <Column name={I18n.t('grades.term')} className="justify-end" />
         </div>
       </div>
     ))(courseTerms)}
@@ -26,7 +27,7 @@ const FullHeader = ({ courseTerms, courseLessons }) => (
         className="justify-center"
       />
     ))(courseLessons)}
-    <Column name="Course" className="justify-center" />
+    <Column name={I18n.t('grades.course')} className="justify-center" />
   </>
 );
 
