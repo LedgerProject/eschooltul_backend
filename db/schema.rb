@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_20_120108) do
+ActiveRecord::Schema.define(version: 2021_01_25_123911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -73,6 +73,17 @@ ActiveRecord::Schema.define(version: 2021_01_20_120108) do
     t.index ["course_id"], name: "index_lessons_on_course_id"
     t.index ["lesson_type_id"], name: "index_lessons_on_lesson_type_id"
     t.index ["term_id"], name: "index_lessons_on_term_id"
+  end
+
+  create_table "marks", force: :cascade do |t|
+    t.decimal "value"
+    t.bigint "student_id", null: false
+    t.string "remarkable_type", null: false
+    t.bigint "remarkable_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["remarkable_type", "remarkable_id"], name: "index_marks_on_remarkable_type_and_remarkable_id"
+    t.index ["student_id"], name: "index_marks_on_student_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -147,5 +158,6 @@ ActiveRecord::Schema.define(version: 2021_01_20_120108) do
   add_foreign_key "lessons", "courses"
   add_foreign_key "lessons", "lesson_types"
   add_foreign_key "lessons", "terms"
+  add_foreign_key "marks", "students"
   add_foreign_key "terms", "courses"
 end
