@@ -1,5 +1,6 @@
 import React from 'react';
 import _ from 'lodash/fp';
+import I18n from '../../../i18n-js/index.js.erb';
 
 const isSelected = (selectedTerm, termID = null) => _.isEqual(selectedTerm.id, termID);
 
@@ -28,7 +29,7 @@ const TermSelector = ({ terms, selectedTerm, onSelectedTerm }) => (
   <div className="mb-2 md:mb-4">
     <RadioButton
       id="all"
-      text="All"
+      text={I18n.t('grades.all')}
       value={undefined}
       onChange={onSelectedTerm}
       checked={_.isUndefined(selectedTerm)}

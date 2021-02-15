@@ -6,6 +6,7 @@ import CourseSelector from './filters/CourseSelector';
 import TermSelector from './filters/TermSelector';
 import Table from './table/Table';
 import GradesFooter from './GradesFooter';
+import I18n from '../../i18n-js/index.js.erb';
 
 const getCurrentStudent = (data, selectedCourseID, studentID) => {
   const course = data[_.findIndex(['id', selectedCourseID])(data)];
@@ -93,8 +94,8 @@ const Grades = ({ courses, saveURL }) => {
 
   return (
     <>
-      <h1 className="text-2xl md:text-5xl font-bold tracking-tighter">Grades</h1>
-      <p className="text-gray-400 tracking-widest mb-2">Here you can manage your grades</p>
+      <h1 className="text-2xl md:text-5xl font-bold tracking-tighter">{I18n.t('grades.title')}</h1>
+      <p className="text-gray-400 tracking-widest mb-2">{I18n.t('grades.subtitle')}</p>
       <CourseSelector
         courses={courses}
         onSelectedCourse={onSelectedCourse}
