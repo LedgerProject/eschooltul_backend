@@ -26,7 +26,7 @@ Rails.application.routes.draw do
         end      
       end
 
-      resources :grades, only: %i[index create]
+      resources :grades, only: %i[index create show]
 
       namespace :grades do
         resources :courses, only: %i[index] do 
@@ -41,6 +41,6 @@ Rails.application.routes.draw do
       unauthenticated do
         root to: "devise/sessions#new", as: "root_unauthenticated"
       end
-    end      
+    end     
   end
 end

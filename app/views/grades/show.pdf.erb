@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<% student.marks.each do |mark|%>
+    <% if mark.remarkable_type == "Course" %>
+        <% @MarkCourse = mark.value%>
+    <% end %>
+<% end %>
+<head>
+    <title>Student marks report in pdf format</title>
+    <meta charset="utf-8">
+    <style>  
+        .logo{
+            width: 250px;
+            height: 150px;
+            object-fit: cover;
+        }
+        table { 
+            border-collapse: collapse; 
+            border: 1px solid black; 
+        }
+        tr { border: none; }
+        td {
+            border-right: solid 1px black;
+            border-bottom: solid 1px black;
+            border-left: solid 1px black;
+        }
+    </style>
+</head>
+<body>
+
+    <% if @school.logo.attached? %>
+        <%= image_tag(@school.logo, class: "logo") %>
+    <% else %>
+        <%= image_tag("school-logo.png", class: "logo") %>
+    <% end %>
+    <h1><%= school.name%></h1>
+    <h3 align="right"><%= I18n.l(Date.today, format: :long) %></h3>
+    <hr style="width:75%;">
+
+    <p style="text-align: justify;"><FONT SIZE=5>A continuación se muestran las notas obtenidas por el alumno: <%= student.full_name%>, durante su estancia en el curso <%= course.full_name %>. 
+    El alumno ha obtenido una calificación en el curso de <%= @MarkCourse %> puntos.</FONT></p>
+
+    <p><FONT SIZE=7><%= course.full_name %> - <%= student.full_name %></FONT></p>
+
+    <div style="text-align:center;">
+    <table WIDTH="75%" style="margin: 0 auto;">
+        <% course.terms.each do |term|%>
+            <% @IsPrinted = false %>
+            <%term.lessons.each do |lesson|%>
+            <tr>
+                <% if !@IsPrinted %>
+                    <td rowspan=<%=term.lessons.count%>>
+                    
+                        <%= term.name %> - Calificación:
+                        <% student.marks.each do |mark|%>
+                            <% if mark.remarkable_type == "Term" %>
+                                <% if mark.remarkable_id == term.id%>
+                                    <%= mark.value %>
+                                <% end %>
+                            <% end %>
+                            <% @IsPrinted = true%>
+                        <% end %>
+                    </td>
+                <% end %>
+                <td rowspan=1>
+                    <%=lesson.name%> - Calificación:
+                    <% student.marks.each do |mark|%>
+                        <% if mark.remarkable_type == "Lesson" %>
+                            <% if mark.remarkable_id == lesson.id%>
+                                <%= mark.value%>
+                            <% end %>
+                        <% end %>
+                    <% end %>
+                </td>
+            </tr>
+            <% end %>
+        <% end %>
+    </table>
+    </div>
+
+    <p align="left"><%= course.user.complete_name %> - <%= I18n.l(Date.today, format: :long) %></p>
+</body>
+</html>

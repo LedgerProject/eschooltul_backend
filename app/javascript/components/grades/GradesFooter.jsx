@@ -1,8 +1,9 @@
 import React from 'react';
 import SubmitButton from './buttons/SubmitButton';
 import Button from './buttons/Button';
+import { CSVLink } from "react-csv";
 
-const GradesFooter = ({ onSave, selectedCourseID }) => (
+const GradesFooter = ({ onSave, selectedCourseID, printable }) => (
   <div className="mt-8 flex justify-between items-stretch">
     <div>
       <SubmitButton
@@ -11,6 +12,13 @@ const GradesFooter = ({ onSave, selectedCourseID }) => (
         iconClass="far fa-save"
         text="Save grades"
       />
+      <CSVLink data={printable} filename={"Students.csv"}>
+        <SubmitButton 
+          className="bg-blue-500 hover:bg-blue-900 ml-2" 
+          iconClass="fas fa-file-csv" 
+          text="Export to CSV"
+        />
+      </CSVLink>
     </div>
     <div>
       <Button

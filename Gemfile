@@ -22,6 +22,8 @@ gem "simple_form"
 gem "turbolinks", "~> 5"
 gem "wdm", ">= 0.1.0", platforms: %i[mingw mswin x64_mingw]
 gem "webpacker", "~> 5.0"
+gem 'wicked_pdf', "~> 2.1.0"
+gem 'wkhtmltopdf-binary', "~> 0.12.6.0"
 
 ## Utilities
 gem "deep_cloneable", "~> 3.0.0"

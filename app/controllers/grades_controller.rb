@@ -2,7 +2,18 @@ class GradesController < AuthenticatedController
   def index
     @courses = find_courses
   end
-
+  
+  def show
+    @student = Student.find(params[:id])
+    @course = Course.find(params[:course_id])
+    @school = School.first(params[:school_id])
+    respond_to do |format|
+      format.pdf do
+        render template: 'grades/show', pdf: "#{@student.full_name} #{@course.full_name}.pdf", locals: {student: @student, course: @course, school: @school}
+      end
+    end
+  end
+  
   def create
     marks = JSON.parse(params[:marks])
     grades = Grade.new
