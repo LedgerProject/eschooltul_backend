@@ -1,0 +1,11 @@
+en:
+  grades:
+    title: Grades
+    subtitle: Here you can manage your grades
+    all: All
+    term: Term
+    course: Course
+    student: Student
+    lessons: Lessons
+    terms: Terms
+    save: Save grades
