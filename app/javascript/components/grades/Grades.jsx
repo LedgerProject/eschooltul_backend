@@ -6,6 +6,7 @@ import CourseSelector from './filters/CourseSelector';
 import TermSelector from './filters/TermSelector';
 import Table from './table/Table';
 import GradesFooter from './GradesFooter';
+import ParsePrintable from './utils/printableCSV';
 
 const getCurrentStudent = (data, selectedCourseID, studentID) => {
   const course = data[_.findIndex(['id', selectedCourseID])(data)];
@@ -34,7 +35,7 @@ const getMarks = _.flow(
   _.compact,
 );
 
-const Grades = ({ courses, saveURL, schoolName}) => {
+const Grades = ({ courses, saveURL }) => {
   const [data, setData] = useState(courses);
   const [selectedCourse, setSelectedCourse] = useState(courses[0]);
   const [selectedTerm, setSelectedTerm] = useState(undefined);
@@ -90,7 +91,7 @@ const Grades = ({ courses, saveURL, schoolName}) => {
       },
     });
   };
-  var printable = parsePrintable(courseMembers);
+  var printable = ParsePrintable(courseMembers);
   return (
     <>
       <h1 className="text-2xl md:text-5xl font-bold tracking-tighter">Grades</h1>
@@ -108,7 +109,6 @@ const Grades = ({ courses, saveURL, schoolName}) => {
       )}
       <Table
         courseMembers={courseMembers}
-        schoolName={schoolName}
         selectedTerm={selectedTerm}
         selectedCourse={selectedCourse}
         onValueChange={onValueChange}
@@ -117,31 +117,10 @@ const Grades = ({ courses, saveURL, schoolName}) => {
         onSave={onSave}
         selectedCourseID={selectedCourse.id}
         printable={printable}
+        courseName={selectedCourse.name + selectedCourse.subject}
       />
     </>
   );
 };
-
-function parsePrintable(courseMembers){
-  var printable = new Array();
-
-  courseMembers.forEach(courseMember => {
-    courseMember.terms.forEach(term => {
-      term.lessons.forEach(lesson => {
-      
-        var newLine = {
-          Student: courseMember.student.name + " " + courseMember.student.first_surname + " " + courseMember.student.second_surname, 
-          Term: term.term.name,
-          Lesson: lesson.lesson.name,
-          Mark: lesson.mark.value
-        }
-        
-        printable.push(newLine)
-      });
-    });
-  });
-
-  return printable
-}
 
 export default Grades;

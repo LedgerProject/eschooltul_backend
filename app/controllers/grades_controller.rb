@@ -6,10 +6,11 @@ class GradesController < AuthenticatedController
   def show
     @student = Student.find(params[:id])
     @course = Course.find(params[:course_id])
+    @mark_value  = @student.marks.where(remarkable_type: "Course").pluck(:value)
     @school = School.first(params[:school_id])
     respond_to do |format|
       format.pdf do
-        render template: 'grades/show', pdf: "#{@student.full_name} #{@course.full_name}.pdf", locals: {student: @student, course: @course, school: @school}
+        render template: 'grades/show', pdf: "#{@student.full_name}#{@course.full_name}.pdf", locals: {student: @student, course: @course, school: @school, mark_value: @mark_value}
       end
     end
   end

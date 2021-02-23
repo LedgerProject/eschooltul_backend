@@ -1,10 +1,5 @@
 <!DOCTYPE html>
 <html>
-<% student.marks.each do |mark|%>
-    <% if mark.remarkable_type == "Course" %>
-        <% @MarkCourse = mark.value%>
-    <% end %>
-<% end %>
 <head>
     <title>Student marks report in pdf format</title>
     <meta charset="utf-8">
@@ -38,10 +33,10 @@
     <hr style="width:75%;">
 
     <p style="text-align: justify;"><FONT SIZE=5>A continuación se muestran las notas obtenidas por el alumno: <%= student.full_name%>, durante su estancia en el curso <%= course.full_name %>. 
-    El alumno ha obtenido una calificación en el curso de <%= @MarkCourse %> puntos.</FONT></p>
+    El alumno ha obtenido una calificación en el curso de <%= mark_value.first %> puntos.</FONT></p>
 
-    <p><FONT SIZE=7><%= course.full_name %> - <%= student.full_name %></FONT></p>
-
+    <p><FONT SIZE=7><%= "#{course.full_name} - #{student.full_name}" %></FONT></p>
+    
     <div style="text-align:center;">
     <table WIDTH="75%" style="margin: 0 auto;">
         <% course.terms.each do |term|%>
@@ -50,7 +45,6 @@
             <tr>
                 <% if !@IsPrinted %>
                     <td rowspan=<%=term.lessons.count%>>
-                    
                         <%= term.name %> - Calificación:
                         <% student.marks.each do |mark|%>
                             <% if mark.remarkable_type == "Term" %>
