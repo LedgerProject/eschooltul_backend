@@ -6,7 +6,7 @@ import CourseSelector from './filters/CourseSelector';
 import TermSelector from './filters/TermSelector';
 import Table from './table/Table';
 import GradesFooter from './GradesFooter';
-import ParsePrintable from './utils/printableCSV';
+import convertToCSV from './utils/convertToCSV';
 import I18n from '../../i18n-js/index.js.erb';
 
 const getCurrentStudent = (data, selectedCourseID, studentID) => {
@@ -93,7 +93,7 @@ const Grades = ({ courses, saveURL }) => {
     });
   };
 
-  const printable = ParsePrintable(courseMembers);
+  const dataCSV = convertToCSV(courseMembers);
 
   return (
     <>
@@ -119,7 +119,7 @@ const Grades = ({ courses, saveURL }) => {
       <GradesFooter
         onSave={onSave}
         selectedCourseID={selectedCourse.id}
-        printable={printable}
+        dataCSV={dataCSV}
         courseName={selectedCourse.name + selectedCourse.subject}
       />
     </>

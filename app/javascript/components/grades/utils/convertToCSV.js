@@ -1,5 +1,5 @@
-export default function ParsePrintable(courseMembers) {
-  const printable = [];
+export default function convertToCSV(courseMembers) {
+  const dataCSV = [];
 
   courseMembers.forEach((courseMember) => {
     const { student } = courseMember;
@@ -12,10 +12,10 @@ export default function ParsePrintable(courseMembers) {
           Mark: lesson.mark.value,
         };
 
-        printable.push(newLine);
+        dataCSV.push(newLine);
       });
     });
   });
 
-  return printable;
+  return dataCSV;
 }

@@ -5,7 +5,7 @@ import Button from './buttons/Button';
 import I18n from '../../i18n-js/index.js.erb';
 
 const GradesFooter = ({
-  onSave, selectedCourseID, printable, courseName,
+  onSave, selectedCourseID, dataCSV, courseName,
 }) => (
   <div className="mt-8 flex justify-between items-stretch">
     <div>
@@ -15,7 +15,7 @@ const GradesFooter = ({
         iconClass="far fa-save"
         text={I18n.t('grades.save')}
       />
-      <CSVLink data={printable} filename={`Students${courseName}.csv`}>
+      <CSVLink data={dataCSV} filename={`Students${courseName}.csv`}>
         <SubmitButton
           className="bg-blue-500 hover:bg-blue-900 ml-2"
           iconClass="fas fa-file-csv"

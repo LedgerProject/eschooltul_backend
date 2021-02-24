@@ -40,29 +40,25 @@
     <div style="text-align:center;">
     <table WIDTH="75%" style="margin: 0 auto;">
         <% course.terms.each do |term|%>
-            <% @IsPrinted = false %>
+            <% @is_printed = false %>
             <%term.lessons.each do |lesson|%>
             <tr>
-                <% if !@IsPrinted %>
+                <% if !@is_printed %>
                     <td rowspan=<%=term.lessons.count%>>
                         <%= term.name %> - Calificación:
                         <% student.marks.each do |mark|%>
-                            <% if mark.remarkable_type == "Term" %>
-                                <% if mark.remarkable_id == term.id%>
-                                    <%= mark.value %>
-                                <% end %>
+                            <% if mark.remarkable_type == "Term" && mark.remarkable_id == term.id%>
+                                <%= mark.value %>
                             <% end %>
-                            <% @IsPrinted = true%>
+                            <% @is_printed = true%>
                         <% end %>
                     </td>
                 <% end %>
                 <td rowspan=1>
                     <%=lesson.name%> - Calificación:
                     <% student.marks.each do |mark|%>
-                        <% if mark.remarkable_type == "Lesson" %>
-                            <% if mark.remarkable_id == lesson.id%>
-                                <%= mark.value%>
-                            <% end %>
+                        <% if mark.remarkable_type == "Lesson" && mark.remarkable_id == lesson.id%>
+                            <%= mark.value%>
                         <% end %>
                     <% end %>
                 </td>

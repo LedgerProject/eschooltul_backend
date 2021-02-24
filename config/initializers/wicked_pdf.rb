@@ -23,5 +23,11 @@ WickedPdf.config = {
   # 'xvfb-run' command, in order to simulate an X server.
   #
   # use_xvfb: true,
-  :exe_path => 'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
+  exe_path: Gem.bin_path('wkhtmltopdf-binary', 'wkhtmltopdf')
 }
+
+if !Rails.env.production? && Gem.win_platform?
+  WickedPdf.config = {
+    exe_path: 'C:\Program Files\wkhtmltopdf\bin\wkhtmltopdf.exe'
+  }
+end
