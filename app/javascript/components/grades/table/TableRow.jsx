@@ -20,10 +20,10 @@ const TableRow = ({
       <p className="text-lg font-semibold tracking-tight">
         {studentFullName(courseMember.student)}
         <IconSubmitButton
-            url={`/grades/${courseMember.student.id}.pdf?course_id=${selectedCourse.id}`}
-            className="btn-sm text-red-500"
-            iconClass="fas fa-file-pdf"
-          />
+          url={`/grades/${courseMember.student.id}.pdf?course_id=${selectedCourse.id}`}
+          className="btn-sm text-red-500"
+          iconClass="fas fa-file-pdf"
+        />
       </p>
     </div>
     {isUndefined && (

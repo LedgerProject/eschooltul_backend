@@ -1,23 +1,21 @@
+export default function ParsePrintable(courseMembers) {
+  const printable = [];
 
-export default function ParsePrintable(courseMembers){
-    var printable = new Array();
+  courseMembers.forEach((courseMember) => {
+    const { student } = courseMember;
+    courseMember.terms.forEach((term) => {
+      term.lessons.forEach((lesson) => {
+        const newLine = {
+          Student: `${student.name} ${student.first_surname} ${student.second_surname}`,
+          Term: term.term.name,
+          Lesson: lesson.lesson.name,
+          Mark: lesson.mark.value,
+        };
 
-    courseMembers.forEach(courseMember => {
-      const { student } = courseMember
-      courseMember.terms.forEach(term => {
-        term.lessons.forEach(lesson => {
-        
-          var newLine = {
-            Student: student.name + " " + student.first_surname + " " + student.second_surname, 
-            Term: term.term.name,
-            Lesson: lesson.lesson.name,
-            Mark: lesson.mark.value
-          }
-          
-          printable.push(newLine)
-        });
+        printable.push(newLine);
       });
     });
+  });
 
-    return printable;
+  return printable;
 }

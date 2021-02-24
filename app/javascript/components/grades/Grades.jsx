@@ -92,7 +92,9 @@ const Grades = ({ courses, saveURL }) => {
       },
     });
   };
-  var printable = ParsePrintable(courseMembers);
+
+  const printable = ParsePrintable(courseMembers);
+
   return (
     <>
       <h1 className="text-2xl md:text-5xl font-bold tracking-tighter">{I18n.t('grades.title')}</h1>

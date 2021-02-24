@@ -23,8 +23,8 @@
 </head>
 <body>
 
-    <% if @school.logo.attached? %>
-        <%= image_tag(@school.logo, class: "logo") %>
+    <% if school.logo.attached? %>
+        <%= image_tag(school.logo, class: "logo") %>
     <% else %>
         <%= image_tag("school-logo.png", class: "logo") %>
     <% end %>
@@ -33,7 +33,7 @@
     <hr style="width:75%;">
 
     <p style="text-align: justify;"><FONT SIZE=5>A continuación se muestran las notas obtenidas por el alumno: <%= student.full_name%>, durante su estancia en el curso <%= course.full_name %>. 
-    El alumno ha obtenido una calificación en el curso de <%= mark_value.first %> puntos.</FONT></p>
+    El alumno ha obtenido una calificación en el curso de <%= mark_value %> puntos.</FONT></p>
 
     <p><FONT SIZE=7><%= "#{course.full_name} - #{student.full_name}" %></FONT></p>
     

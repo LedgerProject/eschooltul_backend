@@ -2,19 +2,18 @@ class GradesController < AuthenticatedController
   def index
     @courses = find_courses
   end
-  
+
   def show
-    @student = Student.find(params[:id])
-    @course = Course.find(params[:course_id])
-    @mark_value  = @student.marks.where(remarkable_type: "Course").pluck(:value)
-    @school = School.first(params[:school_id])
     respond_to do |format|
       format.pdf do
-        render template: 'grades/show', pdf: "#{@student.full_name}#{@course.full_name}.pdf", locals: {student: @student, course: @course, school: @school, mark_value: @mark_value}
+        render template: "grades/show",
+               pdf: "#{find_student.full_name}#{find_course.full_name}.pdf",
+               locals: { student: find_student, course: find_course, school: find_school,
+                         mark_value: find_mark_value }
       end
     end
   end
-  
+
   def create
     marks = JSON.parse(params[:marks])
     grades = Grade.new
@@ -37,6 +36,18 @@ class GradesController < AuthenticatedController
     return teacher_grades if current_user.teacher?
 
     all_grades
+  end
+
+  def find_student
+    Student.find(params[:id])
+  end
+
+  def find_school
+    School.first(params[:school_id])
+  end
+
+  def find_mark_value
+    find_course.marks.find_by(student_id: find_student.id).value
   end
 
   def teacher_grades

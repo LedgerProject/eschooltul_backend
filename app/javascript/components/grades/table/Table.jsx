@@ -40,7 +40,9 @@ const calculateTableWidth = (courseMembers, isSelectedTerm) => {
   return widthToString(termsSize + lessonsSize - selectedTerm + borderSize);
 };
 
-const Table = ({ courseMembers, selectedTerm, onValueChange, selectedCourse }) => (
+const Table = ({
+  courseMembers, selectedTerm, onValueChange, selectedCourse,
+}) => (
   <div className="overflow-x-scroll w-full max-w-full">
     <div
       className="grades-table"
