@@ -3,6 +3,17 @@ class GradesController < AuthenticatedController
     @courses = find_courses
   end
 
+  def show
+    respond_to do |format|
+      format.pdf do
+        render template: "grades/show",
+               pdf: "#{find_student.full_name}#{find_course.full_name}.pdf",
+               locals: { student: find_student, course: find_course, school: find_school,
+                         mark_value: find_mark_value }
+      end
+    end
+  end
+
   def create
     marks = JSON.parse(params[:marks])
     grades = Grade.new
@@ -25,6 +36,18 @@ class GradesController < AuthenticatedController
     return teacher_grades if current_user.teacher?
 
     all_grades
+  end
+
+  def find_student
+    Student.find(params[:id])
+  end
+
+  def find_school
+    School.first(params[:school_id])
+  end
+
+  def find_mark_value
+    find_course.marks.find_by(student_id: find_student.id).value
   end
 
   def teacher_grades

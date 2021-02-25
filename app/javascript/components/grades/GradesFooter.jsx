@@ -1,9 +1,12 @@
 import React from 'react';
+import { CSVLink } from 'react-csv';
 import SubmitButton from './buttons/SubmitButton';
 import Button from './buttons/Button';
 import I18n from '../../i18n-js/index.js.erb';
 
-const GradesFooter = ({ onSave, selectedCourseID }) => (
+const GradesFooter = ({
+  onSave, selectedCourseID, dataCSV, courseName,
+}) => (
   <div className="mt-8 flex justify-between items-stretch">
     <div>
       <SubmitButton
@@ -12,6 +15,13 @@ const GradesFooter = ({ onSave, selectedCourseID }) => (
         iconClass="far fa-save"
         text={I18n.t('grades.save')}
       />
+      <CSVLink data={dataCSV} filename={`Students${courseName}.csv`}>
+        <SubmitButton
+          className="bg-blue-500 hover:bg-blue-900 ml-2"
+          iconClass="fas fa-file-csv"
+          text="Export to CSV"
+        />
+      </CSVLink>
     </div>
     <div>
       <Button
