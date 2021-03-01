@@ -1,5 +1,6 @@
 class GradesController < AuthenticatedController
   def index
+    redirect_to courses_path if find_courses.count == 0
     @courses = find_courses
   end
 
