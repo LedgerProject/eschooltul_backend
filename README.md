@@ -1,4 +1,8 @@
-# README
+# Eschooltul
+
+[![CI](https://github.com/LedgerProject/eschooltul_backend/actions/workflows/main.yml/badge.svg)](https://github.com/LedgerProject/eschooltul_backend/actions/workflows/main.yml)
+[![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
+
 
 ## Development
 
