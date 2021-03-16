@@ -63,6 +63,7 @@ GEM
     babel-transpiler (0.7.0)
       babel-source (>= 4.0, < 6)
       execjs (~> 2.0)
+    base64 (0.1.0)
     bcrypt (3.1.16)
     bindex (0.8.1)
     bootsnap (1.5.1)
@@ -334,6 +335,7 @@ PLATFORMS
   x86_64-darwin-19
 
 DEPENDENCIES
+  base64
   bootsnap (>= 1.4.2)
   byebug
   deep_cloneable (~> 3.0.0)

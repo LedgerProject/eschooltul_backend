@@ -5,14 +5,15 @@ class GradesController < AuthenticatedController
   end
 
   def show
-    respond_to do |format|
-      format.pdf do
-        render template: "grades/show",
-               pdf: "#{find_student.full_name}#{find_course.full_name}.pdf",
-               locals: { student: find_student, course: find_course, school: find_school,
-                         mark_value: find_mark_value }
-      end
-    end
+    pdf = WickedPdf.new.pdf_from_string(
+      render_to_string(
+        template: "grades/show",
+        encoding: "UTF-8",
+        locals: { student: find_student, course: find_course, school: find_school,
+                  mark_value: find_mark_value }
+      )
+    )
+    pdf_to_database(pdf)
   end
 
   def create
@@ -49,6 +50,13 @@ class GradesController < AuthenticatedController
 
   def find_mark_value
     find_course.marks.find_by(student_id: find_student.id).value
+  end
+
+  def pdf_to_database(pdf)
+    find_student.reports.create(content: Base64.encode64(pdf),
+                                content_hash: Digest::SHA256.hexdigest(Base64.encode64(pdf)),
+                                course_id: find_course.id, date: Time.zone.today)
+    send_data pdf, filename: "#{find_student.full_name}#{find_course.full_name}.pdf"
   end
 
   def teacher_grades
