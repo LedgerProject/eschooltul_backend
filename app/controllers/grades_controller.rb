@@ -14,6 +14,7 @@ class GradesController < AuthenticatedController
       )
     )
     pdf_to_database(pdf)
+    pdf_to_blockchain(pdf, find_course.id, find_student.id)
   end
 
   def create
@@ -57,6 +58,20 @@ class GradesController < AuthenticatedController
                                 content_hash: Digest::SHA256.hexdigest(Base64.encode64(pdf)),
                                 course_id: find_course.id, date: Time.zone.today)
     send_data pdf, filename: "#{find_student.full_name}#{find_course.full_name}.pdf"
+  end
+
+  def pdf_to_blockchain(pdf, course_id, student_id)
+    base64 = Digest::SHA256.hexdigest(Base64.encode64(pdf))
+    uri = URI("https://apiroom.net/api/serveba/sawroom-write")
+    http = Net::HTTP.new(uri.host, 443)
+    http.use_ssl = true
+    http.set_debug_output($stdout)
+    req = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'application/json')
+    req.body = {keys: {}, data: {dataToStore: base64, courseID: course_id, studentID: student_id}}.to_json
+    res = http.request(req)
+    puts "response #{res.body}"
+  rescue => e
+    puts "failed #{e}"
   end
 
   def teacher_grades
