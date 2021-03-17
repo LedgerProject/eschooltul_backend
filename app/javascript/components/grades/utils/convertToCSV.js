@@ -1,5 +1,5 @@
-import _ from 'lodash/fp';
-//TODO - refactor with lodash
+// import _ from 'lodash/fp';
+// TODO - refactor with lodash
 export default function convertToCSV(courseMembers) {
   const dataCSV = [];
 
@@ -26,7 +26,7 @@ export default function convertToCSV(courseMembers) {
   return dataCSV;
 }
 
-/*const setNewLine = (student, term, lesson) => ({
+/* const setNewLine = (student, term, lesson) => ({
   Student: `${student.name} ${student.first_surname} ${student.second_surname}`,
   Term: term.term.name,
   Lesson: lesson.lesson.name,
@@ -34,13 +34,13 @@ export default function convertToCSV(courseMembers) {
 });
 
 const setLessons = (student, term) => (
-  !_.isUndefined(term.lessons) 
+  !_.isUndefined(term.lessons)
   ? _.map((lesson) => setNewLine(student, term, lesson))(term.lessons)
   : null
 );
 
 const setTerms = (courseMember) => (
-  !_.isUndefined(courseMember.terms) 
+  !_.isUndefined(courseMember.terms)
   ? _.map((term) => setLessons(courseMember.student, term))(courseMember.terms)
   : null
 );
@@ -50,4 +50,4 @@ const convertToCSV = _.flow(
   _.compact,
 );
 
-export default convertToCSV;*/
+export default convertToCSV; */
