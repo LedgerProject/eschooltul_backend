@@ -54,29 +54,30 @@ class GradesController < AuthenticatedController
   end
 
   def pdf_to_database(pdf)
-    @report = find_student.reports.create(content: Base64.encode64(pdf),
-                                content_hash: Digest::SHA256.hexdigest(Base64.encode64(pdf)),
-                                course_id: find_course.id, date: Time.zone.today)
+    @report = find_student.reports.create(
+      content: Base64.encode64(pdf),
+      content_hash: Digest::SHA256.hexdigest(Base64.encode64(pdf)),
+      course_id: find_course.id, date: Time.zone.today
+    )
     send_data pdf, filename: "#{find_student.full_name}#{find_course.full_name}.pdf"
   end
 
   def pdf_to_blockchain(pdf, report_id)
     base64 = Digest::SHA256.hexdigest(Base64.encode64(pdf))
-    uri = URI("https://apiroom.net/api/serveba/sawroom-write")
-    http = Net::HTTP.new(uri.host, 443)
-    http.use_ssl = true
-    http.set_debug_output($stdout)
-    req = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'application/json')
-    req.body = {keys: {}, data: {dataToStore: base64, reportID: report_id}}.to_json
-    res = http.request(req)
-  rescue => e
-    puts "failed #{e}"
+
+    HTTParty.post(
+      "https://apiroom.net/api/serveba/sawroom-write",
+      body: {
+        dataToStore: base64,
+        reportID: report_id
+      }
+    )
   end
 
   def teacher_grades
     Course.where(user_id: current_user.id)
           .includes(:terms, :students, :lessons)
-          .map  do |course|
+          .map do |course|
       course.as_json.merge({
                              terms: course.terms.as_json,
                              students: with_marks(course.students),
