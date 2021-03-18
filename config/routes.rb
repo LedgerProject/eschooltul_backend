@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   scope "(:locale)", locale: /en|es/ do
+    resources :validators, only: %i[new create]
     devise_for :users
 
     devise_scope :user do
