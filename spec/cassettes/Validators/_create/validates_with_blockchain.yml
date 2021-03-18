@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://apiroom.net/api/serveba/sawroom-read
+    body:
+      encoding: UTF-8
+      string: transactionId=c274b56ed205ea14139687bd235e295acf430a309b71ea54b0d6215813f060754bee25
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 18 Mar 2021 15:28:53 GMT
+      Server:
+      - Apache/2.4.6
+      X-Powered-By:
+      - RESTroom by Dyne.org
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '151'
+      Etag:
+      - W/"97-gkh+1jP0uRj0V4X7BrzlokP6nuw"
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "sawroom": {
+            "courseID": "1",
+            "dataToStore": "24962026371aa421aa8484c099b4856b81faed16bfe909c4a8d0ef86959d650b",
+            "studentID": "7"
+          }
+        }
+  recorded_at: Thu, 18 Mar 2021 15:28:54 GMT
+recorded_with: VCR 6.0.0

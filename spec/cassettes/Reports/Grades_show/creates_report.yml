@@ -1,0 +1,37 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://apiroom.net/api/serveba/sawroom-write
+    body:
+      encoding: UTF-8
+      string: dataToStore=842d5cda89696396b3edf994864c43ce210ad4d153969ef393d68c64a56b7f4d&reportID=17
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 502
+      message: Proxy Error
+    headers:
+      Date:
+      - Thu, 18 Mar 2021 15:47:52 GMT
+      Server:
+      - Apache/2.4.6
+      Content-Length:
+      - '430'
+      Content-Type:
+      - text/html; charset=iso-8859-1
+    body:
+      encoding: UTF-8
+      string: "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>502
+        Proxy Error</title>\n</head><body>\n<h1>Proxy Error</h1>\n<p>The proxy server
+        received an invalid\r\nresponse from an upstream server.<br />\r\nThe proxy
+        server could not handle the request <em><a href=\"/api/serveba/sawroom-write\">POST&nbsp;/api/serveba/sawroom-write</a></em>.<p>\nReason:
+        <strong>Error reading from remote server</strong></p></p>\n</body></html>\n"
+  recorded_at: Thu, 18 Mar 2021 15:48:23 GMT
+recorded_with: VCR 6.0.0

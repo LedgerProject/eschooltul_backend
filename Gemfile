@@ -3,6 +3,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby "2.6.6"
 
+gem "base64"
 gem "devise"
 gem "devise-i18n"
 gem "i18n-js"
@@ -28,6 +29,7 @@ gem "wkhtmltopdf-binary", "~> 0.12.6.0"
 ## Utilities
 gem "deep_cloneable", "~> 3.0.0"
 gem "font-awesome-sass", "~> 5.15.1"
+gem "httparty"
 gem "roo", "~> 2.8.0" # Excel imports
 gem "roo-xls" # .xls support https://github.com/roo-rb/roo-xls READ LICENSE
 
@@ -35,14 +37,16 @@ gem "roo-xls" # .xls support https://github.com/roo-rb/roo-xls READ LICENSE
 gem "bootsnap", ">= 1.4.2", require: false
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem "byebug", platforms: %i[mri mingw x64_mingw]
   gem "factory_bot_rails"
+  gem "pry-byebug"
   gem "rspec-rails", "~> 4.0.1"
 end
 
 group :test do
   gem "shoulda-matchers", "~> 4.0"
+  gem "vcr"
+  gem "webmock"
 end
 
 group :development do

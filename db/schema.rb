@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_25_123911) do
+ActiveRecord::Schema.define(version: 2021_03_18_081502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -86,6 +86,19 @@ ActiveRecord::Schema.define(version: 2021_01_25_123911) do
     t.index ["student_id"], name: "index_marks_on_student_id"
   end
 
+  create_table "reports", force: :cascade do |t|
+    t.text "content"
+    t.string "content_hash"
+    t.string "transaction_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.date "date"
+    t.bigint "student_id"
+    t.bigint "course_id"
+    t.index ["content_hash"], name: "index_reports_on_content_hash", unique: true
+    t.index ["student_id", "course_id", "date"], name: "unique_report_index", unique: true
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.string "resource_type"
@@ -159,5 +172,7 @@ ActiveRecord::Schema.define(version: 2021_01_25_123911) do
   add_foreign_key "lessons", "lesson_types"
   add_foreign_key "lessons", "terms"
   add_foreign_key "marks", "students"
+  add_foreign_key "reports", "courses"
+  add_foreign_key "reports", "students"
   add_foreign_key "terms", "courses"
 end
