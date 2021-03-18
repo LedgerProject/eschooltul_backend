@@ -1,7 +1,9 @@
 FactoryBot.define do
   factory :report do
     content { "MyString" }
-    hash { "MyString" }
-    transaction_id { 1 }
+    content_hash { "MyString" }
+    transaction_id { "" }
+    course
+    student
   end
 end

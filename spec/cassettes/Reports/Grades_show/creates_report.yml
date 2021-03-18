@@ -5,7 +5,7 @@ http_interactions:
     uri: https://apiroom.net/api/serveba/sawroom-write
     body:
       encoding: UTF-8
-      string: dataToStore=777f4a66ad3bc169cb45d4eb6bcba68da99a5e69c1471eae134cf205f405dff9&reportID=5
+      string: dataToStore=842d5cda89696396b3edf994864c43ce210ad4d153969ef393d68c64a56b7f4d&reportID=17
     headers:
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
@@ -19,7 +19,7 @@ http_interactions:
       message: Proxy Error
     headers:
       Date:
-      - Thu, 18 Mar 2021 12:41:54 GMT
+      - Thu, 18 Mar 2021 15:47:52 GMT
       Server:
       - Apache/2.4.6
       Content-Length:
@@ -33,5 +33,5 @@ http_interactions:
         received an invalid\r\nresponse from an upstream server.<br />\r\nThe proxy
         server could not handle the request <em><a href=\"/api/serveba/sawroom-write\">POST&nbsp;/api/serveba/sawroom-write</a></em>.<p>\nReason:
         <strong>Error reading from remote server</strong></p></p>\n</body></html>\n"
-  recorded_at: Thu, 18 Mar 2021 12:42:24 GMT
+  recorded_at: Thu, 18 Mar 2021 15:48:23 GMT
 recorded_with: VCR 6.0.0
