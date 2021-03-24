@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "Validators", type: :request do
   describe "#create" do
     let(:transaction_id_present_in_blockchain) do
-      "c274b56ed205ea14139687bd235e295acf430a309b71ea54b0d6215813f060754bee25"
+      "c274b5031da186c25adc2f9005ea0515528c00da62f1eaf8f065a119ccfb20474a336f"
     end
 
     it "validates with blockchain", :vcr do
@@ -29,7 +29,7 @@ RSpec.describe "Validators", type: :request do
         post "/validators", params: { validator: { file: pdf_file } }
 
         expect(response).to have_http_status(:redirect)
-        expect(flash[:alert]).to eq("The report is not certified by Eschooltul.")
+        expect(flash[:alert]).to eq("The report is not in the Eschooltul database.")
       end
     end
   end

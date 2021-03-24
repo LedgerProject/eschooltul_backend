@@ -14,7 +14,7 @@ class GradesController < AuthenticatedController
       )
     )
     report = pdf_to_database(pdf)
-    pdf_to_blockchain(pdf: pdf, report: report)
+    pdf_to_blockchain(report: report)
   end
 
   def create
@@ -63,17 +63,13 @@ class GradesController < AuthenticatedController
     report
   end
 
-  def pdf_to_blockchain(pdf:, report:)
-    base64 = Digest::SHA256.hexdigest(Base64.encode64(pdf))
-
+  def pdf_to_blockchain(report:)
+    body = { "data": { "dataToStore": report.content_hash, "reportID": report.id }, "keys": {} }
     response = HTTParty.post(
       "https://apiroom.net/api/serveba/sawroom-write",
-      body: {
-        dataToStore: base64,
-        reportID: report.id
-      }
+      body: body.to_json,
+      headers: { "Content-Type" => "application/json" }
     )
-
     report.update!(transaction_id: response["transactionId"])
   end
 

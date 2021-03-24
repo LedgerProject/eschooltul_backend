@@ -7,7 +7,7 @@ class ValidatorsController < ApplicationController
 
     unless Report.exists?(content_hash: hash)
       redirect_to new_validator_url,
-                  alert: "The report is not certified by Eschooltul."
+                  alert: "The report is not in the Eschooltul database."
       return
     end
 
@@ -31,11 +31,11 @@ class ValidatorsController < ApplicationController
   end
 
   def read_from_blockchain(transaction_id)
+    body = { "data": { "transactionId": transaction_id }, "keys": {} }
     HTTParty.post(
       "https://apiroom.net/api/serveba/sawroom-read",
-      body: {
-        transactionId: transaction_id
-      }
+      body: body.to_json,
+      headers: { "Content-Type" => "application/json" }
     )
   end
 end
