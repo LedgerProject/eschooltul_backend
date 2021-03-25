@@ -5,8 +5,10 @@ http_interactions:
     uri: https://apiroom.net/api/serveba/sawroom-write
     body:
       encoding: UTF-8
-      string: dataToStore=842d5cda89696396b3edf994864c43ce210ad4d153969ef393d68c64a56b7f4d&reportID=17
+      string: '{"data":{"dataToStore":"31727a6fa5e0e73f21084c83ffa4ae8c56eb32eada34c4308a8d757c3013578d","reportID":16},"keys":{}}'
     headers:
+      Content-Type:
+      - application/json
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -15,23 +17,32 @@ http_interactions:
       - Ruby
   response:
     status:
-      code: 502
-      message: Proxy Error
+      code: 200
+      message: OK
     headers:
       Date:
-      - Thu, 18 Mar 2021 15:47:52 GMT
+      - Thu, 25 Mar 2021 09:46:15 GMT
       Server:
       - Apache/2.4.6
-      Content-Length:
-      - '430'
+      X-Powered-By:
+      - RESTroom by Dyne.org
+      Access-Control-Allow-Origin:
+      - "*"
       Content-Type:
-      - text/html; charset=iso-8859-1
+      - application/json; charset=utf-8
+      Content-Length:
+      - '226'
+      Etag:
+      - W/"e2-mFgyRkqKzkK2KIN/51WymWUt9a8"
     body:
       encoding: UTF-8
-      string: "<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\n<html><head>\n<title>502
-        Proxy Error</title>\n</head><body>\n<h1>Proxy Error</h1>\n<p>The proxy server
-        received an invalid\r\nresponse from an upstream server.<br />\r\nThe proxy
-        server could not handle the request <em><a href=\"/api/serveba/sawroom-write\">POST&nbsp;/api/serveba/sawroom-write</a></em>.<p>\nReason:
-        <strong>Error reading from remote server</strong></p></p>\n</body></html>\n"
-  recorded_at: Thu, 18 Mar 2021 15:48:23 GMT
+      string: |-
+        {
+          "myJSONOutput": {
+            "dataToStore": "31727a6fa5e0e73f21084c83ffa4ae8c56eb32eada34c4308a8d757c3013578d",
+            "reportID": 16
+          },
+          "transactionId": "c274b5fa0f5d89c14282d4439341f4b584b05d12bb2855b74a5466e5d9e06e18bdb7af"
+        }
+  recorded_at: Thu, 25 Mar 2021 09:46:18 GMT
 recorded_with: VCR 6.0.0
