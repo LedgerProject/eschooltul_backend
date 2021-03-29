@@ -28,7 +28,7 @@ or if you want webpack with hot reload:
 
 The app is hosted at DigitalOcean using Dokku. Steps:
 
-- `git remote add eschooltul dokku@167.99.40.52:eschooltul` 
+- `git remote add eschooltul dokku@droplet-ip:eschooltul`
 - `git push eschooltul main:master`
-- `ssh root@167.99.40.52`
+- `ssh root@droplet-ip`
 - `dokku run eschooltul rake db:migrate`
