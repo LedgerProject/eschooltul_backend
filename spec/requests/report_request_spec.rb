@@ -17,5 +17,21 @@ RSpec.describe "Reports", type: :request do
       expect(report.content_hash).not_to be_empty
       expect(report.course).to eq(course)
     end
+
+    context "when report is already created the same day" do
+      it "doesn't create a new one" do
+        director = create(:user, :director)
+        sign_in(director)
+        student = create(:student)
+        mark = create(:mark, :with_course, student: student)
+        course = mark.remarkable
+        create(:report, course: course, student: student, date: Time.zone.today)
+
+        get "/report/#{student.id}.pdf?course_id=#{course.id}"
+
+        expect(response).to have_http_status(:ok)
+        expect(Report.count).to eq(1)
+      end
+    end
   end
 end
