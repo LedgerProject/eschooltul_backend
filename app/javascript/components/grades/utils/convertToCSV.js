@@ -1,53 +1,36 @@
-// import _ from 'lodash/fp';
-// TODO - refactor with lodash
-export default function convertToCSV(courseMembers) {
-  const dataCSV = [];
+import _ from 'lodash/fp';
 
-  courseMembers.forEach((courseMember) => {
-    const { student } = courseMember;
-    if (courseMember.terms !== undefined) {
-      courseMember.terms.forEach((term) => {
-        if (term.lessons !== undefined) {
-          term.lessons.forEach((lesson) => {
-            const newLine = {
-              Student: `${student.name} ${student.first_surname} ${student.second_surname}`,
-              Term: term.term.name,
-              Lesson: lesson.lesson.name,
-              Mark: lesson.mark.value,
-            };
+const isUndefined = (values) => (
+  _.isUndefined(values)
+);
 
-            dataCSV.push(newLine);
-          });
-        }
-      });
-    }
-  });
-
-  return dataCSV;
-}
-
-/* const setNewLine = (student, term, lesson) => ({
+const buildNewLine = (student, termName, lessonName, markValue) => ({
   Student: `${student.name} ${student.first_surname} ${student.second_surname}`,
-  Term: term.term.name,
-  Lesson: lesson.lesson.name,
-  Mark: lesson.mark.value,
+  Term: termName,
+  Lesson: lessonName,
+  Mark: markValue,
 });
 
-const setLessons = (student, term) => (
-  !_.isUndefined(term.lessons)
-  ? _.map((lesson) => setNewLine(student, term, lesson))(term.lessons)
-  : null
-);
+const convertToCSV = (courseMembers) => {
+  const dataCSV = [];
 
-const setTerms = (courseMember) => (
-  !_.isUndefined(courseMember.terms)
-  ? _.map((term) => setLessons(courseMember.student, term))(courseMember.terms)
-  : null
-);
+  _.forEach((courseMember) => {
+    const { student } = courseMember;
+    if (!isUndefined(courseMember.terms)) {
+      _.forEach((term) => {
+        const { name: termName } = term.term;
+        if (!isUndefined(term.lessons)) {
+          _.forEach((lesson) => {
+            const { name: lessonName } = lesson.lesson;
+            const { value: markValue } = lesson.mark;
+            dataCSV.push(buildNewLine(student, termName, lessonName, markValue));
+          })(term.lessons);
+        }
+      })(courseMember.terms);
+    }
+  })(courseMembers);
 
-const convertToCSV = _.flow(
-  _.map((courseMember) => setTerms(courseMember)),
-  _.compact,
-);
+  return dataCSV;
+};
 
-export default convertToCSV; */
+export default convertToCSV;
