@@ -13,4 +13,8 @@ class Report < ApplicationRecord
   def content_hash?(hash)
     content_hash == hash
   end
+
+  def filename
+    "#{student.full_name}#{course.full_name}.pdf"
+  end
 end
