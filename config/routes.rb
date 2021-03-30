@@ -26,8 +26,11 @@ Rails.application.routes.draw do
           resources :import_ed_record, only: %i[new create]
         end      
       end
+      
 
-      resources :grades, only: %i[index create show]
+      resources :report, only: %i[show]
+
+      resources :grades, only: %i[index create]
 
       namespace :grades do
         resources :courses, only: %i[index] do 
