@@ -3,15 +3,15 @@
 <head>
     <title>Student marks report in pdf format</title>
     <meta charset="utf-8">
-    <style>  
+    <style>
         .logo{
             width: 250px;
             height: 150px;
             object-fit: cover;
         }
-        table { 
-            border-collapse: collapse; 
-            border: 1px solid black; 
+        table {
+            border-collapse: collapse;
+            border: 1px solid black;
         }
         tr { border: none; }
         td {
@@ -22,21 +22,20 @@
     </style>
 </head>
 <body>
-
     <% if school.logo.attached? %>
-        <%= image_tag(school.logo, class: "logo") %>
+        <%= image_tag wicked_pdf_asset_base64(school.logo), class: "logo" %>
     <% else %>
-        <%= image_tag("school-logo.png", class: "logo") %>
+        <%= image_tag wicked_pdf_asset_base64("school-logo.png"), class: "logo" %>
     <% end %>
     <h1><%= school.name%></h1>
     <h3 align="right"><%= I18n.l(Date.today, format: :long) %></h3>
     <hr style="width:75%;">
 
-    <p style="text-align: justify;"><FONT SIZE=5>A continuación se muestran las notas obtenidas por el alumno: <%= student.full_name%>, durante su estancia en el curso <%= course.full_name %>. 
+    <p style="text-align: justify;"><FONT SIZE=5>A continuación se muestran las notas obtenidas por el alumno: <%= student.full_name%>, durante su estancia en el curso <%= course.full_name %>.
     El alumno ha obtenido una calificación en el curso de <%= mark_value %> puntos.</FONT></p>
 
     <p><FONT SIZE=7><%= "#{course.full_name} - #{student.full_name}" %></FONT></p>
-    
+
     <div style="text-align:center;">
     <table WIDTH="75%" style="margin: 0 auto;">
         <% course.terms.each do |term|%>
