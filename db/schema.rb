@@ -92,9 +92,9 @@ ActiveRecord::Schema.define(version: 2021_03_18_081502) do
     t.string "transaction_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.date "date"
     t.bigint "student_id"
     t.bigint "course_id"
+    t.date "date"
     t.index ["content_hash"], name: "index_reports_on_content_hash", unique: true
     t.index ["student_id", "course_id", "date"], name: "unique_report_index", unique: true
   end
