@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://apiroom.net/api/serveba/sawroom-write
+    body:
+      encoding: UTF-8
+      string: '{"data":{"dataToStore":"98edee77b58090aa8753d3c469ea25388123c806a74af7342401fd2a39b36409","reportID":36},"keys":{}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Mon, 29 Mar 2021 15:19:23 GMT
+      Server:
+      - Apache/2.4.6
+      X-Powered-By:
+      - RESTroom by Dyne.org
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '226'
+      Etag:
+      - W/"e2-HsfTafkQ0kxxHlTeKysdbs8Ghdw"
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "myJSONOutput": {
+            "dataToStore": "98edee77b58090aa8753d3c469ea25388123c806a74af7342401fd2a39b36409",
+            "reportID": 36
+          },
+          "transactionId": "c274b5178a68f39873822fed61d420a3dd2189bdc1f1bd9b46412a4fcf6690cfed11b8"
+        }
+  recorded_at: Mon, 29 Mar 2021 15:19:30 GMT
+recorded_with: VCR 6.0.0

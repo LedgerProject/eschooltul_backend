@@ -1,8 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "Reports", type: :request do
-  # TODO: move controller action to Report#create
-  describe "Grades#show" do
+  describe "Report#show" do
     it "creates report", :vcr do
       director = create(:user, :director)
       sign_in(director)
@@ -10,7 +9,7 @@ RSpec.describe "Reports", type: :request do
       mark = create(:mark, :with_course, student: student)
       course = mark.remarkable
 
-      get "/grades/#{student.id}.pdf?course_id=#{course.id}"
+      get "/report/#{student.id}.pdf?course_id=#{course.id}"
 
       report = Report.first
       expect(response).to have_http_status(:ok)
