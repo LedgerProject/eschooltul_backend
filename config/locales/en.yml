@@ -92,3 +92,7 @@ en:
   enabled: enabled
   disbaled: disabled
   saved_failed: "Students failed: %{counter_failed}. Students Saved: %{counter_saved}"
+
+  report:
+    action:
+      nogrades: "Must put marks before generating the report."

@@ -33,5 +33,21 @@ RSpec.describe "Reports", type: :request do
         expect(Report.count).to eq(1)
       end
     end
+
+    context "when generating a report without marks" do
+      it "doesn't generate report" do
+        director = create(:user, :director)
+        sign_in(director)
+        course = create(:course)
+        student = create(:student)
+        student.courses << course
+
+        get "/report/#{student.id}.pdf?course_id=#{course.id}"
+
+        expect(response).to have_http_status(:redirect)
+        expect(flash[:alert]).to eq("Must put marks before generating the report.")
+        expect(Report.count).to eq(0)
+      end
+    end
   end
 end
