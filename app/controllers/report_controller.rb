@@ -1,14 +1,15 @@
 class ReportController < AuthenticatedController
   def show
-    report = find_report
-
-    if report.present?
-      pdf = Base64.decode64(report.content)
-      send_data(pdf, filename: report.filename)
-      return
+    if find_course_mark.present?
+      if find_report.present?
+        pdf = Base64.decode64(find_report.content)
+        send_data(pdf, filename: find_report.filename)
+        return
+      end
+      create_report_with_pdf
+    else
+      redirect_to grades_path, alert: "Must put marks before generating the report."
     end
-
-    create_report_with_pdf
   end
 
   private
@@ -33,8 +34,8 @@ class ReportController < AuthenticatedController
     School.first(params[:school_id])
   end
 
-  def find_mark_value
-    find_course.marks.find_by(student_id: find_student.id).value
+  def find_course_mark
+    find_course.marks.find_by(student_id: find_student.id)
   end
 
   def create_report_with_pdf
@@ -60,7 +61,7 @@ class ReportController < AuthenticatedController
       student: find_student,
       course: find_course,
       school: find_school,
-      mark_value: find_mark_value
+      mark_value: find_course_mark.value
     }
   end
 
