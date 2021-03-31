@@ -27,6 +27,10 @@ es:
   updateaccount: Actualizar cuenta
   areyousure: ¿Está seguro?
 
+  report:
+    action:
+      nogrades: "No se puede generar el informe sin calificaciones."
+
   activerecord:
     errors:
       messages:

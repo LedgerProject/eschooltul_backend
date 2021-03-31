@@ -34,8 +34,8 @@ RSpec.describe "Reports", type: :request do
       end
     end
 
-    context "when try to generate report without course mark" do
-      it "doesn't generate report", :vcr do
+    context "when generating a report without marks" do
+      it "doesn't generate report" do
         director = create(:user, :director)
         sign_in(director)
         course = create(:course)
@@ -46,6 +46,7 @@ RSpec.describe "Reports", type: :request do
 
         expect(response).to have_http_status(:redirect)
         expect(flash[:alert]).to eq("Must put marks before generating the report.")
+        expect(Report.count).to eq(0)
       end
     end
   end

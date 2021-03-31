@@ -1,15 +1,15 @@
 class ReportController < AuthenticatedController
   def show
-    if find_course_mark.present?
-      if find_report.present?
-        pdf = Base64.decode64(find_report.content)
-        send_data(pdf, filename: find_report.filename)
-        return
-      end
-      create_report_with_pdf
-    else
-      redirect_to grades_path, alert: "Must put marks before generating the report."
+    if find_course_mark.blank?
+      redirect_to grades_path, alert: t("report.action.nogrades")
+      return
     end
+    if find_report.present?
+      pdf = Base64.decode64(find_report.content)
+      send_data(pdf, filename: find_report.filename)
+      return
+    end
+    create_report_with_pdf
   end
 
   private
