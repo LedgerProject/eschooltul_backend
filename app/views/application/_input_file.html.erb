@@ -1,8 +1,0 @@
-<label class="btn cursor-pointer">
-  <%= text %>
-  <% id = rand() %>
-  <span class="hidden">
-    <%= form.input attribute, as: :file, input_html: {accept: accept, onchange: "document.getElementById('upload-file-info" + id.to_s + "').innerHTML = this.files[0].name"} %>
-  </span>
-</label>
-<span class='label label-info' id="upload-file-info<%= id%>"></span>
