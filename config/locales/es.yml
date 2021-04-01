@@ -30,6 +30,10 @@ es:
   report:
     action:
       nogrades: "No se puede generar el informe sin calificaciones."
+      nodatabase: "El informe no está en la base de datos de Eschooltul"
+      nocertified: "El informe no ha sido certificado por Eschooltul"
+      certified: "El informe ha sido certificado por Eschooltul"
+      error: "Ha habido un error en la lectura de datos desde blockchain."
 
   activerecord:
     errors:
