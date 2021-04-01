@@ -96,3 +96,7 @@ en:
   report:
     action:
       nogrades: "Must put marks before generating the report."
+      nodatabase: "The report is not in the Eschooltul database."
+      nocertified: "The report is not certified by Eschooltul."
+      certified: "The report is certified by Eschooltul."
+      error: "There has been an error in reading data from the blockchain."

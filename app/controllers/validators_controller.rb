@@ -7,27 +7,48 @@ class ValidatorsController < ApplicationController
 
     unless Report.exists?(content_hash: hash)
       redirect_to new_validator_url,
-                  alert: "The report is not in the Eschooltul database."
+                  alert: t("report.action.nodatabase")
+      return
+    end
+
+    certified_by_eschooltul(hash)
+  end
+
+  private
+
+  def certified_by_eschooltul(hash)
+    if find_report(hash).transaction_id.blank?
+      redirect_to new_validator_url,
+                  alert: t("report.action.nocertified")
       return
     end
 
     check_report_in_blockchain(hash)
   end
 
-  private
+  def find_report(hash)
+    Report.find_by(content_hash: hash)
+  end
 
   def check_report_in_blockchain(hash)
-    report = Report.find_by(content_hash: hash)
-    response = read_from_blockchain(report.transaction_id)
-    content_hash = response["sawroom"]["dataToStore"]
-
-    unless report.content_hash?(content_hash)
+    response = read_from_blockchain(find_report(hash).transaction_id)
+    if response["sawroom"].nil?
       redirect_to new_validator_url,
-                  alert: "The report is not certified by Eschooltul."
+                  alert: t("report.action.error")
       return
     end
 
-    redirect_to new_validator_url, notice: "It's certified by Eschooltul."
+    certified_or_not(hash, response)
+  end
+
+  def certified_or_not(hash, response)
+    content_hash = response["sawroom"]["dataToStore"]
+    unless find_report(hash).content_hash?(content_hash)
+      redirect_to new_validator_url,
+                  alert: t("report.action.nocertified")
+      return
+    end
+    redirect_to new_validator_url, notice: t("report.action.certified")
   end
 
   def read_from_blockchain(transaction_id)
