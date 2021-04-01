@@ -37,7 +37,9 @@ RSpec.describe "Validators", type: :request do
         expect(response).to have_http_status(:redirect)
         expect(flash[:alert]).to eq("The report is not certified by Eschooltul.")
       end
+    end
 
+    context "when report is not present in blockchain" do
       it "show error when response from reading blockchain is not correct", :vcr do
         director = create(:user, :director)
         sign_in(director)
