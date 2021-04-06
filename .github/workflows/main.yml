@@ -15,7 +15,7 @@ jobs:
   rubocop:
     name: rubocop
     runs-on: ubuntu-latest
-    container: mapreal19/parse-doc-ci # TODO: create dockerfile for "eschooltul"
+    container: exponentiateam/eschooltul-ci
     steps:
       - uses: actions/checkout@v2
       - run: bundle install
@@ -24,7 +24,7 @@ jobs:
   eslint:
     name: eslint
     runs-on: ubuntu-latest
-    container: mapreal19/parse-doc-ci
+    container: exponentiateam/eschooltul-ci
     steps:
     - uses: actions/checkout@v2
     - run: yarn install
@@ -33,7 +33,7 @@ jobs:
   rspec:
     needs: [ rubocop ]
     runs-on: ubuntu-latest
-    container: mapreal19/parse-doc-ci
+    container: exponentiateam/eschooltul-ci
     services:
       postgres:
         image: postgres:latest
@@ -43,7 +43,6 @@ jobs:
           POSTGRES_USER: ${{ env.POSTGRES_USER }}
           POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
           POSTGRES_DB: ${{ env.POSTGRES_DB }}
-          
     steps:
       - uses: actions/checkout@v2
       - name: Build and test with RSpec
@@ -56,3 +55,32 @@ jobs:
           bundle exec rails db:setup
           bundle exec rails assets:precompile
           bundle exec rspec
+  cypress:
+    needs: [rubocop, eslint]
+    runs-on: ubuntu-latest
+    container: exponentiateam/eschooltul-ci
+    services:
+      postgres:
+        image: postgres:latest
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_USER: ${{ env.POSTGRES_USER }}
+          POSTGRES_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
+          POSTGRES_DB: ${{ env.POSTGRES_DB }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build and test with Cypress
+        env:
+          RAILS_ENV: test
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+        run: |
+          bundle install --jobs 4 --retry 3
+          yarn install
+          yarn run cypress install
+          yarn run cypress verify
+          cp config/database.github.yml config/database.yml
+          bundle exec rails db:setup
+          bundle exec rails assets:precompile
+          yarn start-server-and-wait
+          yarn cy:run
