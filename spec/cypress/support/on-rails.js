@@ -24,8 +24,8 @@ Cypress.Commands.add('appFixtures', (options) => {
 // CypressOnRails: end
 
 beforeEach(() => {
-  cy.app('clean') // have a look at cypress/app_commands/clean.rb
-  cy.app('load_seed')
+  cy.app('clean'); // have a look at cypress/app_commands/clean.rb
+  cy.app('load_seed');
 });
 
 // comment this out if you do not want to attempt to log additional info on test fail
