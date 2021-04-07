@@ -1,8 +1,14 @@
 <div class="mt-12">
     <div class="flex">
       <div class="sm:hidden"><p class="text-sm text-gray-500 p-2"><%= t("course.course")%></p></div>
-      <div class="hidden sm:block w-1/2 px-1"><p class="text-sm text-gray-500 p-2"><%= t("course.course")%></p></div>
-      <div class="hidden sm:block w-1/2 px-1"><p class="text-sm text-gray-500 p-2"><%= t("course.numberstudents")%></p></div>
+
+      <div class="hidden sm:block w-1/4 px-1"><p class="text-sm text-gray-500 p-2"><%= t("course.course")%></p></div>
+      
+      <div class="hidden sm:block w-1/4 px-1"><p class="text-sm text-gray-500 p-2 text-center"><%= t("course.numberstudents")%></p></div>
+      
+      <div class="hidden sm:block w-1/4 px-1"><p class="text-sm text-gray-500 p-2 text-center"><%= t("course.lessons")%></p></div>
+      
+      <div class="hidden sm:block w-1/4 px-1"><p class="text-sm text-gray-500 p-2 text-center"><%= t("course.terms")%></p></div>
     </div>
     <% @courses.each do |c| %>
       <%= render partial: "grades/courses/course", locals: { course: c } %>  

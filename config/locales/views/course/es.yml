@@ -20,3 +20,5 @@ es:
     course: "Curso"
     teacher: "Profesor"
     confirm_delete_course: "¿Está seguro de que quiere eliminar este curso?"
+    lessons: Actividades
+    terms: Periodos

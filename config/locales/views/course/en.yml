@@ -17,4 +17,6 @@ en:
     editcurrentcourse: "Edit the current course"
     teacher: "Teacher"
     confirm_delete_course: "Are you sure you want to delete this course?"
+    lessons: Lessons
+    terms: Terms
     
