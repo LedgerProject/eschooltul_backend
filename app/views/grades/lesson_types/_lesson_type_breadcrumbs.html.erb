@@ -1,0 +1,26 @@
+<div class="mb-4">
+  <%= render partial: "breadcrumb", locals: {
+      url: grades_courses_path,
+      text: t('course.grades'),
+    }
+  %>
+  <%= render partial: "breadcrumb", locals: {
+      url: grades_course_path(@course),
+      text: "#{@course.name} #{@course.subject}",
+    }
+  %>
+  <%= render partial: "breadcrumb", locals: {
+      url: grades_course_terms_path(@course),
+      text: t('course.terms'),
+    }
+  %>
+  <%= render partial: "breadcrumb", locals: {
+      url: grades_course_lessons_path(@course),
+      text: t('course.lessons'),
+    }
+  %>
+  <%= render partial: "breadcrumb", locals: {
+      text: t('lesson_type.lesson_types'),
+    }
+  %>
+</div>
