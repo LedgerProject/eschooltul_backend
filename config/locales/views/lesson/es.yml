@@ -12,3 +12,6 @@ es:
     createlesson: Crear actividad
     createalesson: Crear una actividad
     lessontype: Tipos de actividades
+    text: "Para poder añadir actividades a los periodos y al curso es necesario crear antes tipos de actividades."
+    filter: "Filtro"
+    allterms: "Todos los periodos"

@@ -2,6 +2,7 @@ es:
   hello: Hola
   name: Nombre
   profile: Perfil
+  back: "Volver"
 
   #Accounts
   account: Cuenta
