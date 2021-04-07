@@ -12,3 +12,6 @@ en:
     createlesson: Create lesson
     createalesson: Create a lesson
     lessontype: Lesson types
+    text: "To be able to add lessons to the terms and to the course, it is necessary to create lesson types beforehand."
+    filter: "Filter"
+    allterms: "All terms"

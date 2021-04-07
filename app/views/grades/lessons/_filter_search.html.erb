@@ -4,10 +4,10 @@
       <div class="flex items-center">
       <%= f.select :term_id_eq, 
           options_from_collection_for_select(@course.terms, "id", "name", @search.term_id_eq),
-          { include_blank: "All terms" },
+          { include_blank: t("lesson.allterms") },
           { class: "select" }
       %>
-      <%= f.submit "Filter", class: "btn-primary btn-sm text-white bg-purple-500 uppercase" %>
+      <%= f.submit t("lesson.filter"), class: "btn-primary btn-sm text-white bg-purple-500 uppercase" %>
       </div>
     <% end %>
   </div>

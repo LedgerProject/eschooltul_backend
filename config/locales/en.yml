@@ -34,7 +34,7 @@ en:
   choose_lang: Spanish
   load_file: Select a file
   student_delete_message: "Attention: You are going to delete a digital file of the student. After deletion, the file cannot be recovered."
-
+  back: "Back"
 
   profile: Profile
 
@@ -90,7 +90,7 @@ en:
       alert: "unknown file type: %{resource_name}"
 
   enabled: enabled
-  disbaled: disabled
+  disabled: disabled
   saved_failed: "Students failed: %{counter_failed}. Students Saved: %{counter_saved}"
 
   report:
