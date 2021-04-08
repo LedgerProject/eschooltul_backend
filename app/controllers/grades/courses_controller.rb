@@ -8,14 +8,6 @@ module Grades
       @course = find_course
     end
 
-    def save
-      marks = JSON.parse(params[:marks])
-      grades = Grade.new
-      grades.save_grades(marks)
-
-      head :ok
-    end
-
     private
 
     def find_courses

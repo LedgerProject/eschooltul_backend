@@ -1,4 +1,12 @@
 class GradesController < AuthenticatedController
+  def create
+    marks = JSON.parse(params[:marks])
+    grades = Grade.new
+    grades.save_grades(marks)
+
+    head :ok
+  end
+
   def find_current_course
     Course.find(params[:course_id])
   end

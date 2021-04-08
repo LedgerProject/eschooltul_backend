@@ -3,7 +3,7 @@
 <p class="text-gray-400 tracking-widest mb-2"><%= t('grades.subtitle') %></p>
 <%= react_component("grades/Grades", {
   course: @course,
-  saveURL: save_grades_course_path,
+  saveURL: grades_path,
 }) %>
 <div class="w-full flex flex-col items-end sm:flex-row sm:justify-end sm:items-center mt-4">
     <%= render partial: "secondary_button", locals: {
