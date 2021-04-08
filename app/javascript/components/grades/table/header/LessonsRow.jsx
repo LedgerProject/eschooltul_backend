@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash/fp';
 import Column from './Column';
 
-const SingleHeader = ({ courseLessons, lastColumnName }) => (
+const LessonsRow = ({ courseLessons, lastColumnName }) => (
   <>
     {_.map((courseLesson) => (
       <Column
@@ -15,4 +15,4 @@ const SingleHeader = ({ courseLessons, lastColumnName }) => (
   </>
 );
 
-export default SingleHeader;
+export default LessonsRow;
