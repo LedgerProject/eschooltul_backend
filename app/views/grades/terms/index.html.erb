@@ -9,14 +9,26 @@
         <p class="text-sm mx-auto text-gray-400 mb-2 sm:mb-4 md:text-base">
         <%= t("term.noterm")%>
         </p>
-        <%= render partial: "primary_button", locals: {
-            url: new_grades_course_term_path(@course),
-            button_style: "bg-blue-500 hover:bg-blue-900 text-white btn",
-            icon: ["fas", "plus"],
+        <div class="mb-2">
+          <%= render partial: "primary_button", locals: {
+              url: new_grades_course_term_path(@course),
+              button_style: "bg-blue-500 hover:bg-blue-900 text-white btn",
+              icon: ["fas", "plus"],
+              icon_style: "",
+              text: t("term.createterm")
+            }
+          %>
+        </div>
+        <div>
+          <%= render partial: "secondary_button", locals: {
+            url: grades_course_lessons_path(@course),
+            button_style: "bg-green-50 hover:bg-green-100 text-green-900 btn",
+            icon: ["fas", "book"],
             icon_style: "",
-            text: t("term.createterm")
+            text: t("lesson.lessons")
           }
         %>
+        </div>
       </div>
     </div>
   </div>

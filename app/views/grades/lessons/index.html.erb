@@ -12,7 +12,7 @@
         </p>
         <div class="mb-2">
           <% if @lesson_types.empty? %>
-            <p class="text-pink-900 mb-2"><%= t("lesson.text")%></p>
+            <p class="text-pink-900 mx-auto"><%= t("lesson.text")%></p>
           <% else %>
           <%= render partial: "primary_button", locals: {
               url: new_grades_course_lesson_path(@course),
