@@ -4,7 +4,7 @@ import _ from 'lodash/fp';
 const replaceDots = _.replace(',', '.');
 
 const InputColumn = ({ className, mark, onValueChange }) => (
-  <div className={`flex flex-col justify-center w-32 ${className}`}>
+  <div className={`flex flex-col justify-center w-32 max-w-32 min-w-32 ${className}`}>
     <input
       type="text"
       maxLength={4}
