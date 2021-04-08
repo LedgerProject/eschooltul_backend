@@ -3,18 +3,18 @@ module Grades
     before_action :check_permission_on_this_course
 
     def index
-      @course = find_course
-      @terms = find_course.terms.order(:name).page(params[:page])
+      @course = find_current_course
+      @terms = find_current_course.terms.order(:name).page(params[:page])
     end
 
     def new
-      @course = find_course
+      @course = find_current_course
       @term = Term.new
     end
 
     def create
-      @course = find_course
-      @term = find_course.terms.build(term_params)
+      @course = find_current_course
+      @term = find_current_course.terms.build(term_params)
 
       if @term.save
         redirect_to grades_course_terms_path(@course),
@@ -25,12 +25,12 @@ module Grades
     end
 
     def edit
-      @course = find_course
+      @course = find_current_course
       @term = find_term
     end
 
     def update
-      @course = find_course
+      @course = find_current_course
       @term = find_term
 
       if @term.update(term_params)
