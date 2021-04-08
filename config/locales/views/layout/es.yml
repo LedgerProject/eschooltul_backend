@@ -1,7 +1,7 @@
 es:
   layout:
     myschool: "Mi colegio"
-    grades: Notas
+    courses: "Cursos"
     evaluation: Evaluación
     edrecord: "Expedientes académicos"
     accounts: Cuentas

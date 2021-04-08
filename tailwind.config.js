@@ -14,6 +14,14 @@ module.exports = {
       width: { 
         '9/10': '90%', 
       },
+      maxWidth: {
+        32: '8rem',
+        52: '13rem'
+      },
+      minWidth: {
+        32: '8rem',
+        52: '13rem'
+      },
       screens: {
         'xs': '480px',
         'sm': '600px',

@@ -1,20 +1,24 @@
 en:
   course:
     management: "Management"
-    manage: "Here you can manage your courses"
+    manage: "Here you can evaluate your courses"
     courseyet: "There are no courses yet"
     coursefirst: "be the first one on create"
     createcourse: "Create course"
     grades: "Grades"
+    courses: "Courses"
     course: "Course"
     numberstudents: "Number of students"
     createacourse: "Create a new course"
     createcourse: "Create courses"
     firstcourse: "There are no courses yet, be the first one on create!"
-    selectclass: "Select a class"
+    selectclass: "Select a course"
     editcourse: "Edit course"
     editacourse: "Edit a course"
     editcurrentcourse: "Edit the current course"
     teacher: "Teacher"
     confirm_delete_course: "Are you sure you want to delete this course?"
+    lessons: Lessons
+    terms: Terms
+    evaluation: Evaluation
     

@@ -3,18 +3,19 @@ module Grades
     before_action :check_permission_on_this_course
 
     def index
-      @course = find_course
+      @course = find_current_course
       @terms = @course.terms
       @lessons = find_lessons
+      @lesson_types = LessonType.all
     end
 
     def new
-      @course = find_course
+      @course = find_current_course
       @lesson = Lesson.new
     end
 
     def create
-      @course = find_course
+      @course = find_current_course
       @lesson = @course.lessons.build(lesson_params)
 
       if @lesson.save
@@ -26,12 +27,12 @@ module Grades
     end
 
     def edit
-      @course = find_course
+      @course = find_current_course
       @lesson = find_lesson
     end
 
     def update
-      @course = find_course
+      @course = find_current_course
       @lesson = find_lesson
 
       if @lesson.update(lesson_params)
@@ -43,7 +44,7 @@ module Grades
     end
 
     def destroy
-      @course = find_course
+      @course = find_current_course
       @lesson = find_lesson
 
       @lesson.destroy
@@ -54,7 +55,7 @@ module Grades
     private
 
     def find_lessons
-      @search = find_course.lessons.ransack(params[:q])
+      @search = find_current_course.lessons.ransack(params[:q])
       @lessons = @search.result(distinct: true).order(:name).page(params[:page])
     end
 

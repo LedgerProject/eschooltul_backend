@@ -1,3 +1,4 @@
+<%= render partial: "grades/lesson_types/lesson_type_breadcrumbs" %>
 <h1 class="text-2xl md:text-5xl font-bold tracking-tighter"><%= t("lesson_type.lesson_types")%></h1>
 <p class="text-gray-400 tracking-widest"><%= t("lesson_type.manage")%></p>
 <% if @lesson_types.empty?%>
@@ -8,14 +9,6 @@
         <p class="text-sm mx-auto text-gray-400 mb-2 sm:mb-4 md:text-base">
         <%= t("lesson_type.nolesson_type")%>
         </p>
-        <%= render partial: "secondary_button", locals: {
-            url: grades_course_terms_path(@course),
-            button_style: "bg-blue-500 hover:bg-purple-900 text-white btn",
-            icon: ["fas", "backward"],
-            icon_style: "",
-            text: t("back")
-          }
-        %>
         <%= render partial: "primary_button", locals: {
             url: new_grades_course_lesson_type_path(@course),
             button_style: "bg-blue-500 hover:bg-blue-900 text-white btn",
@@ -31,7 +24,7 @@
   <div class="pt-4 lg:pt-2 lg:p-2 xl:p-4 2xl:p-8 w-full">
     <%= render partial: "grades/lesson_types/lesson_types_table" %>
   </div>
-  <div class="pt-4 lg:pt-2 lg:p-2 xl:p-4 2xl:p-8 w-full md:text-right">
+  <div class="pt-4 lg:pt-2 lg:p-2 xl:p-4 2xl:p-8 w-full text-center xs:text-right">
     <div>
       <%= render partial: "primary_button", locals: {
           url: new_grades_course_lesson_type_path(@course),
@@ -39,16 +32,6 @@
           icon: ["fas", "plus"],
           icon_style: "",
           text: t("lesson_type.createlesson_type")
-        }
-      %>
-    </div>
-    <div class="md:text-left">
-      <%= render partial: "secondary_button", locals: {
-          url: grades_course_lessons_path(@course),
-          button_style: "bg-blue-500 hover:bg-purple-900 text-white btn",
-          icon: ["fas", "backward"],
-          icon_style: "",
-          text: t("back")
         }
       %>
     </div>

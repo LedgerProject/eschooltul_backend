@@ -2,7 +2,7 @@ import React from 'react';
 import _ from 'lodash/fp';
 import InputColumn from './InputColumn';
 
-const SingleRow = ({ courseLessons, mark, onValueChange }) => (
+const LessonsGradesRow = ({ courseLessons, mark, onValueChange }) => (
   <>
     {_.map((courseLesson) => (
       <InputColumn
@@ -18,4 +18,4 @@ const SingleRow = ({ courseLessons, mark, onValueChange }) => (
   </>
 );
 
-export default SingleRow;
+export default LessonsGradesRow;

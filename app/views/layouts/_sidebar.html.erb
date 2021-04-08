@@ -12,14 +12,8 @@
       }
     %>
     <%= render partial: "nav_link", locals: {
-        url: grades_path,
+        url: grades_courses_path,
         icon: ["fas", "list-ul"],
-        text: t("layout.grades")
-      }
-    %>
-    <%= render partial: "nav_link", locals: {
-        url: edit_user_password_path,
-        icon: ["fas", "award"],
         text: t("layout.evaluation")
       }
     %>
@@ -41,7 +35,7 @@
       <%= render partial: "nav_link", locals: {
           url: courses_path,
           icon: ["fas", "cog"],
-          text: t("layout.management")
+          text: t("layout.courses")
         }
       %>
     <% end %>

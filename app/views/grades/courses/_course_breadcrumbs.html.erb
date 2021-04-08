@@ -1,0 +1,11 @@
+<div class="mb-4">
+  <%= render partial: "breadcrumb", locals: {
+      url: grades_courses_path,
+      text: t('course.grades'),
+    }
+  %>
+  <%= render partial: "breadcrumb", locals: {
+      text: "#{@course['name']} #{@course['subject']}",
+    }
+  %>
+</div>

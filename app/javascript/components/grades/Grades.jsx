@@ -2,17 +2,15 @@ import React, { useEffect, useState } from 'react';
 import _ from 'lodash/fp';
 import Rails from '@rails/ujs';
 import getCourseMembers from './utils/grades';
-import CourseSelector from './filters/CourseSelector';
 import TermSelector from './filters/TermSelector';
 import Table from './table/Table';
 import GradesFooter from './GradesFooter';
 import convertToCSV from './utils/convertToCSV';
-import I18n from '../../i18n-js/index.js.erb';
+import EmptyStudents from './EmptyStudents';
 
-const getCurrentStudent = (data, selectedCourseID, studentID) => {
-  const course = data[_.findIndex(['id', selectedCourseID])(data)];
-  return course.students[_.findIndex(['id', studentID])(course.students)];
-};
+const getCurrentStudent = (data, studentID) => (
+  data.students[_.findIndex(['id', studentID])(data.students)]
+);
 
 const findMark = (marks, mark) => (
   _.findIndex({
@@ -24,7 +22,7 @@ const findMark = (marks, mark) => (
 const MARK_IS_PROPER_DEFINED = new RegExp(/^(\d{1}(\.\d{1,2})?|10)$/);
 
 const getMarks = _.flow(
-  _.flatMap('students'),
+  _.get('students'),
   _.flatMap('marks'),
   _.filter((mark) => MARK_IS_PROPER_DEFINED.test(mark.value) || _.isEmpty(mark.value)),
   _.map((mark) => ({
@@ -36,41 +34,38 @@ const getMarks = _.flow(
   _.compact,
 );
 
-const Grades = ({ courses, saveURL }) => {
-  const [data, setData] = useState(courses);
-  const [selectedCourse, setSelectedCourse] = useState(courses[0]);
+const Grades = ({ course, saveURL }) => {
+  const [data, setData] = useState(course);
   const [selectedTerm, setSelectedTerm] = useState(undefined);
   const [courseMembers, setCourseMemebers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setCourseMemebers(getCourseMembers(selectedCourse, selectedTerm));
-  }, [selectedCourse, selectedTerm, data]);
-
-  const onSelectedCourse = (e) => {
-    setSelectedTerm(undefined);
-    setSelectedCourse(courses[e.target.value]);
-  };
+    setIsLoading(true);
+    setCourseMemebers(getCourseMembers(course, selectedTerm));
+    setIsLoading(false);
+  }, [selectedTerm, data, course]);
 
   const onSelectedTerm = (e) => {
     setSelectedTerm(
       _.isUndefined(e.target.value)
         ? undefined
-        : selectedCourse.terms[e.target.value],
+        : course.terms[e.target.value],
     );
   };
 
   const onValueChange = (newMark) => {
-    const newData = [...data];
-    const currentStudent = getCurrentStudent(newData, selectedCourse.id, newMark.student_id);
+    const newData = { ...data };
+    const currentStudent = getCurrentStudent(newData, newMark.student_id);
     const markIndex = findMark(currentStudent.marks, newMark);
     if (_.lt(markIndex, 0)) {
       currentStudent.marks.push(newMark);
-      setData([...newData]);
+      setData({ ...newData });
       return;
     }
 
     currentStudent.marks[markIndex].value = newMark.value;
-    setData([...newData]);
+    setData({ ...newData });
   };
 
   const onSave = () => {
@@ -95,17 +90,19 @@ const Grades = ({ courses, saveURL }) => {
 
   const dataCSV = convertToCSV(courseMembers);
 
+  if (_.isEmpty(courseMembers)) {
+    return <EmptyStudents />;
+  }
+
+  if (isLoading) {
+    return null;
+  }
+
   return (
     <>
-      <h1 className="text-2xl md:text-5xl font-bold tracking-tighter">{I18n.t('grades.title')}</h1>
-      <p className="text-gray-400 tracking-widest mb-2">{I18n.t('grades.subtitle')}</p>
-      <CourseSelector
-        courses={courses}
-        onSelectedCourse={onSelectedCourse}
-      />
-      { !_.isEmpty(selectedCourse.terms) && (
+      { !_.isEmpty(course.terms) && (
         <TermSelector
-          terms={selectedCourse.terms}
+          terms={course.terms}
           selectedTerm={selectedTerm}
           onSelectedTerm={onSelectedTerm}
         />
@@ -113,14 +110,13 @@ const Grades = ({ courses, saveURL }) => {
       <Table
         courseMembers={courseMembers}
         selectedTerm={selectedTerm}
-        selectedCourse={selectedCourse}
+        course={course}
         onValueChange={onValueChange}
       />
       <GradesFooter
         onSave={onSave}
-        selectedCourseID={selectedCourse.id}
         dataCSV={dataCSV}
-        courseName={selectedCourse.name + selectedCourse.subject}
+        courseName={course.name + course.subject}
       />
     </>
   );

@@ -1,17 +1,17 @@
 module Grades
   class LessonTypesController < GradesController
     def index
-      @course = find_course
+      @course = find_current_course
       @lesson_types = LessonType.order(:name).page(params[:page])
     end
 
     def new
-      @course = find_course
+      @course = find_current_course
       @lesson_type = LessonType.new
     end
 
     def create
-      @course = find_course
+      @course = find_current_course
       @lesson_type = LessonType.new(lesson_type_params)
 
       if @lesson_type.save
@@ -24,12 +24,12 @@ module Grades
     end
 
     def edit
-      @course = find_course
+      @course = find_current_course
       @lesson_type = find_lesson_type
     end
 
     def update
-      @course = find_course
+      @course = find_current_course
       @lesson_type = find_lesson_type
 
       if @lesson_type.update(lesson_type_params)
@@ -42,7 +42,7 @@ module Grades
     end
 
     def destroy
-      @course = find_course
+      @course = find_current_course
       @lesson_type = find_lesson_type
 
       @lesson_type.destroy

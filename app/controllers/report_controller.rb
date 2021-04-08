@@ -1,7 +1,7 @@
 class ReportController < AuthenticatedController
   def show
     if find_course_mark.blank?
-      redirect_to grades_path, alert: t("report.action.nogrades")
+      redirect_to grades_course_path(find_course), alert: t("report.action.nogrades")
       return
     end
     if find_report.present?

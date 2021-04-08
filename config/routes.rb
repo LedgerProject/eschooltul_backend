@@ -33,10 +33,10 @@ Rails.application.routes.draw do
 
       resources :report, only: %i[show]
 
-      resources :grades, only: %i[index create]
+      resources :grades, only: %i[create]
 
       namespace :grades do
-        resources :courses, only: %i[index] do
+        resources :courses, only: %i[index show] do
           resources :terms, except: %i[show]
           resources :lessons, except: %i[show] do
             collection do

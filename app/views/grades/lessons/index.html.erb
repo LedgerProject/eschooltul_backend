@@ -1,14 +1,8 @@
-<div class="flex justify-between">
-  <div class="">
-    <h1 class="text-2xl md:text-5xl font-bold tracking-tighter"><%= t("lesson.lessons")%></h1>
-    <p class="text-gray-400 tracking-widest"><%= t("lesson.manage")%></p>
-  </div>
-</div>
+<%= render partial: "grades/lessons/lesson_breadcrumbs" %>
+<h1 class="text-2xl md:text-5xl font-bold tracking-tighter"><%= t("lesson.lessons")%></h1>
+<p class="text-gray-400 tracking-widest"><%= t("lesson.manage")%></p>
 <%= render partial: "grades/lessons/filter_search" %>
-<div class="">
-  <p class="text-400"><%= t("lesson.text")%></p>
-</div>
-<% if @lessons.empty? %>
+<% if @lessons.empty? || @lesson_types.empty? %>
   <div class="p-4 mt-20 2xl:p-8 w-full flex justify-center items-center">
     <div class="w-full">
       <%= image_tag("desk.svg", class: "w-1/2 max-w-xs mx-auto mb-4 sm:mb-8" ) %>
@@ -16,22 +10,30 @@
         <p class="text-sm mx-auto text-gray-400 mb-2 sm:mb-4 md:text-base">
           <%= t("lesson.nolesson")%>
         </p>
-        <%= render partial: "secondary_button", locals: {
-            url: grades_course_terms_path(@course),
-            button_style: "bg-blue-500 hover:bg-purple-900 text-white btn",
-            icon: ["fas", "backward"],
-            icon_style: "",
-            text: t("back")
-          }
-        %>
-        <%= render partial: "primary_button", locals: {
-            url: new_grades_course_lesson_path(@course),
-            button_style: "bg-blue-500 hover:bg-blue-900 text-white btn",
-            icon: ["fas", "plus"],
-            icon_style: "",
-            text: t("lesson.createlesson")
-          }
-        %>
+        <div class="mb-2">
+          <% if @lesson_types.empty? %>
+            <p class="text-pink-900 mx-auto"><%= t("lesson.text")%></p>
+          <% else %>
+          <%= render partial: "primary_button", locals: {
+              url: new_grades_course_lesson_path(@course),
+              button_style: "bg-blue-500 hover:bg-blue-900 text-white btn",
+              icon: ["fas", "plus"],
+              icon_style: "",
+              text: t("lesson.createlesson")
+            }
+          %>
+          <% end %>
+        </div>
+        <div>
+          <%= render partial: "secondary_button", locals: {
+              url: grades_course_lesson_types_path(@course),
+              button_style: "bg-pink-50 hover:bg-pink-100 text-pink-900 btn",
+              icon: ["far", "file"],
+              icon_style: "",
+              text: t("lesson.lessontype")
+            }
+          %>
+        </div>
       </div>
     </div>
   </div>
@@ -39,32 +41,24 @@
   <div class="pt-4 lg:pt-2 lg:p-2 xl:p-4 2xl:p-8 w-full">
     <%= render partial: "grades/lessons/lessons_table" %>
   </div>
-  <div class="pt-4 lg:pt-2 lg:p-2 xl:p-4 2xl:p-8 w-full md:text-right">
-    <div>
-      <%= render partial: "primary_button", locals: {
+  <div class="pt-4 lg:pt-2 lg:p-2 xl:p-4 2xl:p-8 w-full flex flex-col-reverse items-center xs:flex-row xs:justify-between xs:items-center">
+    <div class="mt-4 xs:mt-0">
+      <%= render partial: "secondary_button", locals: {
           url: grades_course_lesson_types_path(@course),
-          button_style: "bg-purple-500 hover:bg-purple-900 text-white btn",
+          button_style: "bg-pink-50 hover:bg-pink-100 text-pink-900 btn",
           icon: ["far", "file"],
           icon_style: "",
           text: t("lesson.lessontype")
         }
       %>
+    </div>
+    <div>
       <%= render partial: "primary_button", locals: {
           url: new_grades_course_lesson_path(@course),
           button_style: "bg-blue-500 hover:bg-blue-900 text-white btn",
           icon: ["fas", "plus"],
           icon_style: "",
           text: t("lesson.createlesson")
-        }
-      %>
-    </div>
-    <div class="md:text-left">
-      <%= render partial: "secondary_button", locals: {
-          url: grades_course_terms_path(@course),
-          button_style: "bg-blue-500 hover:bg-purple-900 text-white btn",
-          icon: ["fas", "backward"],
-          icon_style: "",
-          text: t("back")
         }
       %>
     </div>

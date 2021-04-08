@@ -1,0 +1,8 @@
+<% if local_assigns.has_key?(:url)%>
+  <%= link_to(url, class: "") do %>
+    <span class="text-xs text-gray-900 mr-1 hover:underline"><%= text %></span>
+    <span class="text-xs text-gray-500"><%= icon("fas", "angle-double-right") %></span>
+  <% end %>
+<% else %>
+  <span class="text-xs text-gray-500"><%= text %></span>
+<% end %>
