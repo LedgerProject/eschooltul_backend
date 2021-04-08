@@ -1,7 +1,7 @@
 es:
   grades:
     title: Calificaciones
-    subtitle: Gestiona las calificaciones
+    subtitle: Cada curso puede tener periodos y cada periodo actividades. Aquí puedes evaluar las notas para los estudiantes en diferentes lecciones del curso. Por ahora, solo guardamos una nota por actividad y estudiante, todavía no realizamos medias o calculos con las notas.
     all: Todos
     term: Evaluacion
     course: Curso
@@ -10,3 +10,4 @@ es:
     terms: Evaluaciones
     save: Guardar calificaciones
     empty: No hay estudiantes en este curso.
+    export: Exportar a CSV

@@ -17,7 +17,7 @@ const GradesFooter = ({
       <SubmitButton
         className="bg-blue-500 hover:bg-blue-900 ml-2"
         iconClass="fas fa-file-csv"
-        text="Export to CSV"
+        text={I18n.t('grades.export')}
       />
     </CSVLink>
   </div>

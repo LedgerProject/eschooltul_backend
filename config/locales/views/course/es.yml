@@ -1,18 +1,19 @@
 es:
   course:
     management: Gestión
-    manage: "Aquí puede gestionar sus cursos"
+    manage: "Aquí puede evaluar sus cursos"
     courseyet: "De momento no están disponibles los cursos"
     coursefirst: "se el primero en crear un curso!"
     createcourse: "Crear curso"
     grades: "Notas"
+    courses: "Cursos"
     course: "Curso"
     numberstudents: "Número de estudiantes"
     createacourse: "Cree un nuevo curso"
     createcourse: "Crear curso"
     managementcourses: "Aquí puede gestionar sus cursos"
     firstcourse: "De momento, no hay cursos. Sé el primero en añadir uno!"
-    selectclass: "Seleccione una clase"
+    selectclass: "Seleccione un curso"
     createacourse: "Cree un nuevo curso"
     editcourse: "Editar curso"
     editacourse: "Editar un curso"
@@ -22,3 +23,4 @@ es:
     confirm_delete_course: "¿Está seguro de que quiere eliminar este curso?"
     lessons: Actividades
     terms: Periodos
+    evaluation: Evaluación

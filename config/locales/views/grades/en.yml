@@ -1,7 +1,7 @@
 en:
   grades:
     title: Grades
-    subtitle: Here you can manage your grades
+    subtitle: Each course could have terms and each term could have lessons. Here you can evaluate the grading for the students in the different lessons of the course. For now, we only store one grade for lesson and student, we do not perform averages or calculations with the grades, yet.
     all: All
     term: Term
     course: Course
@@ -10,3 +10,4 @@ en:
     terms: Terms
     save: Save grades
     empty: There's no students on this course.
+    export: Export to CSV
