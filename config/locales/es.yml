@@ -27,6 +27,7 @@ es:
   updateinfo: Actualizar información
   updateaccount: Actualizar cuenta
   areyousure: ¿Está seguro?
+  logout: "Cerrar sesión"
 
   report:
     action:

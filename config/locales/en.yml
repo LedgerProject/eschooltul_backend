@@ -67,6 +67,7 @@ en:
   updateinfo: Update information
   updateaccount: Update account
   areyousure: Are you sure?
+  logout: "Logout"
 
   flash:
     actions:
