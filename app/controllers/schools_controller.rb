@@ -13,7 +13,8 @@ class SchoolsController < AuthenticatedController
     @school = find_school
 
     if @school.update(school_params)
-      redirect_to root_path, notice: t("flash.actions.update.notice", resource_name: t(:school))
+      redirect_to root_path, notice: t("flash.actions.update.notice",
+                                       resource_name: t("school.school"))
     else
       render :edit
     end
