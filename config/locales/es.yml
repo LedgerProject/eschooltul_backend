@@ -27,6 +27,7 @@ es:
   updateinfo: Actualizar información
   updateaccount: Actualizar cuenta
   areyousure: ¿Está seguro?
+  logout: "Cerrar sesión"
 
   report:
     action:
@@ -35,6 +36,16 @@ es:
       nocertified: "El informe no ha sido certificado por Eschooltul"
       certified: "El informe ha sido certificado por Eschooltul"
       error: "Ha habido un error en la lectura de datos desde blockchain."
+  
+  validator:
+    action:
+      text: "A través de este sencillo verificador se puede comprobar si un archivo concreto ha sido generado por una determinada
+            entidad registrada en Eschooltul y su hash ha sido estampado en Blockchain (Sawtooth). 
+            Si el resultado es positivo, significa que el archivo no ha sido alterado y que su hash fue generado
+            y sellado en la fecha indicada, es decir, que el contenido del documento corporativo es auténtico.
+            Si tiene alguna duda sobre la validez legal del documento, póngase en contacto con nosotros."
+      validate: "Validar informe"
+      tovalidate: "Para comprobar si un informe ha sido creado y verificado con Eschooltul puede utilizar el siguiente"
 
   activerecord:
     errors:
