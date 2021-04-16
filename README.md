@@ -26,9 +26,11 @@ or if you want webpack with hot reload:
 
 ## Deploy
 
-The app is hosted at DigitalOcean using Dokku. Steps:
+The app is hosted at DigitalOcean using Dokku.
+
+The deploy is done via Github Actions on the main branch, but you can deploy manually:
 
 - `git remote add eschooltul dokku@droplet-ip:eschooltul`
 - `git push eschooltul main:master`
 - `ssh root@droplet-ip`
-- `dokku run eschooltul rake db:migrate`
+- `dokku run eschooltul rails db:migrate`
