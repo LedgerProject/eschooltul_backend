@@ -55,6 +55,7 @@ jobs:
           bundle exec rails db:setup
           bundle exec rails assets:precompile
           bundle exec rspec
+
   cypress:
     needs: [rubocop, eslint]
     runs-on: ubuntu-latest
@@ -84,3 +85,19 @@ jobs:
           bundle exec rails assets:precompile
           yarn start-server-and-wait
           yarn cy:run
+
+  deploy:
+    needs: [rspec, cypress]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cloning repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Push to dokku
+        uses: dokku/github-action@master
+        with:
+          branch: 'main'
+          git_remote_url: 'ssh://dokku@167.99.40.52:22/eschooltul'
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
