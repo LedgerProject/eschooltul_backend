@@ -8,6 +8,9 @@ class Course < ApplicationRecord
   has_many :reports, dependent: :nullify
   paginates_per 6
 
+  include Discard::Model
+  default_scope -> { kept }
+
   validates :subject, uniqueness: { scope: :name }
   validates :user, presence: true
 

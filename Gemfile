@@ -6,6 +6,7 @@ ruby "2.6.6"
 gem "base64"
 gem "devise"
 gem "devise-i18n"
+gem "discard", "~> 1.2"
 gem "i18n-js"
 gem "jbuilder", "~> 2.7"
 gem "kaminari" # Paginator

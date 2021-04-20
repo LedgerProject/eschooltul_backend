@@ -5,8 +5,8 @@
       <div class="hidden sm:block w-1/2 px-1"><p class="text-sm text-gray-500 p-2"><%= t("course.teacher")%></p></div>
     </div>
     <% @courses.each do |c| %>
-      <% if c.discarded_at.nil? %>
-        <%= render partial: "courses/course", locals: { course: c } %>
+      <% unless c.discarded_at.nil? %>
+        <%= render partial: "discard_courses/course", locals: { course: c } %>
       <% end %>
     <%end %>
 </div>

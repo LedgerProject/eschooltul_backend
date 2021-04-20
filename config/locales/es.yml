@@ -36,11 +36,11 @@ es:
       nocertified: "El informe no ha sido certificado por Eschooltul"
       certified: "El informe ha sido certificado por Eschooltul"
       error: "Ha habido un error en la lectura de datos desde blockchain."
-  
+
   validator:
     action:
       text: "A través de este sencillo verificador se puede comprobar si un archivo concreto ha sido generado por una determinada
-            entidad registrada en Eschooltul y su hash ha sido estampado en Blockchain (Sawtooth). 
+            entidad registrada en Eschooltul y su hash ha sido estampado en Blockchain (Sawtooth).
             Si el resultado es positivo, significa que el archivo no ha sido alterado y que su hash fue generado
             y sellado en la fecha indicada, es decir, que el contenido del documento corporativo es auténtico.
             Si tiene alguna duda sobre la validez legal del documento, póngase en contacto con nosotros."
@@ -284,6 +284,10 @@ es:
         notice: "%{resource_name} se ha creado correctamente"
       update:
         notice: "%{resource_name} se ha actualizado correctamente"
+      discard:
+        notice: "%{resource_name} se ha descartado correctamente"
+      undiscard:
+        notice: "%{resource_name} se ha eliminado el estado descartado"
       duplicate:
         notice: "%{resource_name} se ha duplicado correctamente"
       destroy:
@@ -293,10 +297,10 @@ es:
         integration_alert: No se pudo integrar el documento
         alert: No se pudo guardar el documento
         holded: El documento se ha integrado en Holded correctamente
-    imports: 
+    imports:
       notice: Conceptos de facturación cargados correctamente
       alert: "Tipo de archivo desconocido: %{resource_name}"
-  
+
   disabled: desactivado
   enabled: activado
   saved_failed: "Estudiantes no guardados: %{counter_failed}. Estudiantes guardados: %{counter_saved}"

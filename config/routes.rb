@@ -15,6 +15,8 @@ Rails.application.routes.draw do
         resources :accounts, except: %i[show]
         resources :courses, except: %i[show] do
           post :duplicate, on: :member
+          post :discard, on: :member
+          post :undiscard, on: :member
         end
         resources :students, except: %i[show] do
           post :deactivate, on: :member
@@ -29,7 +31,8 @@ Rails.application.routes.draw do
           resources :import_ed_record, only: %i[new create]
         end
       end
-      
+
+      resources :discard_courses, only: %i[index]
 
       resources :report, only: %i[show]
 
