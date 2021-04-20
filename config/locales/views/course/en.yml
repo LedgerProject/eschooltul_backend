@@ -25,3 +25,4 @@ en:
     title: "Discarded courses"
     subtitle: "Here you can manage the discarded courses"
     nodiscarded: "There are no discarded courses. Go back to the courses view."
+    discardedcourses: "Discarded courses"

@@ -17,13 +17,13 @@
           }
         %>
         <%= render partial: "primary_button", locals: {
-        url: discard_courses_path,
-        button_style: "bg-yellow-500 hover:bg-yellow-900 text-black btn",
-        icon: ["fas", "ban"],
-        icon_style: "",
-        text: t("Discarded courses")
-      }
-    %>
+            url: discard_courses_path,
+            button_style: "bg-yellow-500 hover:bg-yellow-900 text-black btn",
+            icon: ["fas", "ban"],
+            icon_style: "",
+            text: t("discard_course.discardedcourses")
+          }
+        %>
       </div>
     </div>
   </div>
@@ -37,7 +37,7 @@
         button_style: "bg-yellow-500 hover:bg-yellow-900 text-black btn",
         icon: ["fas", "ban"],
         icon_style: "",
-        text: t("Discarded courses")
+        text: t("discard_course.discardedcourses")
       }
     %>
     <%= render partial: "primary_button", locals: {

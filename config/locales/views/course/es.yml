@@ -28,3 +28,4 @@ es:
     title: "Cursos descartados"
     subtitle: "Aquí puede gestionar los cursos descartados"
     nodiscarded: "No hay cursos descartados. Vuelva a la vista anterior"
+    discardedcourses: "Cursos descartados"
