@@ -1,0 +1,48 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://apiroom.net/api/serveba/sawroom-read
+    body:
+      encoding: UTF-8
+      string: '{"data":{"transactionId":"1"},"keys":{}}'
+    headers:
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 500
+      message: Internal Server Error
+    headers:
+      Date:
+      - Tue, 20 Apr 2021 09:33:00 GMT
+      Server:
+      - Apache/2.4.6
+      X-Powered-By:
+      - RESTroom by Dyne.org
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - application/json; charset=utf-8
+      Content-Length:
+      - '604'
+      Etag:
+      - W/"25c-0uPOuM7s8R8RaEmPCN9D6cDvbRo"
+      Connection:
+      - close
+    body:
+      encoding: UTF-8
+      string: |-
+        {
+          "zenroom_errors": "",
+          "result": "",
+          "exception": "[UNEXPECTED EXCEPTION]\n\n\nError: Request failed with status code 500\n    at createError (/home/apiroom/public_html/node_modules/axios/lib/core/createError.js:16:15)\n    at settle (/home/apiroom/public_html/node_modules/axios/lib/core/settle.js:17:12)\n    at IncomingMessage.handleStreamEnd (/home/apiroom/public_html/node_modules/axios/lib/adapters/http.js:260:11)\n    at IncomingMessage.emit (events.js:326:22)\n    at endReadableNT (_stream_readable.js:1241:12)\n    at processTicksAndRejections (internal/process/task_queues.js:84:21)"
+        }
+  recorded_at: Tue, 20 Apr 2021 09:33:02 GMT
+recorded_with: VCR 6.0.0
