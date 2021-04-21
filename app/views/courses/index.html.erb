@@ -1,5 +1,5 @@
 <h1 class="text-2xl md:text-5xl font-bold tracking-tighter"><%= t("course.management")%></h1>
-<p class="text-gray-400 tracking-widest"><%= t("course.manage")%></p>
+<p class="text-gray-400 tracking-widest"><%= t("course.managementcourses")%></p>
 <% if @courses.empty? %>
   <div class="p-4 mt-20 2xl:p-8 w-full flex justify-center items-center">
     <div class="w-full">
@@ -16,6 +16,14 @@
             text: t("course.createcourse")
           }
         %>
+        <%= render partial: "primary_button", locals: {
+            url: discard_courses_path,
+            button_style: "bg-yellow-500 hover:bg-yellow-900 text-black btn",
+            icon: ["fas", "ban"],
+            icon_style: "",
+            text: t("discard_course.discardedcourses")
+          }
+        %>
       </div>
     </div>
   </div>
@@ -24,6 +32,14 @@
     <%= render partial: "courses/courses_table" %>
   </div>
   <div class="pt-4 lg:pt-2 lg:p-2 xl:p-4 2xl:p-8 w-full md:text-right">
+    <%= render partial: "primary_button", locals: {
+        url: discard_courses_path,
+        button_style: "bg-yellow-500 hover:bg-yellow-900 text-black btn",
+        icon: ["fas", "ban"],
+        icon_style: "",
+        text: t("discard_course.discardedcourses")
+      }
+    %>
     <%= render partial: "primary_button", locals: {
         url: new_course_path,
         button_style: "bg-blue-500 hover:bg-blue-900 text-white btn",

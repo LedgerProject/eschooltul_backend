@@ -1,0 +1,11 @@
+<div class="mt-12">
+  <div class="flex">
+    <div class="sm:hidden"><p class="text-sm text-gray-500 p-2"><%= t("course.course")%></p></div>
+    <div class="hidden sm:block w-1/2 px-1"><p class="text-sm text-gray-500 p-2"><%= t("course.course")%></p></div>
+    <div class="hidden sm:block w-1/2 px-1"><p class="text-sm text-gray-500 p-2"><%= t("course.teacher")%></p></div>
+  </div>
+  <% @discarded_courses.each do |c| %>
+    <%= render partial: "discard_courses/course", locals: { course: c } %>
+  <%end %>
+</div>
+<%= render partial: "table_footer", locals: { elements: @discarded_courses } %>

@@ -5,5 +5,9 @@ FactoryBot.define do
       "Maths #{i}"
     end
     user
+
+    trait :discarded do
+      discarded_at { Time.zone.now }
+    end
   end
 end

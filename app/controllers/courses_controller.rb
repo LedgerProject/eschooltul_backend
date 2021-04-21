@@ -36,6 +36,26 @@ class CoursesController < AuthenticatedController
                 notice: t("flash.actions.duplicate.notice", resource_name: t("course.course"))
   end
 
+  def discard
+    @course = find_course
+
+    @course.discard
+    @course.save!
+
+    redirect_to courses_url,
+                notice: t("flash.actions.discard.notice", resource_name: t("course.course"))
+  end
+
+  def undiscard
+    @course = find_discard_course
+
+    @course.undiscard
+    @course.save!
+
+    redirect_to discard_courses_path,
+                notice: t("flash.actions.undiscard.notice", resource_name: t("course.course"))
+  end
+
   def update
     @course = find_course
 
@@ -58,6 +78,10 @@ class CoursesController < AuthenticatedController
 
   def find_course
     @course = Course.find(params[:id])
+  end
+
+  def find_discard_course
+    Course.with_discarded.discarded.find(params[:id])
   end
 
   def course_params

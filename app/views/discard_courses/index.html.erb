@@ -1,0 +1,26 @@
+<h1 class="text-2xl md:text-5xl font-bold tracking-tighter"><%= t("discard_course.title")%></h1>
+<p class="text-gray-400 tracking-widest"><%= t("discard_course.subtitle")%></p>
+<% if @discarded_courses.empty? %>
+  <div class="p-4 mt-20 2xl:p-8 w-full flex justify-center items-center">
+    <div class="w-full">
+      <%= image_tag("desk.svg", class: "w-1/2 max-w-xs mx-auto mb-4 sm:mb-8" ) %>
+      <div class="text-center">
+        <p class="text-sm mx-auto text-gray-400 mb-2 sm:mb-4 md:text-base">
+        <%= t("discard_course.nodiscarded")%>
+        </p>
+        <%= render partial: "primary_button", locals: {
+            url: courses_path,
+            button_style: "bg-blue-500 hover:bg-blue-900 text-white btn",
+            icon: ["fas", "book-open"],
+            icon_style: "",
+            text: t("course.courses")
+          }
+        %>
+      </div>
+    </div>
+  </div>
+<% else %>
+<div class="pt-4 lg:pt-2 lg:p-2 xl:p-4 2xl:p-8 w-full">
+    <%= render partial: "discard_courses/courses_table" %>
+</div>
+<% end %>

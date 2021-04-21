@@ -7,7 +7,7 @@
        <div class="hidden sm:block w-1/4 px-1"><p class="text-sm text-gray-500 p-2 text-center"><%= t("course.lessons")%></p></div>
     </div>
     <% @courses.each do |c| %>
-      <%= render partial: "grades/courses/course", locals: { course: c } %>  
+      <%= render partial: "grades/courses/course", locals: { course: c } %>
     <%end %>
 </div>
 <%= render partial: "table_footer", locals: { elements: @courses } %>
