@@ -1,6 +1,6 @@
 es:
   course:
-    management: Gestión
+    management: Cursos
     manage: "Aquí puede evaluar sus cursos"
     courseyet: "De momento no están disponibles los cursos"
     coursefirst: "se el primero en crear un curso!"
@@ -11,7 +11,7 @@ es:
     numberstudents: "Número de estudiantes"
     createacourse: "Cree un nuevo curso"
     createcourse: "Crear curso"
-    managementcourses: "Aquí puede gestionar sus cursos"
+    managementcourses: "Aquí puede gestionar los cursos"
     firstcourse: "De momento, no hay cursos. Sé el primero en añadir uno!"
     selectclass: "Seleccione un curso"
     createacourse: "Cree un nuevo curso"

@@ -287,7 +287,7 @@ es:
       discard:
         notice: "%{resource_name} se ha descartado correctamente"
       undiscard:
-        notice: "%{resource_name} se ha eliminado el estado descartado"
+        notice: "Se ha eliminado el estado descartado del %{resource_name}"
       duplicate:
         notice: "%{resource_name} se ha duplicado correctamente"
       destroy:

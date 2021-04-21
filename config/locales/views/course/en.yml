@@ -1,6 +1,6 @@
 en:
   course:
-    management: "Management"
+    management: "Courses"
     manage: "Here you can evaluate your courses"
     courseyet: "There are no courses yet"
     coursefirst: "be the first one on create"
@@ -11,6 +11,7 @@ en:
     numberstudents: "Number of students"
     createacourse: "Create a new course"
     createcourse: "Create courses"
+    managementcourses: "Here you can manage the courses"
     firstcourse: "There are no courses yet, be the first one on create!"
     selectclass: "Select a course"
     editcourse: "Edit course"

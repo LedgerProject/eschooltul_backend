@@ -9,6 +9,8 @@ RSpec.describe "DiscardCourses", type: :request do
 
       post "/courses/#{course.id}/discard"
 
+      expect(response).to redirect_to courses_path
+      expect(flash[:notice]).to eq("Course was successfully discarded")
       expect(course.reload.discarded?).to be(true)
     end
   end
@@ -21,6 +23,8 @@ RSpec.describe "DiscardCourses", type: :request do
 
       post "/courses/#{course.id}/undiscard"
 
+      expect(response).to redirect_to discard_courses_path
+      expect(flash[:notice]).to eq("Course was successfully undiscarded")
       expect(course.reload.undiscarded?).to be(true)
     end
   end
