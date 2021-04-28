@@ -62,10 +62,10 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
   config.action_mailer.default_url_options = {
-    host: "https://www.eschooltul.com",
+    host: "https://portal.eschooltul.com",
     protocol: "https"
   }
-  config.action_mailer.asset_host = "https://www.eschooltul.com"
+  config.action_mailer.asset_host = "https://portal.eschooltul.com"
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
   config.action_mailer.smtp_settings = {
