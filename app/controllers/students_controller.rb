@@ -67,6 +67,6 @@ class StudentsController < AuthenticatedController
 
   def student_params
     params.require(:student).permit(:name, :age, :first_surname, :second_surname, :address,
-                                    :telephone, :diseases, :observations)
+                                    :telephone, :diseases, :observations, documents: [])
   end
 end
