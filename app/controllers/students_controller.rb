@@ -37,6 +37,7 @@ class StudentsController < AuthenticatedController
   def update
     @student = find_student
     if @student.update(student_params)
+      documents_to_blockchain
       redirect_to students_path,
                   notice: t("flash.actions.update.notice", resource_name: t("student.student"))
     else
@@ -68,5 +69,26 @@ class StudentsController < AuthenticatedController
   def student_params
     params.require(:student).permit(:name, :age, :first_surname, :second_surname, :address,
                                     :telephone, :diseases, :observations, documents: [])
+  end
+
+  def documents_to_blockchain
+    return if params[:student][:documents].nil?
+
+    documents_size = params[:student][:documents].size
+    student_documents = @student.documents.order(created_at: :desc).last(documents_size)
+
+    student_documents.each do |document|
+      send_document_to_blockchain(document)
+    end
+  end
+
+  def send_document_to_blockchain(document)
+    report_hash = Digest::SHA256.hexdigest(Base64.encode64(document.download))
+    body = { "data": { "dataToStore": report_hash, "documentID": document.id }, "keys": {} }
+    HTTParty.post(
+      "https://apiroom.net/api/serveba/sawroom-write-document",
+      body: body.to_json,
+      headers: { "Content-Type" => "application/json" }
+    )
   end
 end
