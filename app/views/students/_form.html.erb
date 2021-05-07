@@ -10,10 +10,10 @@
   <%= f.input :diseases %>
   <%= f.input :observations %>
   <%= f.input :documents, input_html: { multiple: true, accept: ".pdf, .docx, .doc, .odt" } %>
-  <div class="flex justify-end mb-4">
-    <% @student.documents.each do |d| %>
-      <%= link_to rails_blob_path(d, disposition: "attachment"), { class: "block w-12", title: "#{d.filename}"} do %>
-        <%= image_tag(download_link_icon(d.filename)) %>
+  <div class="flex flex-wrap justify-end mb-4">
+    <% @student.documents.each do |document| %>
+      <%= link_to rails_blob_path(document, disposition: "attachment"), { class: "block w-12", title: "#{document.filename}"} do %>
+        <%= image_tag(download_link_icon(document.filename)) %>
       <% end %>
     <% end %>
   </div>

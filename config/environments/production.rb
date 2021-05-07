@@ -37,8 +37,6 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
-  # Avoid replacing current files when updating with new files. https://github.com/rails/rails/issues/36374
-  config.active_storage.replace_on_assign_to_many = false
 
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil

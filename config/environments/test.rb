@@ -33,8 +33,6 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system in a temporary directory.
   config.active_storage.service = :test
-  # Avoid replacing current files when updating with new files. https://github.com/rails/rails/issues/36374
-  config.active_storage.replace_on_assign_to_many = false
 
   config.action_mailer.perform_caching = false
 
