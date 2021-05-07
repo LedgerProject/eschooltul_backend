@@ -8,6 +8,7 @@ class Student < ApplicationRecord
   has_many :marks, dependent: :delete_all
   has_many :reports, dependent: :nullify
   has_many_attached :documents, dependent: :destroy
+  has_many :document_reports, dependent: :destroy
 
   def full_name
     [name, first_surname, second_surname].join(" ")
