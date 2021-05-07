@@ -9,6 +9,14 @@
   <%= f.input :telephone %>
   <%= f.input :diseases %>
   <%= f.input :observations %>
+  <%= f.input :documents, input_html: { multiple: true, accept: ".pdf, .docx, .doc, .odt" } %>
+  <div class="flex flex-wrap justify-end mb-4">
+    <% @student.documents.each do |document| %>
+      <%= link_to rails_blob_path(document, disposition: "attachment"), { class: "block w-12", title: "#{document.filename}"} do %>
+        <%= image_tag(download_link_icon(document.filename)) %>
+      <% end %>
+    <% end %>
+  </div>
   <div class="actions">
     <%= f.button :submit, t("student.addrecord") %>
   </div>

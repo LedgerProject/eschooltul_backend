@@ -37,6 +37,7 @@ class StudentsController < AuthenticatedController
   def update
     @student = find_student
     if @student.update(student_params)
+      documents_to_blockchain
       redirect_to students_path,
                   notice: t("flash.actions.update.notice", resource_name: t("student.student"))
     else
@@ -67,6 +68,40 @@ class StudentsController < AuthenticatedController
 
   def student_params
     params.require(:student).permit(:name, :age, :first_surname, :second_surname, :address,
-                                    :telephone, :diseases, :observations)
+                                    :telephone, :diseases, :observations, documents: [])
+  end
+
+  def documents_to_blockchain
+    return if params[:student][:documents].nil?
+
+    documents_size = params[:student][:documents].size
+    student_documents = @student.documents.order(created_at: :desc).last(documents_size)
+
+    student_documents.each do |document|
+      report = create_document_report(document)
+      send_document_to_blockchain(report)
+    end
+  end
+
+  def create_document_report(document)
+    @student.document_reports.create(
+      content: encode_document(document),
+      content_hash: Digest::SHA256.hexdigest(encode_document(document)),
+      date: Time.zone.today
+    )
+  end
+
+  def send_document_to_blockchain(report)
+    body = { "data": { "dataToStore": report.content_hash, "reportID": report.id }, "keys": {} }
+    response = HTTParty.post(
+      "https://apiroom.net/api/serveba/sawroom-write",
+      body: body.to_json,
+      headers: { "Content-Type" => "application/json" }
+    )
+    report.update!(transaction_id: response["transactionId"])
+  end
+
+  def encode_document(document)
+    Base64.encode64(document.download)
   end
 end

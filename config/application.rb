@@ -34,6 +34,10 @@ module Eschooltul
 
     config.exceptions_app = self.routes
 
+    # Avoid replacing current files when updating with new files. https://github.com/rails/rails/issues/36374
+    config.active_storage.replace_on_assign_to_many = false
+
+
     config.i18n.available_locales = [:en, :es]
     config.i18n.default_locale = :en
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
