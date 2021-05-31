@@ -1,0 +1,49 @@
+<%= render "layouts/flash" %>
+
+<div class="pt-4 lg:pt-2 lg:p-2 xl:p-4 2xl:p-4 w-full md:text-right">
+  <%= render partial: "secondary_button", locals: {
+      url: new_validator_path,
+      button_style: "bg-blue-500 hover:bg-purple-900 text-white btn",
+      icon: ["fas", "undo-alt"],
+      icon_style: "",
+      text: t("back")
+    }
+  %>
+</div>
+
+<div class="flex justify-start m-1.5">
+  <div class="flex flex-row">
+    <div><%= t("validator.action.date") %>: </div>
+    <div><%= @report.date %></div>
+  </div>
+</div>
+<div class="flex justify-start m-1.5">
+  <div class="flex flex-row">
+    <div><%= t("validator.action.data") %>: </div>
+    <!-- TODO: Extract dataToStore and reportID-->
+    <div><%= @data %></div>
+  </div>
+</div>
+<div class="flex justify-start m-1.5">
+  <div class="flex flex-row">
+    <div><%= t("validator.action.block_num") %>: </div>
+    <div><%= @batch_data.dig("data", "header", "block_num") %></div>
+  </div>
+</div>
+<div class="flex justify-start m-1.5">
+  <div class="flex flex-row">
+    <div><%= t("validator.action.signer_public_key") %>: </div>
+    <div><%= @batch_data.dig("data", "batches", 0, "header", "signer_public_key") %></div>
+  </div>
+</div>
+<div class="flex justify-start m-1.5">
+  <div class="flex flex-row">
+    <div><%= t("validator.action.header_signature") %>: </div>
+    <div><%= @batch_data.dig("data", "header_signature") %></div>
+  </div>
+</div>
+<div class="flex justify-center m-1.5">
+  <div class="flex flex-row">
+    <div><%= link_to t("validator.action.link"), @batch_data.dig("link"), target: :_blank %></div>
+  </div>
+</div>
