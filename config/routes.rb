@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   match "/500", to: "errors#internal_server_error", via: :all
 
   scope "(:locale)", locale: /en|es/ do
-    resources :validators, only: %i[new create]
+    resources :validators, only: %i[new show create], param: :content_hash
     devise_for :users
 
     devise_scope :user do

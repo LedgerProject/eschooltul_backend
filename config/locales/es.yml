@@ -40,12 +40,19 @@ es:
   validator:
     action:
       text: "A través de este sencillo verificador se puede comprobar si un archivo concreto ha sido generado por una determinada
-            entidad registrada en Eschooltul y su hash ha sido estampado en Blockchain (Sawtooth).
-            Si el resultado es positivo, significa que el archivo no ha sido alterado y que su hash fue generado
-            y sellado en la fecha indicada, es decir, que el contenido del documento corporativo es auténtico.
-            Si tiene alguna duda sobre la validez legal del documento, póngase en contacto con nosotros."
-      validate: "Validar informe"
+           entidad registrada en Eschooltul y su hash ha sido estampado en Blockchain (Sawtooth).
+           Si el resultado es positivo, significa que el archivo no ha sido alterado y que su hash fue generado
+           y sellado en la fecha indicada, es decir, que el contenido del documento corporativo es auténtico.
+           Si tiene alguna duda sobre la validez legal del documento, póngase en contacto con nosotros."
+      validate: "Validar documento"
       tovalidate: "Para comprobar si un informe ha sido creado y verificado con Eschooltul puede utilizar el siguiente"
+      signer_publi_key: "Clave pública del firmante del documento"
+      header_signature: "Firma de la cabecera"
+      transaction_ids: "Claves de la transacción"
+      payload: "Contenido de la transacción"
+      date: "Fecha de certificación del documento"
+      link: "Link al endpoint rest"
+      block_num: "Número del bloque"
 
   activerecord:
     errors:
