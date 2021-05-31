@@ -19,24 +19,31 @@
 </div>
 <div class="flex justify-start m-1.5">
   <div class="flex flex-row">
+    <div><%= t("validator.action.data") %>: </div>
+    <!-- TODO: Extract dataToStore and reportID-->
+    <div><%= @data %></div>
+  </div>
+</div>
+<div class="flex justify-start m-1.5">
+  <div class="flex flex-row">
     <div><%= t("validator.action.block_num") %>: </div>
-    <div><%= @batch_data["data"]["header"]["block_num"] %></div>
+    <div><%= @batch_data.dig("data", "header", "block_num") %></div>
   </div>
 </div>
 <div class="flex justify-start m-1.5">
   <div class="flex flex-row">
     <div><%= t("validator.action.signer_public_key") %>: </div>
-    <div><%= @batch_data["data"]["batches"][0]["header"]["signer_public_key"] %></div>
+    <div><%= @batch_data.dig("data", "batches", 0, "header", "signer_public_key") %></div>
   </div>
 </div>
 <div class="flex justify-start m-1.5">
   <div class="flex flex-row">
     <div><%= t("validator.action.header_signature") %>: </div>
-    <div><%= @batch_data["data"]["batches"][0]["header_signature"] %></div>
+    <div><%= @batch_data.dig("data", "header_signature") %></div>
   </div>
 </div>
 <div class="flex justify-center m-1.5">
   <div class="flex flex-row">
-    <div><%= link_to t("validator.action.link"), @batch_data["link"], target: :_blank %></div>
+    <div><%= link_to t("validator.action.link"), @batch_data.dig("link"), target: :_blank %></div>
   </div>
 </div>

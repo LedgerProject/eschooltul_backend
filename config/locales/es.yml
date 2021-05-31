@@ -48,11 +48,11 @@ es:
       tovalidate: "Para comprobar si un informe ha sido creado y verificado con Eschooltul puede utilizar el siguiente"
       signer_publi_key: "Clave pública del firmante del documento"
       header_signature: "Firma de la cabecera"
-      transaction_ids: "Claves de la transacción"
-      payload: "Contenido de la transacción"
       date: "Fecha de certificación del documento"
       link: "Link al endpoint rest"
       block_num: "Número del bloque"
+      report_id: "Número del documento"
+      data: "Datos del documento"
 
   activerecord:
     errors:

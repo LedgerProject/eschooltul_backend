@@ -3,8 +3,8 @@ class ValidatorsController < ApplicationController
 
   def show
     @report = report_or_document
-    @data = data_from_address(@report.transaction_id)
-    @batch_data = read_from_bloks(head_from_address(@report.transaction_id))
+    @data = data_from_address_state(@report.transaction_id)
+    @batch_data = read_from_bloks(head_from_address_state(@report.transaction_id))
   end
 
   def create
@@ -63,19 +63,20 @@ class ValidatorsController < ApplicationController
     )
   end
 
-  def head_from_address(transaction_id)
-    response = HTTParty.get(
+  def head_from_address_state(transaction_id)
+    endpoint_url = HTTParty.get(
       "http://195.201.41.35:8008/state?address=#{transaction_id}"
     )
 
-    response["head"]
+    endpoint_url["head"]
   end
 
-  def data_from_address(transaction_id)
-    response = HTTParty.get(
+  def data_from_address_state(transaction_id)
+    endpoint_url = HTTParty.get(
       "http://195.201.41.35:8008/state?address=#{transaction_id}"
     )
-    response["data"][0]["data"]
+
+    Base64.decode64(endpoint_url.dig("data", 0, "data"))
   end
 
   def read_from_bloks(head)
