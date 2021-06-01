@@ -30,7 +30,7 @@
     </div>
     <div>
       <%= simple_form_for :validator, url: validators_path do |f| %>
-        <%= f.input :file, as: :file, input_html: { multiple: true, accept: ".pdf, .docx, .doc, .odt" } %>
+        <%= f.input :file, as: :file, input_html: { multiple: false, accept: ".pdf, .docx, .doc, .odt" } %>
         <div class="actions">
           <%= f.button :submit, t("validator.action.validate")%>
         </div>
