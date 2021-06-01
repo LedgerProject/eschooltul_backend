@@ -1,28 +1,40 @@
 <%= render "layouts/flash" %>
-
-<div class="pt-4 lg:pt-2 lg:p-2 xl:p-4 2xl:p-4 w-full md:text-right">
-  <%= render partial: "secondary_button", locals: {
-      url: new_user_session_path,
-      button_style: "bg-blue-500 hover:bg-purple-900 text-white btn",
-      icon: ["fas", "sign-in-alt"],
-      icon_style: "",
-      text: t("login")
-    }
-  %>
+<div class="wrap py-2 text-right">
+  <% if user_signed_in? %>
+    <%= render partial: "secondary_button", locals: {
+        url: root_path,
+        button_style: "bg-blue-500 hover:bg-blue-900 text-white btn",
+        icon: ["fas", "sign-in-alt"],
+        icon_style: "",
+        text: t("account")
+      }
+    %>
+  <% else %>
+    <%= render partial: "secondary_button", locals: {
+        url: new_user_session_path,
+        button_style: "bg-blue-500 hover:bg-blue-900 text-white btn",
+        icon: ["fas", "sign-in-alt"],
+        icon_style: "",
+        text: t("login")
+      }
+    %>
+  <%end %>
 </div>
-
-<div class= "p-4 mt-20 2xl:p-8 w-full flex justify-center items-center">
-  <div class="lg:w-1/2 text-justify text-black-400 tracking-widest alert alert-info">
-    <i class="sidenav-icon fa fa-info-circle"></i>
-    <%= t("validator.action.text")%>
-  </div>
-</div>
-
-<div class="lg:p-2 xl:p-4 2xl:p-8 flex flex-col md:flex-row pt-4 lg:pt-2 border-grey-200 md:border-t">
-    <div class="max-w-md mx-auto bg-white rounded-lg overflow-hidden md:max-w-lg">
+<div class="wrap flex-1 flex flex-col justify-center">
+  <div class="md:flex">
+    <div class="mb-4 md:mb-0 mr-4">
+      <p>
+        <%= icon("fas", "info-circle") %>
+        <%= t("validator.action.text")%>
+      </p>
+    </div>
+    <div>
       <%= simple_form_for :validator, url: validators_path do |f| %>
-        <%= f.input :file, as: :file %>
-        <%= f.button :submit, t("validator.action.validate"), class: "w-full bg-green-500 hover:bg-green-400 text-white font-bold py-2 px-4 border-b-4 border-green-700 hover:border-green-500 rounded"%>
+        <%= f.input :file, as: :file, input_html: { multiple: true, accept: ".pdf, .docx, .doc, .odt" } %>
+        <div class="actions">
+          <%= f.button :submit, t("validator.action.validate")%>
+        </div>
       <% end %>
+    </div>
   </div>
 </div>
