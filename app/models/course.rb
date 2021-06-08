@@ -2,7 +2,7 @@ class Course < ApplicationRecord
   include Discard::Model
   default_scope -> { kept }
 
-  belongs_to :user, optional: true
+  belongs_to :user
   has_many :course_students, dependent: :delete_all
   has_many :students, through: :course_students
   has_many :terms, dependent: :destroy
