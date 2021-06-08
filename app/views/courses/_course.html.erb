@@ -4,7 +4,7 @@
     <p class="text-sm text-gray-500 capitalize"><%= course.subject %></p>
   </div>
   <div class="py-1 sm:w-1/2 sm:px-1 md:flex items-center justify-between">
-    <p class="text-sm mb-2 md:mb-0"><%= course.user.complete_name %></p>
+    <p class="text-sm mb-2 md:mb-0"><%= course.user&.complete_name %></p>
     <div class="text-right">
       <%= render partial: "icon_button", locals: {
           url: edit_course_path(course),

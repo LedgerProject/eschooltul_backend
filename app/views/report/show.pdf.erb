@@ -67,6 +67,6 @@
     </table>
     </div>
 
-    <p align="left"><%= course.user.complete_name %> - <%= I18n.l(Date.today, format: :long) %></p>
+    <p align="left"><%= course.user&.complete_name %> - <%= I18n.l(Date.today, format: :long) %></p>
 </body>
 </html>
