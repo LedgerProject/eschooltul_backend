@@ -17,7 +17,7 @@
           <div class="border-b border-gray-200 py-2 flex flex-wrap items-center">
             <div class="w-4/5">
               <p class="font-bold tracking-tight">
-                <%= icon("far", "user", class: "bg-gray-100 inline-block p-1 text-center rounded") %> 
+                <%= icon("far", "user", class: "bg-gray-100 inline-block p-1 text-center rounded") %>
                 <%= course.full_name %>
               </p>
             </div>
@@ -28,9 +28,9 @@
             </div>
             <div class="w-full">
               <p class="text-gray-600 pl-5">
-                <%= current_user.teacher? ? course.user.role : course.user.complete_name %>
+                <%= current_user.teacher? ? course.user.role : course.user&.complete_name %>
               </p>
-            </div> 
+            </div>
           </div>
       <% end %>
     </div>
