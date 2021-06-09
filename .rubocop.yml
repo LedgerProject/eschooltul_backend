@@ -20,6 +20,9 @@ AllCops:
     - 'node_modules/**/*'
     - 'vendor/**/*'
 
+Layout/EndOfLine:
+  Enabled: False
+
 Layout/LineLength:
   Max: 100
 
@@ -31,6 +34,7 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
     - 'app/**/concerns/*'
+    - 'app/views/student_edas/student_eda.xml.builder'
 
 Metrics/MethodLength:
   Exclude:

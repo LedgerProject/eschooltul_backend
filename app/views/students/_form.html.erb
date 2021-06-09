@@ -2,10 +2,13 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
   <%= f.input :name %>
-  <%= f.input :age %>
+  <%= f.input :birthday %>
   <%= f.input :first_surname %>
   <%= f.input :second_surname %>
-  <%= f.input :address %>
+  <%= f.input :city %>
+  <%= f.input :country, as: :string %>
+  <%= f.input :state_or_region %>
+  <%= f.input :postal_code %>
   <%= f.input :telephone %>
   <%= f.input :diseases %>
   <%= f.input :observations %>

@@ -1,0 +1,19 @@
+en:
+  activerecord:
+    models:
+      student_eda:
+        one: Student's EDA
+        other: Student's EDas
+    attributes:
+      student_code: "Student code"
+      mode_of_study: "Mode of study"
+      mode_of_delivery: "Mode of delivery"
+      Language: "Language"
+      Email_address: "E-mail address"
+      certification_date: "Certification date"
+      course_unit_type: "Course unit type"
+      date: "Date"
+      ECTS_grading_scale_type: "ECTS grading scale type"
+      national_framework_qualifications: "National framework qualifications"
+      percert: "Percent"
+      source_grade: "Source grade"

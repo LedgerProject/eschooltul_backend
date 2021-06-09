@@ -67,8 +67,9 @@ class StudentsController < AuthenticatedController
   end
 
   def student_params
-    params.require(:student).permit(:name, :age, :first_surname, :second_surname, :address,
-                                    :telephone, :diseases, :observations, documents: [])
+    params.require(:student).permit(:name, :birthday, :first_surname, :second_surname,
+                                    :telephone, :diseases, :observations, :city,
+                                    :state_or_region, :postal_code, :country, documents: [])
   end
 
   def documents_to_blockchain

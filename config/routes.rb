@@ -23,6 +23,7 @@ Rails.application.routes.draw do
           collection do
             resources :import_ed_record, only: %i[new create]
           end
+          resources :student_edas, only: %i[new create]
         end
       end
       resources :students, except: %i[show] do

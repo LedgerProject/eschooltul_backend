@@ -1,0 +1,8 @@
+es:
+  activerecord:
+    models:
+      student_eda:
+        one: EDA del estudiante
+        other: EDAs del estudiante
+    attributes:
+      student_eda:

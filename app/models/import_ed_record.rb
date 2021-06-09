@@ -17,7 +17,7 @@ class ImportEdRecord
   def save_sheet(sheet)
     counter_saved = counter_failed = 0
 
-    sheet.each(name: "Name", age: "Age", first_surname: "First_surname") do |hash|
+    sheet.each(name: "Name", birthday: "Birthday", first_surname: "First_surname") do |hash|
       next if hash[:name] == "Name"
 
       student = Student.new(hash)
