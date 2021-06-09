@@ -8,7 +8,7 @@ class StudentEdasController < AuthenticatedController
     @student_eda.student = find_student
     if @student_eda.save
       xml_file = render_to_string(template: "student_edas/student_eda.xml.builder")
-      send_data(xml_file, type: "text/xml", filename: "#{find_student.full_name}_EDA.xsd")
+      send_data(xml_file, type: "text/xml", filename: "#{find_student.full_name}_EDA.xml")
     else
       render :new
     end
