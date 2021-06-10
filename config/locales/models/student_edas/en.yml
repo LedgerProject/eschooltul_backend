@@ -15,7 +15,7 @@ en:
       date: "Date"
       ECTS_grading_scale_type: "ECTS grading scale type"
       national_framework_qualifications: "National framework qualifications"
-      percert: "Percent"
+      percent: "Percent"
       source_grade: "Source grade"
       country: "Country"
       year_of_study: "Year of study"

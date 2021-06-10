@@ -18,4 +18,8 @@ class Student < ApplicationRecord
   def deactivated?
     deactivated
   end
+
+  def self.calculate_age(student)
+    Time.zone.today - student.birthday.year
+  end
 end

@@ -17,13 +17,11 @@ RSpec.describe "Student EDA", type: :request do
   end
 
   describe "POST /create" do
-    it "creates student EDA", :vcr do
+    it "creates student EDA" do
       student = create(:student)
 
-      expect do
-        post "/students/#{student.id}/student_edas",
-             params: { student_eda: attributes_for(:student_eda) }
-      end.to change(StudentEda, :count).by(1)
+      post "/students/#{student.id}/student_edas",
+           params: { student_eda: attributes_for(:student_eda) }
 
       eda = StudentEda.first
       expect(response).to have_http_status(:ok)

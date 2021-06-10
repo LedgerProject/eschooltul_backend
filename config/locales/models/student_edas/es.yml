@@ -15,7 +15,7 @@ es:
       date: "Fecha"
       ECTS_grading_scale_type: "Tipo de escala de calificaciones ECTS"
       national_framework_qualifications: "Marco nacional de calificaciones"
-      percert: "Nota"
+      percent: "Nota"
       source_grade: "Fuente de la nota"
       country: "País"
       year_of_study: "Año de estudio"

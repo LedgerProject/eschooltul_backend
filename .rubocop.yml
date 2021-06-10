@@ -20,9 +20,6 @@ AllCops:
     - 'node_modules/**/*'
     - 'vendor/**/*'
 
-Layout/EndOfLine:
-  Enabled: False
-
 Layout/LineLength:
   Max: 100
 

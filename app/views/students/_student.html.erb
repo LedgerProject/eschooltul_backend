@@ -1,7 +1,7 @@
 <div class="shadow-md px-2 mb-3 sm:flex items-stretch border <%= student.deactivated? ?  "border-yellow-300" : "border-gray-100" %>">
   <div class="border-b border-gray-100 py-1 sm:w-2/5 sm:border-b-0 sm:px-1 md:flex md:flex-col md:justify-center">
     <p class="text-lg font-semibold tracking-tight"><%= student.full_name %></p>
-    <p class="text-sm text-gray-500 capitalize"><%= t("student.yearsold", student_age: Date.today.year-student.birthday.year) %></p>
+    <p class="text-sm text-gray-500 capitalize"><%= t("student.yearsold", student_age: Student.calculate_age(student)) %></p>
   </div>
   <div class="py-1 sm:w-2/5 sm:border-b-0 sm:px-1 md:flex md:flex-col md:justify-center">
     <p class="text-sm text-gray-500"><%= student.city %></p>
