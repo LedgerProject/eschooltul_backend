@@ -19,7 +19,7 @@ class Student < ApplicationRecord
     deactivated
   end
 
-  def self.calculate_age(student)
-    Time.zone.today - student.birthday.year
+  def age
+    Time.zone.today.year - birthday.year
   end
 end
