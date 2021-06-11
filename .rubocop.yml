@@ -31,6 +31,7 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
     - 'app/**/concerns/*'
+    - 'app/views/student_edas/student_eda.xml.builder'
 
 Metrics/MethodLength:
   Exclude:

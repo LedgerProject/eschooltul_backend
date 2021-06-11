@@ -37,7 +37,7 @@ RSpec.describe "Accounts", type: :request do
     end
 
     context "when there's only one director left" do
-      it "doesn't delete de account" do
+      it "doesn't delete the account" do
         director = create(:user, :director)
         sign_in(director)
 

@@ -1,0 +1,28 @@
+es:
+  activerecord:
+    models:
+      student_eda:
+        one: EDA del estudiante
+        other: EDAs del estudiante
+    attributes:
+      student_code: "Código del estudiante"
+      mode_of_study: "Modo de estudio"
+      mode_of_delivery: "Modalidad"
+      language: "Idioma"
+      email_address: "Dirección e-mail"
+      certification_date: "Fecha de certificación"
+      course_unit_type: "Tipo de unidad del curso"
+      date: "Fecha"
+      ECTS_grading_scale_type: "Tipo de escala de calificaciones ECTS"
+      national_framework_qualifications: "Marco nacional de calificaciones"
+      percent: "Nota"
+      source_grade: "Fuente de la nota"
+      country: "País"
+      year_of_study: "Año de estudio"
+      framework_code: "Código marco de EHEA"
+      group_identifier: "Identificador del grupo"
+      institution_identifier: "Identificador de la institución administradora de los estudios"
+      suplement_language: "Idioma del suplemento (ISO 639-1)"
+      gender: "Género"
+      course_course_code: "Código del curso"
+      number_of_years: "Número de años"

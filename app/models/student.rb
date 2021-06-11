@@ -9,6 +9,7 @@ class Student < ApplicationRecord
   has_many :reports, dependent: :nullify
   has_many_attached :documents, dependent: :destroy
   has_many :document_reports, dependent: :destroy
+  has_many :student_edas, dependent: :destroy
 
   def full_name
     [name, first_surname, second_surname].join(" ")
@@ -16,5 +17,9 @@ class Student < ApplicationRecord
 
   def deactivated?
     deactivated
+  end
+
+  def age
+    Time.zone.today.year - birthday.year
   end
 end

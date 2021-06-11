@@ -1,0 +1,32 @@
+<div class="lg:p-2 xl:p-4 2xl:p-8 flex flex-col md:flex-row pt-4 lg:pt-2 border-gray-200 md:border-t">
+  <div class="mb-8 md:w-48 xl:w-72 md:mb-0 border-gray-200 border-b md:border-b-0">
+    <h1 class="text-2xl md:text-base font-bold text-gray-700 tracking-tighter"><%= t("student_eda.student_eda")%></h1>
+    <p class="text-gray-400 text-xs tracking-widest"><%= t("student_eda.manage")%></p>
+  </div>
+  <%= simple_form_for(@student_eda, url: student_student_edas_path) do |f| %>
+    <%= f.input :student_code %>
+    <%= f.input :mode_of_study %>
+    <%= f.input :mode_of_delivery %>
+    <%= f.input :language %>
+    <%= f.input :email_address %>
+    <%= f.input :certification_date %>
+    <%= f.input :course_unit_type %>
+    <%= f.input :date %>
+    <%= f.input :ECTS_grading_scale_type %>
+    <%= f.input :national_framework_qualifications %>
+    <%= f.input :percent %>
+    <%= f.input :country, as: :string %>
+    <%= f.input :year_of_study %>
+    <%= f.input :framework_code %>
+    <%= f.input :group_identifier %>
+    <%= f.input :institution_identifier %>
+    <%= f.input :suplement_language %>
+    <%= f.input :gender %>
+    <%= f.input :source_course_code %>
+    <%= f.input :number_of_years %>
+    <%= f.input :source_grade %>
+    <div class="actions">
+      <%= f.button :submit, t("student_eda.generate") %>
+    </div>
+  <% end %>
+</div>

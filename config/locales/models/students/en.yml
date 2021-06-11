@@ -8,8 +8,11 @@ en:
       student:
         email: Email
         name: Name
-        address: Address
-        age: Age
+        city: City
+        state_or_region: State or Region
+        postal_code: Postal code
+        country: Country
+        birthday: Birthday
         first_surname: First surname
         second_surname: Second surname
         telephone: Telephone

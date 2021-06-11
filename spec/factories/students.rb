@@ -1,10 +1,9 @@
 FactoryBot.define do
   factory :student do
     name { "MyString" }
-    age { 10 }
+    birthday { DateTime.new(2011, 1, 1) }
     first_surname { "MyString" }
     second_surname { "MyString" }
-    address { "MyString" }
     telephone { "MyString" }
     diseases { "MyString" }
     observations { "MyText" }

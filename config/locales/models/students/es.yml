@@ -8,11 +8,13 @@ es:
       student:
         email: Email
         name: Nombre
-        address: Dirección
-        age: Edad
+        city: Ciudad
+        state_or_region: Estado o región
+        postal_code: Código postal
+        country: País
+        birthday: Fecha de nacimiento
         first_surname: Primer apellido
         second_surname: Segundo apellido
         telephone: Teléfono
         diseases: Enfermedades
         observations: Observaciones
-        

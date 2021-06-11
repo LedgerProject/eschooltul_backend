@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_07_080047) do
+ActiveRecord::Schema.define(version: 2021_06_09_072947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -131,18 +131,49 @@ ActiveRecord::Schema.define(version: 2021_05_07_080047) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "student_edas", force: :cascade do |t|
+    t.string "student_code"
+    t.string "mode_of_study"
+    t.string "mode_of_delivery"
+    t.string "language"
+    t.string "email_address"
+    t.date "certification_date"
+    t.string "course_unit_type"
+    t.date "date"
+    t.string "ECTS_grading_scale_type"
+    t.string "national_framework_qualifications"
+    t.decimal "percent", precision: 3, scale: 2
+    t.string "source_grade"
+    t.bigint "student_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "country"
+    t.integer "year_of_study"
+    t.string "framework_code"
+    t.string "group_identifier"
+    t.string "institution_identifier"
+    t.string "suplement_language"
+    t.string "gender"
+    t.string "source_course_code"
+    t.integer "number_of_years"
+    t.index ["student_id"], name: "index_student_edas_on_student_id"
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "name"
-    t.integer "age"
     t.string "first_surname"
     t.string "second_surname"
-    t.string "address"
     t.string "telephone"
     t.string "diseases"
     t.text "observations"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "deactivated", default: false
+    t.date "birthday"
+    t.string "city"
+    t.string "state_or_region"
+    t.string "postal_code"
+    t.string "country"
     t.index ["deactivated"], name: "index_students_on_deactivated"
   end
 
@@ -187,5 +218,6 @@ ActiveRecord::Schema.define(version: 2021_05_07_080047) do
   add_foreign_key "marks", "students"
   add_foreign_key "reports", "courses"
   add_foreign_key "reports", "students"
+  add_foreign_key "student_edas", "students"
   add_foreign_key "terms", "courses"
 end

@@ -42,37 +42,37 @@ if Rails.env.development?
         {
           name: "Bart",
           first_surname: "Simpson",
-          age: 10
+          birthday: 10.years.from_now
         },
         {
           name: "Lisa",
           first_surname: "Simpson",
-          age: 8
+          birthday: 8.years.from_now
         },
         {
           name: "Nelson",
           first_surname: "Muntz",
-          age: 10
+          birthday: 10.years.from_now
         },
         {
           name: "Milhouse",
           first_surname: "Van Houten",
-          age: 10
+          birthday: 10.years.from_now
         },
         {
           name: "Ralph",
           first_surname: "Wiggum",
-          age: 8
+          birthday: 8.years.from_now
         },
         {
           name: "Martin",
           first_surname: "Prince",
-          age: 10
+          birthday: 10.years.from_now
         },
         {
           name: "Üter",
           first_surname: "Zörker",
-          age: 8
+          birthday: 8.years.from_now
         }
       ]
     )
