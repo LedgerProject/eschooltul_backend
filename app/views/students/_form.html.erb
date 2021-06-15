@@ -2,7 +2,7 @@
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
   <%= f.input :name %>
-  <%= f.input :birthday %>
+  <%= f.input :birthday, start_year: Time.now.year - 18, end_year: Time.now.year %>
   <%= f.input :first_surname %>
   <%= f.input :second_surname %>
   <%= f.input :city %>
