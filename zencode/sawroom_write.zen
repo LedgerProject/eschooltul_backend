@@ -1,0 +1,31 @@
+# Always use "Rule unknown ignore" when using Restroom
+Rule unknown ignore
+rule check version 1.0.0
+
+# The scenario is not really necessary here, but nice to have
+Scenario restroom: Store data into Sawroom
+
+# Here we are telling Zenroom where the Sawroom node is 
+Given that I have a sawroom endpoint named 'sawroomEndpoint'
+
+# Here we load a string, that we'll store in Sawroom
+Given I have a 'string' named 'dataToStore'
+Given I have a 'string' named 'reportID'
+
+
+# Creating a dictionary and putting the random number in it, 
+# cause like is boring and we need to spice it up
+When I create the 'string dictionary'
+When I rename the 'string dictionary' to 'myJSONOutput'
+When I insert 'dataToStore' in 'myJSONOutput'
+When I insert 'reportID' in 'myJSONOutput'
+
+# IMPORTANT: always print the object(s) you want to write in Sawroom
+# otherwise Restroom won't be able to read them 
+Then print the 'myJSONOutput'
+
+# The following statement stores the data in Sawroom and will return 
+# a key/value where the key is the name of the tag you pass to it, 
+# and the value is a unique identifier of this data, that you have to store
+# as you'll need it to retrieve the data from Sawroom
+Then I ask Sawroom to store the data named 'myJSONOutput' into the tag 'transactionId'

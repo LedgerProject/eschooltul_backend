@@ -1,0 +1,27 @@
+# Always use "Rule unknown ignore" when using Restroom
+Rule unknown ignore
+rule check version 1.0.0
+
+# The scenario is not really necessary here, but nice to have
+Scenario restroom: retrieve data from Sawroom
+
+
+# Here we are definining the "endpoint" to connect where Sawroom is located
+
+Given that I have a sawroom endpoint named 'myEndpoint'
+
+# Given I have a 'string' named 'endpoint'
+
+# The "batch ID" is a unique indicator to retrieve data in Sawroom, it's returned by Sawroom when writing data 
+Given I have a 'string' named 'transactionId'
+
+# Here we are formatting the output of the reading 
+And I have a 'string dictionary' named 'sawroom'
+
+
+# And I read the data with tag 'myTag' from sawroom and save the output into 'sawroom'
+
+Given I read from Sawroom the data in tag 'transactionId' and save the output into 'sawroom'
+
+
+Then print all data
