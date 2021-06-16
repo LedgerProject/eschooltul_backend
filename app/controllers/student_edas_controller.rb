@@ -37,7 +37,8 @@ class StudentEdasController < AuthenticatedController
     @student_eda.student = find_student
     if @student_eda.save
       redirect_to student_student_edas_path(@student_eda.student.id),
-        notice: t("flash.actions.create.notice", resource_name: t("student_eda.student_eda"))
+                  notice: t("flash.actions.create.notice",
+                            resource_name: t("student_eda.student_eda"))
     else
       render :new
     end
@@ -51,7 +52,8 @@ class StudentEdasController < AuthenticatedController
     @student_eda = find_eda
     if @student_eda.update(eda_params)
       redirect_to student_student_edas_path(@student_eda.student.id),
-        notice: t("flash.actions.update.notice", resource_name: t("student_eda.student_eda"))
+                  notice: t("flash.actions.update.notice",
+                            resource_name: t("student_eda.student_eda"))
     else
       render :edit
     end
@@ -61,7 +63,8 @@ class StudentEdasController < AuthenticatedController
     @student_eda = find_eda
     @student_eda.destroy
     redirect_to student_student_edas_path(@student_eda.student.id),
-        notice: t("flash.actions.destroy.notice", resource_name: t("student_eda.student_eda"))
+                notice: t("flash.actions.destroy.notice",
+                          resource_name: t("student_eda.student_eda"))
   end
 
   def download
