@@ -1,6 +1,7 @@
 en:
   student_eda:
-    student_eda: "Student's EDA"
-    manage: "Here you can fill the data of the EDA and generate it"
-    edit: "Here you can edit the data of the EDA and generate a new one"
+    student_eda: "Student's SDR"
+    manage: "Here you can fill the data of the SDR and generate it"
+    edit: "Here you can edit the data of the SDR and generate a new one"
     generate: "Generate Digital Educational Record"
+    add_record: "Save"
