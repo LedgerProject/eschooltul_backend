@@ -2,8 +2,8 @@ en:
   activerecord:
     models:
       student_eda:
-        one: Student's EDA
-        other: Student's EDas
+        one: Student's SDR
+        other: Student's SDRs
     attributes:
       student_code: "Student code"
       mode_of_study: "Mode of study"
