@@ -4,3 +4,4 @@ en:
     manage: "Here you can fill the data of the SDR and generate it"
     edit: "Here you can edit the data of the SDR and generate a new one"
     generate: "Generate Digital Educational Record"
+    add_record: "Save"

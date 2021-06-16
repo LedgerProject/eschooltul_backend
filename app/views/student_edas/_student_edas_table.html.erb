@@ -1,0 +1,15 @@
+<div class="mt-12">
+    <div class="flex">
+      <div class="sm:hidden"><p class="text-sm text-gray-500 p-2"><%= t("student_eda.studen_code")%></p></div>
+      <div class="hidden sm:block w-2/5 px-1"><p class="text-sm text-gray-500 p-2"><%= t("student_eda.studen_code")%></p></div>
+      <div class="hidden sm:block w-2/5 px-1"><p class="text-sm text-gray-500 p-2"><%= t("student_eda.email_address")%></p></div>
+      <div class="hidden sm:block w-1/5 px-1"><p class="text-sm text-gray-500 p-2"></p></div>
+    </div>
+    <% @student_edas.each do |student_eda| %>
+      <%= render partial: "student_edas/student_eda", locals: { student_eda: student_eda } %>  
+    <%end %>
+</div>
+<!-- TODO: Display teacher students with kaminari -->
+<% unless current_user.teacher? %>
+  <%= render partial: "table_footer", locals: { elements: @student_edas } %>
+<% end %>

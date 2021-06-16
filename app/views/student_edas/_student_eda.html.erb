@@ -1,0 +1,35 @@
+<div class="shadow-md px-2 mb-3 sm:flex items-stretch border border-gray-100">
+  <div class="border-b border-gray-100 py-1 sm:w-2/5 sm:border-b-0 sm:px-1 md:flex md:flex-col md:justify-center">
+    <p class="text-lg font-semibold tracking-tight"><%= student_eda.student_code %></p>
+  </div>
+  <div class="py-1 sm:w-2/5 sm:border-b-0 sm:px-1 md:flex md:flex-col md:justify-center">
+    <p class="text-sm text-gray-500"><%= student_eda.email_address %></p>
+  </div>
+  <div class="py-1 sm:w-1/5 sm:px-1">
+    <div class="text-right">
+      <%= render partial: "icon_button", locals: {
+          url: edit_student_student_eda_path(student_eda.student.id, student_eda),
+          style: "btn-sm text-blue-500",
+          icon: ["far", "edit"],
+        }
+      %>
+      <%= render partial: "icon_button", locals: {
+          url: download_student_student_eda_path(student_eda.student.id, student_eda),
+          method: :post,
+          style: "btn-sm text-yellow-500",
+          icon: ["fas", "file-download"],
+        }
+      %>
+      <%= render partial: "icon_button", locals: {
+          url: student_student_eda_path(student_eda.student.id, student_eda),
+          style: "btn-sm text-red-500",
+          method: :delete,
+          icon: ["far", "trash-alt"],
+          data: {
+            confirm: t("student.student_delete_message"),
+          }
+        }
+      %>
+    </div>
+  </div>
+</div>

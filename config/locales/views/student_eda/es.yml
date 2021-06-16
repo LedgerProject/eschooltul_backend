@@ -4,3 +4,4 @@ es:
     manage: "Aquí puede rellenar los campos del EDA y generarlo"
     edit: "Aquí puede editar los campos del EDA y re-generarlo"
     generate: "Generar Expediente Digital del Estudiante"
+    add_record: "Guardar"
