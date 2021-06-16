@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   before_destroy :validate_last_director
+  before_destroy :set_courses_to_director
   rolify
   paginates_per 6
   devise :database_authenticatable,
@@ -31,6 +32,16 @@ class User < ApplicationRecord
       throw(:abort)
     else
       true
+    end
+  end
+
+  def set_courses_to_director
+    return unless courses.count.positive?
+
+    director_id = User.with_role(:director).first.id
+    courses.each do |course|
+      course.user_id = director_id
+      course.save!
     end
   end
 
