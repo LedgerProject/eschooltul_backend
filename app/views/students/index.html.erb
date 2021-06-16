@@ -7,7 +7,7 @@
       <div class="text-center">
         <% unless current_user.teacher? %>
           <p class="text-sm mx-auto text-gray-400 mb-2 sm:mb-4 md:text-base">
-          t("edrecord.firstrecord")
+            <%= t("edrecord.firstrecord") %>
           </p>
           <%= render partial: "primary_button", locals: {
               url: new_student_path,
