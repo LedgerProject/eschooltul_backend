@@ -11,6 +11,7 @@ Rails.application.routes.draw do
         root to: "schools#show"
         get "/settings", to: "schools#edit"
 
+        resources :attachment, only: :destroy
         resource :school, only: %i[update]
         resources :accounts, except: %i[show]
         resources :courses, except: %i[show] do
