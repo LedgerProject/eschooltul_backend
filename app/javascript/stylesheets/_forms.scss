@@ -80,6 +80,7 @@ div.input {
   > input.email,
   > input.password,
   > input.integer,
+  > input.decimal,
   > textarea.text {
     @apply block px-3 py-2 border-blue-100 text-sm border-2 w-full bg-blue-50 rounded; 
 
