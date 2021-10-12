@@ -12,7 +12,7 @@ gem "jbuilder", "~> 2.7"
 gem "kaminari" # Paginator
 gem "kaminari-i18n" # Paginator
 gem "pg", ">= 0.18", "< 2.0"
-gem "puma", "~> 4.1" # Use Puma as the app server
+gem "puma", "~> 4.3" # Use Puma as the app server
 gem "rails", "~> 6.0.3", ">= 6.0.3.4"
 gem "rails-i18n"
 gem "ransack" # Search
