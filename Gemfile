@@ -11,9 +11,12 @@ gem "i18n-js"
 gem "jbuilder", "~> 2.7"
 gem "kaminari" # Paginator
 gem "kaminari-i18n" # Paginator
+gem "net-imap"
+gem "net-pop"
+gem "net-smtp"
 gem "pg", ">= 0.18", "< 2.0"
-gem "puma", "~> 4.1" # Use Puma as the app server
-gem "rails", "~> 6.0.3", ">= 6.0.3.4"
+gem "puma", "~> 5.0" # Use Puma as the app server
+gem "rails", "~> 6.1"
 gem "rails-i18n"
 gem "ransack" # Search
 gem "react-rails"

@@ -31,4 +31,5 @@ RSpec.configure do |config|
 
   config.include FactoryBot::Syntax::Methods
   config.include Devise::Test::IntegrationHelpers, type: :request
+  config.include ActionDispatch::TestProcess::FixtureFile, type: :request
 end

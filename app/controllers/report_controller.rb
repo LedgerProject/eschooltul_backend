@@ -49,7 +49,7 @@ class ReportController < AuthenticatedController
 
   def create_pdf
     pdf_string = render_to_string(
-      template: "report/show.pdf",
+      template: "report/show",
       encoding: "UTF-8",
       locals: pdf_locals
     )
