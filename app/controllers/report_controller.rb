@@ -75,8 +75,8 @@ class ReportController < AuthenticatedController
   end
 
   def report_to_blockchain(report)
-    body = { "data": { "dataToStore": report.content_hash,
-                       "reportID": report.id.to_s }, "keys": {} }
+    body = { data: { dataToStore: report.content_hash,
+                     reportID: report.id.to_s }, keys: {} }
     response = HTTParty.post(
       "https://apiroom.net/api/serveba/sawroom-write",
       body: body.to_json,

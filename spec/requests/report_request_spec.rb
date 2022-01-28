@@ -6,7 +6,7 @@ RSpec.describe "Reports", type: :request do
       director = create(:user, :director)
       sign_in(director)
       student = create(:student)
-      mark = create(:mark, :with_course, student: student)
+      mark = create(:mark, :with_course, student:)
       course = mark.remarkable
 
       get "/report/#{student.id}.pdf?course_id=#{course.id}"
@@ -23,9 +23,9 @@ RSpec.describe "Reports", type: :request do
         director = create(:user, :director)
         sign_in(director)
         student = create(:student)
-        mark = create(:mark, :with_course, student: student)
+        mark = create(:mark, :with_course, student:)
         course = mark.remarkable
-        create(:report, course: course, student: student, date: Time.zone.today)
+        create(:report, course:, student:, date: Time.zone.today)
 
         get "/report/#{student.id}.pdf?course_id=#{course.id}"
 

@@ -9,8 +9,8 @@ class ImportEdRecordController < AuthenticatedController
     counter_saved, counter_failed = @import_student.upload_records
 
     redirect_to students_path,
-                notice: t("saved_failed", counter_saved: counter_saved,
-                                          counter_failed: counter_failed)
+                notice: t("saved_failed", counter_saved:,
+                                          counter_failed:)
   end
 
   private

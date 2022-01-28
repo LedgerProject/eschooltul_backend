@@ -18,7 +18,7 @@ RSpec.describe "Validators", type: :request do
         director = create(:user, :director)
         sign_in(director)
         student = create(:student)
-        mark = create(:mark, :with_course, student: student)
+        mark = create(:mark, :with_course, student:)
         course = mark.remarkable
         pdf_file = fixture_file_upload(file_fixture("report-in-blockchain.pdf"))
         pdf = pdf_file.read
@@ -26,8 +26,8 @@ RSpec.describe "Validators", type: :request do
           :report,
           content: Base64.encode64(pdf),
           content_hash: Report.calculate_hash(pdf),
-          course: course,
-          student: student,
+          course:,
+          student:,
           date: Time.zone.today
         )
         allow(Report).to receive(:calculate_hash).and_return(report.content_hash)
@@ -44,7 +44,7 @@ RSpec.describe "Validators", type: :request do
         director = create(:user, :director)
         sign_in(director)
         student = create(:student)
-        mark = create(:mark, :with_course, student: student)
+        mark = create(:mark, :with_course, student:)
         course = mark.remarkable
         pdf_file = fixture_file_upload(file_fixture("report-in-blockchain.pdf"))
         pdf = pdf_file.read
@@ -53,8 +53,8 @@ RSpec.describe "Validators", type: :request do
           content: Base64.encode64(pdf),
           content_hash: Report.calculate_hash(pdf),
           transaction_id: "1",
-          course: course,
-          student: student,
+          course:,
+          student:,
           date: Time.zone.today
         )
         allow(Report).to receive(:calculate_hash).and_return(report.content_hash)
