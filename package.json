@@ -23,7 +23,7 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "i18n-js": "^3.8.0",
     "lodash": "^4.17.20",
-    "postcss": "^7.0.35",
+    "postcss": "^7.0.36",
     "prop-types": "^15.7.2",
     "rails-erb-loader": "^5.5.2",
     "react": "^17.0.1",
