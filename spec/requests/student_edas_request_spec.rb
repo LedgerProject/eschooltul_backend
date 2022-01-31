@@ -32,7 +32,7 @@ RSpec.describe "Student EDA", type: :request do
   describe "GET /:id" do
     it "render succesfully" do
       student = create(:student)
-      eda = create(:student_eda, student: student)
+      eda = create(:student_eda, student:)
 
       get "/students/#{student.id}/student_edas/#{eda.id}/edit"
 
@@ -43,7 +43,7 @@ RSpec.describe "Student EDA", type: :request do
   describe "PUT /:id" do
     it "updates student EDA" do
       student = create(:student)
-      eda = create(:student_eda, student: student)
+      eda = create(:student_eda, student:)
 
       put "/students/#{student.id}/student_edas/#{eda.id}",
           params: { student_eda: attributes_for(:student_eda) }
@@ -57,7 +57,7 @@ RSpec.describe "Student EDA", type: :request do
   describe "DESTROY /:id" do
     it "destroys student EDA" do
       student = create(:student)
-      eda = create(:student_eda, student: student)
+      eda = create(:student_eda, student:)
 
       expect do
         delete "/students/#{student.id}/student_edas/#{eda.id}"

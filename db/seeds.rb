@@ -1,5 +1,5 @@
 Role::NAMES.each do |name|
-  Role.find_or_create_by!(name: name)
+  Role.find_or_create_by!(name:)
 end
 
 if User.count.zero?
@@ -23,16 +23,16 @@ if Rails.env.development?
   ].freeze
 
   ADMINISTRATORS.each do |email|
-    next if User.exists?(email: email)
+    next if User.exists?(email:)
 
-    user = User.create!(email: email, password: "password", password_confirmation: "password")
+    user = User.create!(email:, password: "password", password_confirmation: "password")
     user.add_role(:administrator)
   end
 
   TEACHERS.each do |email|
-    next if User.exists?(email: email)
+    next if User.exists?(email:)
 
-    user = User.create!(email: email, password: "password", password_confirmation: "password")
+    user = User.create!(email:, password: "password", password_confirmation: "password")
     user.add_role(:teacher)
   end
 

@@ -49,7 +49,7 @@ class ReportController < AuthenticatedController
 
   def create_pdf
     pdf_string = render_to_string(
-      template: "report/show.pdf",
+      template: "report/show",
       encoding: "UTF-8",
       locals: pdf_locals
     )
@@ -75,8 +75,8 @@ class ReportController < AuthenticatedController
   end
 
   def report_to_blockchain(report)
-    body = { "data": { "dataToStore": report.content_hash,
-                       "reportID": report.id.to_s }, "keys": {} }
+    body = { data: { dataToStore: report.content_hash,
+                     reportID: report.id.to_s }, keys: {} }
     response = HTTParty.post(
       "https://apiroom.net/api/serveba/sawroom-write",
       body: body.to_json,

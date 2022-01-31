@@ -31,7 +31,7 @@ class StudentsController < AuthenticatedController
     activation_message = student.deactivated ? t(:disabled) : t(:enabled)
     redirect_to students_path,
                 notice: t("flash.actions.activate.notice", resource_name: t("student.student"),
-                                                           activation_message: activation_message)
+                                                           activation_message:)
   end
 
   def update
@@ -93,8 +93,8 @@ class StudentsController < AuthenticatedController
   end
 
   def send_document_to_blockchain(report)
-    body = { "data": { "dataToStore": report.content_hash,
-                       "reportID": report.id.to_s }, "keys": {} }
+    body = { data: { dataToStore: report.content_hash,
+                     reportID: report.id.to_s }, keys: {} }
     response = HTTParty.post(
       "https://apiroom.net/api/serveba/sawroom-write",
       body: body.to_json,

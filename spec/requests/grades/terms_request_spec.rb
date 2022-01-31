@@ -71,7 +71,7 @@ RSpec.describe "Terms", type: :request do
     it "renders view successfully" do
       teacher = create(:user, :teacher)
       course = create(:course, user: teacher)
-      term = create(:term, course: course)
+      term = create(:term, course:)
       sign_in(teacher)
 
       get edit_grades_course_term_path(course_id: course.id, id: term.id)
@@ -85,7 +85,7 @@ RSpec.describe "Terms", type: :request do
       it "updates a term record" do
         teacher = create(:user, :teacher)
         course = create(:course, user: teacher)
-        term = create(:term, course: course)
+        term = create(:term, course:)
         sign_in(teacher)
 
         patch grades_course_term_path(course_id: course.id, id: term.id),
@@ -98,7 +98,7 @@ RSpec.describe "Terms", type: :request do
       it "redirects to index" do
         teacher = create(:user, :teacher)
         course = create(:course, user: teacher)
-        term = create(:term, course: course)
+        term = create(:term, course:)
         sign_in(teacher)
 
         patch grades_course_term_path(course_id: course.id, id: term.id),
@@ -112,7 +112,7 @@ RSpec.describe "Terms", type: :request do
       it "doesn't change term record" do
         teacher = create(:user, :teacher)
         course = create(:course, user: teacher)
-        term = create(:term, course: course)
+        term = create(:term, course:)
         sign_in(teacher)
 
         patch grades_course_term_path(course_id: course.id, id: term.id),
@@ -128,7 +128,7 @@ RSpec.describe "Terms", type: :request do
     it "destroys a term record" do
       teacher = create(:user, :teacher)
       course = create(:course, user: teacher)
-      term = create(:term, course: course)
+      term = create(:term, course:)
       sign_in(teacher)
 
       expect do

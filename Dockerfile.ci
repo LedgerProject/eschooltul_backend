@@ -1,6 +1,6 @@
-FROM ruby:2.6.6
+FROM ruby:3.1.0
 
-RUN gem install bundler:2.2.5
+RUN gem install bundler:2.2.33
 
 # Install node & yarn
 RUN curl -sL https://deb.nodesource.com/setup_14.x | bash -

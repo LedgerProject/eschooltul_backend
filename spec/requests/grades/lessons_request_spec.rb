@@ -6,8 +6,8 @@ RSpec.describe "Lessons", type: :request do
       name: "Math exercises",
       description: "Do math additions",
       grading_method: "Chek if they now how to add numbers",
-      lesson_type_id: lesson_type_id,
-      term_id: term_id
+      lesson_type_id:,
+      term_id:
     }
   end
 
@@ -71,7 +71,7 @@ RSpec.describe "Lessons", type: :request do
         teacher = create(:user, :teacher)
         course = create(:course, user: teacher)
         lesson_type = create(:lesson_type)
-        term = create(:term, course: course)
+        term = create(:term, course:)
         sign_in(teacher)
 
         expect do
@@ -84,7 +84,7 @@ RSpec.describe "Lessons", type: :request do
         teacher = create(:user, :teacher)
         course = create(:course, user: teacher)
         lesson_type = create(:lesson_type)
-        term = create(:term, course: course)
+        term = create(:term, course:)
         sign_in(teacher)
 
         post grades_course_lessons_path(course_id: course.id),
@@ -112,7 +112,7 @@ RSpec.describe "Lessons", type: :request do
     it "renders view successfully" do
       teacher = create(:user, :teacher)
       course = create(:course, user: teacher)
-      lesson = create(:lesson, course: course)
+      lesson = create(:lesson, course:)
       sign_in(teacher)
 
       get edit_grades_course_lesson_path(course_id: course.id, id: lesson.id)
@@ -126,7 +126,7 @@ RSpec.describe "Lessons", type: :request do
       it "updates a lesson record" do
         teacher = create(:user, :teacher)
         course = create(:course, user: teacher)
-        lesson = create(:lesson, course: course)
+        lesson = create(:lesson, course:)
         sign_in(teacher)
         new_attributes = new_attributes(lesson)
 
@@ -140,7 +140,7 @@ RSpec.describe "Lessons", type: :request do
       it "redirects to index" do
         teacher = create(:user, :teacher)
         course = create(:course, user: teacher)
-        lesson = create(:lesson, course: course)
+        lesson = create(:lesson, course:)
         sign_in(teacher)
 
         patch grades_course_lesson_path(course_id: course.id, id: lesson.id),
@@ -154,7 +154,7 @@ RSpec.describe "Lessons", type: :request do
       it "doesn't change term record" do
         teacher = create(:user, :teacher)
         course = create(:course, user: teacher)
-        lesson = create(:lesson, course: course)
+        lesson = create(:lesson, course:)
         sign_in(teacher)
 
         patch grades_course_lesson_path(course_id: course.id, id: lesson.id),
@@ -170,7 +170,7 @@ RSpec.describe "Lessons", type: :request do
     it "destroys a term record" do
       teacher = create(:user, :teacher)
       course = create(:course, user: teacher)
-      lesson = create(:lesson, course: course)
+      lesson = create(:lesson, course:)
       sign_in(teacher)
 
       expect do

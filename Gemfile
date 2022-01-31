@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.6.6"
+ruby "3.1.0"
 
 gem "base64"
 gem "devise"
@@ -11,9 +11,12 @@ gem "i18n-js"
 gem "jbuilder", "~> 2.7"
 gem "kaminari" # Paginator
 gem "kaminari-i18n" # Paginator
+gem "net-imap"
+gem "net-pop"
+gem "net-smtp"
 gem "pg", ">= 0.18", "< 2.0"
-gem "puma", "~> 4.1" # Use Puma as the app server
-gem "rails", "~> 6.0.3", ">= 6.0.3.4"
+gem "puma", "~> 5.0" # Use Puma as the app server
+gem "rails", "~> 6.1"
 gem "rails-i18n"
 gem "ransack" # Search
 gem "react-rails"
@@ -56,9 +59,6 @@ group :development do
   gem "letter_opener_web"
   gem "listen", "~> 3.2"
   gem "web-console", ">= 3.3.0"
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem "spring"
-  gem "spring-watcher-listen", "~> 2.0.0"
 
   gem "rubocop"
   gem "rubocop-performance"
