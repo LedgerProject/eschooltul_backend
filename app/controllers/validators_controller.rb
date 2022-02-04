@@ -57,7 +57,7 @@ class ValidatorsController < ApplicationController
   def read_from_blockchain(transaction_id)
     body = { data: { transactionId: transaction_id }, keys: {} }
     HTTParty.post(
-      "https://apiroom.net/api/serveba/sawroom-read",
+      "#{ENV.fetch('ESTOOL_APIROOM_ENDPOINT') { 'https://apiroom.net' }}/api/serveba/sawroom-read",
       body: body.to_json,
       headers: { "Content-Type" => "application/json" }
     )

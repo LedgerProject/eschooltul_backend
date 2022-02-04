@@ -1,0 +1,19 @@
+name: Deploy staging
+
+on:
+  push:
+    branches: [ staging ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cloning repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - name: Push to dokku
+        uses: dokku/github-action@master
+        with:
+          git_remote_url: 'ssh://dokku@195.201.41.85/eschooltul'
+          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY_STAGING }}

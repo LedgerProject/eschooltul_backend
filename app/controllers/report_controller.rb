@@ -78,7 +78,7 @@ class ReportController < AuthenticatedController
     body = { data: { dataToStore: report.content_hash,
                      reportID: report.id.to_s }, keys: {} }
     response = HTTParty.post(
-      "https://apiroom.net/api/serveba/sawroom-write",
+      "#{ENV.fetch('ESTOOL_APIROOM_ENDPOINT') { 'https://apiroom.net' }}/api/serveba/sawroom-write",
       body: body.to_json,
       headers: { "Content-Type" => "application/json" }
     )
