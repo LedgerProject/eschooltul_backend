@@ -33,9 +33,11 @@ gem "wkhtmltopdf-binary", "~> 0.12.6.0"
 ## Utilities
 gem "deep_cloneable", "~> 3.0.0"
 gem "font-awesome-sass", "~> 5.15.1"
+gem "gas_load_tester"
 gem "httparty"
 gem "roo", "~> 2.8.0" # Excel imports
 gem "roo-xls" # .xls support https://github.com/roo-rb/roo-xls READ LICENSE
+gem "thwait"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.2", require: false

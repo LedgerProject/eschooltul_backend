@@ -38,3 +38,6 @@ yarn-debug.log*
 .yarn-integrity
 
 report*.json
+
+# Ignore stress apiroom results
+/results/*
