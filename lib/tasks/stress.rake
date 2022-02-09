@@ -20,7 +20,7 @@ namespace :stress do
                                    id: SecureRandom.uuid
                                  }))
     end
-    fix_result_table(file)
+    # fix_result_table(file)
     exit
   end
 end
