@@ -41,12 +41,12 @@ gem "thwait"
 
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", ">= 1.4.2", require: false
+gem "factory_bot_rails"
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]
   gem "cypress-on-rails", "~> 1.0"
   gem "database_cleaner-active_record"
-  gem "factory_bot_rails"
   gem "pry-byebug"
   gem "rspec-rails", "~> 4.0.1"
 end
