@@ -4,7 +4,7 @@ namespace :generate do
     args = Generate.parse_args
 
     puts "Generating student and course..."
-    Generate.create_student_and_course
+    Generate.create_school_student_course
     student = Generate.find_student
     course = Generate.find_course
 
@@ -43,7 +43,8 @@ class Generate
     options
   end
 
-  def self.create_student_and_course
+  def self.create_school_student_course
+    FactoryBot.create(:school, name: TEST_NAME) if Generate.find_school.blank?
     FactoryBot.create(:student, name: TEST_NAME) if Generate.find_student.blank?
     FactoryBot.create(:course, name: TEST_NAME) if Generate.find_course.blank?
   end
@@ -57,7 +58,7 @@ class Generate
   end
 
   def self.find_school
-    School.first
+    School.find_by(name: TEST_NAME)
   end
 
   def self.pdf_data
