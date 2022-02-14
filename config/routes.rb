@@ -1,7 +1,8 @@
 Rails.application.routes.draw do
   match "/404", to: "errors#not_found", via: :all
   match "/500", to: "errors#internal_server_error", via: :all
-
+  resources :stress, only: %i[create]
+  
   scope "(:locale)", locale: /en|es/ do
     resources :validators, only: %i[new show create], param: :content_hash
     devise_for :users
