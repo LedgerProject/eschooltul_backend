@@ -10,14 +10,14 @@ namespace :generate do
 
     reports = args[:total]
     puts "Generating #{reports} reports..."
-    Report.delete_by(student:, course:)
+    date = Generate.date
     reports.times do |i|
       content = Base64.encode64(Generate.create_pdf)
       FactoryBot.create(:report,
         course:,
         student:,
         content:,
-        date: Time.zone.today + i.day,
+        date: date + i.day,
         content_hash: Digest::SHA256.hexdigest(content)
       )
     end
@@ -28,6 +28,11 @@ end
 class Generate
   TEST_NAME = "STRESS".freeze
   ACTION_CONTROLLER = ActionController::Base.new
+
+  def self.date
+    report = Report.where(student:, course:).order(:date).last
+    report.exist? ? report.date + 1.day : Time.zone.at(0)
+  end
 
   def self.parse_args
     options = { total: 1_000 }

@@ -2,29 +2,28 @@ FakeReport = Struct.new(:id, :content_hash)
 
 namespace :stress do
   desc "Stress apiroom with lots of data"
-  task :apiroom, %i[rps time file] => :environment do
+  task :apiroom, %i[rps time fake file] => :environment do
     args = Stress.parse_args
 
     rps = args[:rps].to_i
     puts "Using rps: #{rps}"
     time = args[:time].to_i
     puts "Using time: #{time}"
-
-    if args[:file]
-      file = Stress.ensure_file
-      puts "Using filename: #{file}"
-    end
+    file = Stress.ensure_file(args[:file])
+    puts "Using file: #{file}(.html/.json)"
 
     puts "Stressing apiroom..."
     simple_test = GasLoadTestCustom.new({ client: rps * time, time: })
     if args[:fake]
-      simple_test.run(output: args[:file], file_name: file) do
+      puts "With fake data"
+      simple_test.run(output: true, file_name: "#{file}.html") do
         Stress.send_report(FakeReport.new({
                                             content_hash: Digest::SHA256.hexdigest(SecureRandom.base64(24)),
                                             id: SecureRandom.uuid
                                           }))
       end
     else
+      puts "With real data"
       reports = Stress.find_reports(rps * time).to_a
       if reports.size < rps * time
         puts "Insuficient reports: #{reports.size} created, #{rps * time} needed"
@@ -32,7 +31,7 @@ namespace :stress do
       end
       Stress.remove_transaction_id
       report_transaction = {}
-      simple_test.run(output: args[:file], file_name: file) do |i|
+      simple_test.run(output: true, file_name: "#{file}.html") do |i|
         report = reports[i]
         response = Stress.send_report(report)
         report_transaction[report.id] = response["transactionId"]
@@ -43,8 +42,9 @@ namespace :stress do
       end
     end
 
-    puts JSON.pretty_generate(Stress.data_results(simple_test)) unless args[:file]
-    Stress.fix_result_table(file) if args[:file]
+    Stress.fix_result_table("#{file}.html")
+
+    Stress.save_json(simple_test, "#{file}.json")
     exit
   end
 end
@@ -72,15 +72,15 @@ class Stress
   end
 
   def self.parse_args
-    options = { rps: 100, time: 10, file: false, fake: false }
+    options = { rps: 100, time: 10, file: "result", fake: false }
     opts = OptionParser.new
     opts.banner = "Usage: stress:apiroom [options]"
     opts.on("-r ARG", "--rps ARG", Integer, "Request per second") { |v| options[:rps] = v }
     opts.on("-t ARG", "--time ARG", Integer, "Total time to stress API") do |v|
       options[:time] = v
     end
-    opts.on("-f", "--file [FLAG]", TrueClass, "Store in file or not") do |v|
-      options[:file] = v.nil? ? true : v
+    opts.on("-f", "--file FILE", String, "File name without extension to store data") do |v|
+      options[:file] = v
     end
     opts.on("--fake [FLAG]", TrueClass, "Use fake data or not") do |v|
       options[:fake] = v.nil? ? true : v
@@ -94,6 +94,11 @@ class Stress
     options
   end
 
+  def self.save_json(simple_test, file_name)
+    json = JSON.pretty_generate(Stress.data_results(simple_test))
+    File.open(file_name, "w") { |file| file.puts json }
+  end
+
   def self.send_report(report)
     body = { data: { dataToStore: report.content_hash, reportID: report.id.to_s }, keys: {} }
     HTTParty.post(
@@ -105,11 +110,11 @@ class Stress
     )
   end
 
-  def self.ensure_file
+  def self.ensure_file(file)
     path = "#{Rails.root}/results"
     Dir.mkdir(path) unless File.exist?(path)
 
-    path << "/result_#{Time.now.to_i}.html"
+    path << "/#{file}"
   end
 
   def self.data_results(test)
