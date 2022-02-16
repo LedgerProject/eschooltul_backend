@@ -17,10 +17,10 @@ namespace :stress do
     if args[:fake]
       puts "With fake data"
       simple_test.run(output: true, file_name: "#{file}.html") do
-        Stress.send_report(FakeReport.new({
-                                            content_hash: Digest::SHA256.hexdigest(SecureRandom.base64(24)),
-                                            id: SecureRandom.uuid
-                                          }))
+        Stress.send_report(FakeReport.new(
+                             SecureRandom.uuid,
+                             Digest::SHA256.hexdigest(SecureRandom.base64(24))
+                           ))
       end
     else
       puts "With real data"
@@ -29,13 +29,17 @@ namespace :stress do
         puts "Insuficient reports: #{reports.size} created, #{rps * time} needed"
         exit
       end
+
+      puts "Removing transaction_id..."
       Stress.remove_transaction_id
+
       report_transaction = {}
       simple_test.run(output: true, file_name: "#{file}.html") do |i|
         report = reports[i]
         response = Stress.send_report(report)
         report_transaction[report.id] = response["transactionId"]
       end
+
       reports.each do |report|
         transaction_id = report_transaction[report.id]
         report.update(transaction_id:)
@@ -60,15 +64,11 @@ class Stress
   end
 
   def self.find_reports(limit)
-    student = Generate.find_student
-    course = Generate.find_course
-    Report.where(student:, course:).limit(limit)
+    Report.limit(limit)
   end
 
   def self.remove_transaction_id
-    student = Generate.find_student
-    course = Generate.find_course
-    Report.where(student:, course:).update_all(transaction_id: "")
+    Report.update_all(transaction_id: "")
   end
 
   def self.parse_args
@@ -95,7 +95,7 @@ class Stress
   end
 
   def self.save_json(simple_test, file_name)
-    json = JSON.pretty_generate(Stress.data_results(simple_test))
+    json = JSON.pretty_generate(data_results(simple_test))
     File.open(file_name, "w") { |file| file.puts json }
   end
 
@@ -119,9 +119,9 @@ class Stress
 
   def self.data_results(test)
     data = {}
-    data["summary"] = Stress.build_summary(test)
-    data["request_per_second"] = Stress.build_data(test)
-    data["errors"] = Stress.build_errors(test)
+    data["summary"] = build_summary(test)
+    data["request_per_second"] = build_data(test)
+    data["errors"] = build_errors(test)
     data
   end
 

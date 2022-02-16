@@ -1,45 +1,34 @@
 namespace :generate do
   desc "Generate massive ammount of reports in DB"
-  task :reports, %i[total] => :environment do
+  task :reports, %i[courses students] => :environment do
     args = Generate.parse_args
 
-    puts "Generating student and course..."
-    Generate.create_school_student_course
-    student = Generate.find_student
-    course = Generate.find_course
+    puts "Clearing dataset..."
+    Generate.clear_dataset
 
-    reports = args[:total]
-    puts "Generating #{reports} reports..."
-    date = Generate.date
-    reports.times do |i|
-      content = Base64.encode64(Generate.create_pdf)
-      FactoryBot.create(:report,
-        course:,
-        student:,
-        content:,
-        date: date + i.day,
-        content_hash: Digest::SHA256.hexdigest(content)
-      )
-    end
+    puts "Creating new dataset with #{args[:courses]} courses, "\
+         "#{args[:students]} students per course with reports "
+    Generate.create_dataset(args[:courses], args[:students])
+
+    puts "Total reports created: #{Report.count}"
     exit
   end
 end
 
 class Generate
-  TEST_NAME = "STRESS".freeze
   ACTION_CONTROLLER = ActionController::Base.new
 
-  def self.date
-    report = Report.where(student:, course:).order(:date).last
-    report.exist? ? report.date + 1.day : Time.zone.at(0)
-  end
-
   def self.parse_args
-    options = { total: 1_000 }
+    options = { courses: 100, students: 25 }
     opts = OptionParser.new
     opts.banner = "Usage: generate:reports [options]"
-    opts.on("-t ARG", "--total ARG", Integer, "Total reports to create") { |v| options[:total] = v }
-    opts.on("-h", "--help", "Show commands") do
+    opts.on("-c ARG", "--courses ARG", Integer, "Total courses to create") do |v|
+      options[:courses] = v
+    end
+    opts.on("-s ARG", "--students ARG", Integer, "Total students to create per course with reports") do |v|
+      options[:students] = v
+    end
+    opts.on("-h", "--help", "Show commands of this rake task") do
       puts opts
       exit
     end
@@ -48,38 +37,107 @@ class Generate
     options
   end
 
-  def self.create_school_student_course
-    FactoryBot.create(:school, name: TEST_NAME) if Generate.find_school.blank?
-    FactoryBot.create(:student, name: TEST_NAME) if Generate.find_student.blank?
-    FactoryBot.create(:course, name: TEST_NAME) if Generate.find_course.blank?
+  def self.clear_dataset
+    puts "Deleting schools..."
+    School.delete_all
+    puts "Deleting reports..."
+    Report.delete_all
+    puts "Deleting relations course-student..."
+    CourseStudent.delete_all
+    puts "Deleting marks..."
+    Mark.delete_all
+    puts "Deleting courses..."
+    Course.delete_all
+    puts "Deleting students..."
+    Student.delete_all
+    puts "Deleting users..."
+    User.delete_all
   end
 
-  def self.find_course
-    Course.find_by(name: TEST_NAME)
+  def self.create_dataset(courses, students)
+    school = create_school
+    puts "School created: #{school.name}"
+    user = create_user
+    puts "User created: #{user.name}"
+    courses.times do
+      course = create_course(user)
+      puts "Course created: #{course.name} - #{course.subject}"
+      students.times do
+        student = create_student(course)
+        puts "\tStudent created: #{student.name} #{student.first_surname}"
+        mark = create_mark(course, student)
+        puts "\t\tMark created: #{mark.value}"
+        report = create_report(course, student, mark)
+        puts "\t\tReport created: #{report.content_hash}"
+      end
+    end
   end
 
-  def self.find_student
-    Student.find_by(name: TEST_NAME)
+  def self.create_school
+    FactoryBot.create(:school,
+                      name: Faker::Educator.secondary_school,
+                      email: Faker::Internet.email,
+                      city: Faker::Address.city,
+                      address: Faker::Address.street_address)
   end
 
-  def self.find_school
-    School.find_by(name: TEST_NAME)
+  def self.create_user
+    FactoryBot.create(:user, :director, email: Faker::Internet.email)
   end
 
-  def self.pdf_data
-    {
-      student: Generate.find_student,
-      course: Generate.find_course,
-      school: Generate.find_school,
-      mark_value: rand(0.0...10.0)
-    }
+  def self.create_course(user)
+    FactoryBot.create(:course,
+                      user:,
+                      subject: Faker::Educator.subject,
+                      name: Faker::Educator.course_name)
   end
 
-  def self.create_pdf
+  def self.create_student(course)
+    student = FactoryBot.create(:student,
+                                first_surname: Faker::Name.last_name,
+                                second_surname: "",
+                                name: Faker::Name.first_name,
+                                diseases: "",
+                                observations: "",
+                                telephone: Faker::PhoneNumber.cell_phone_in_e164,
+                                city: Faker::Address.city,
+                                state_or_region: Faker::Address.state,
+                                postal_code: Faker::Address.zip_code,
+                                country: Faker::Address.country,
+                                birthday: Faker::Time.between(from: DateTime.now - 18.years,
+                                                              to: DateTime.now - 10.years))
+    student.courses << course
+    student
+  end
+
+  def self.create_mark(course, student)
+    FactoryBot.create(:mark,
+                      remarkable: course,
+                      student:,
+                      value: Faker::Number.between(from: 0.0, to: 10.0).round(1))
+  end
+
+  def self.create_report(course, student, mark)
+    content = Base64.encode64(create_pdf(course, student, mark))
+    FactoryBot.create(:report,
+                      course:,
+                      student:,
+                      content:,
+                      date: Faker::Time.unique.between(from: DateTime.now - 1.year,
+                                                       to: DateTime.now),
+                      content_hash: Digest::SHA256.hexdigest(content))
+  end
+
+  def self.create_pdf(course, student, mark)
     pdf_string = ACTION_CONTROLLER.render_to_string(
       template: "report/show",
       encoding: "UTF-8",
-      locals: Generate.pdf_data
+      locals: {
+        student:,
+        course:,
+        school: School.first,
+        mark_value: mark.value
+      }
     )
     WickedPdf.new.pdf_from_string(pdf_string)
   end
