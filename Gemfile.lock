@@ -109,6 +109,8 @@ GEM
     factory_bot_rails (6.2.0)
       factory_bot (~> 6.2.0)
       railties (>= 5.0.0)
+    faker (2.19.0)
+      i18n (>= 1.6, < 2)
     ffi (1.15.5)
     ffi (1.15.5-x64-mingw32)
     font-awesome-sass (5.15.1)
@@ -392,6 +394,7 @@ DEPENDENCIES
   devise-i18n
   discard (~> 1.2)
   factory_bot_rails
+  faker
   font-awesome-sass (~> 5.15.1)
   gas_load_tester
   httparty

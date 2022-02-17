@@ -32,6 +32,7 @@ gem "wkhtmltopdf-binary", "~> 0.12.6.0"
 
 ## Utilities
 gem "deep_cloneable", "~> 3.0.0"
+gem "faker"
 gem "font-awesome-sass", "~> 5.15.1"
 gem "gas_load_tester"
 gem "httparty"

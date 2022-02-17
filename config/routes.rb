@@ -41,6 +41,8 @@ Rails.application.routes.draw do
 
       resources :report, only: %i[show]
 
+      resources :report_pdf, only: %i[show]
+
       resources :grades, only: %i[create]
 
       namespace :grades do
