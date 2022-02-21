@@ -23,6 +23,13 @@ const TableRow = ({
           className="btn-sm text-red-500"
           iconClass="fas fa-file-pdf"
         />
+        {!_.isEmpty(courseMember.report.tx) && (
+          <IconSubmitButton
+            url={`/validators/${courseMember.report.hash}`}
+            className="btn-sm text-green-500"
+            iconClass="fas fa-lock"
+          />
+        )}
       </p>
     </div>
     {_.isUndefined(courseMember.terms) && (
