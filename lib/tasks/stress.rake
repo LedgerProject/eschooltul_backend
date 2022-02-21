@@ -1,8 +1,8 @@
-FakeReport = Struct.new(:id, :content_hash)
+MockReport = Struct.new(:id, :content_hash)
 
 namespace :stress do
   desc "Stress apiroom with lots of data"
-  task :apiroom, %i[rps time fake file] => :environment do
+  task :apiroom, %i[rps time mock file] => :environment do
     args = Stress.parse_args
 
     rps = args[:rps].to_i
@@ -14,10 +14,10 @@ namespace :stress do
 
     puts "Stressing apiroom..."
     simple_test = GasLoadTestCustom.new({ client: rps * time, time: })
-    if args[:fake]
-      puts "With fake data"
+    if args[:mock]
+      puts "With mock data"
       simple_test.run(output: true, file_name: "#{file}.html") do
-        Stress.send_report(FakeReport.new(
+        Stress.send_report(MockReport.new(
                              SecureRandom.uuid,
                              Digest::SHA256.hexdigest(SecureRandom.base64(24))
                            ))
@@ -72,7 +72,7 @@ class Stress
   end
 
   def self.parse_args
-    options = { rps: 100, time: 10, file: "result", fake: false }
+    options = { rps: 100, time: 10, file: "result", mock: false }
     opts = OptionParser.new
     opts.banner = "Usage: stress:apiroom [options]"
     opts.on("-r ARG", "--rps ARG", Integer, "Request per second") { |v| options[:rps] = v }
@@ -82,8 +82,8 @@ class Stress
     opts.on("-f", "--file FILE", String, "File name without extension to store data") do |v|
       options[:file] = v
     end
-    opts.on("--fake [FLAG]", TrueClass, "Use fake data or not") do |v|
-      options[:fake] = v.nil? ? true : v
+    opts.on("-m", "--mock [FLAG]", TrueClass, "Use mock data or not") do |v|
+      options[:mock] = v.nil? ? true : v
     end
     opts.on("-h", "--help", "Show commands") do
       puts opts
