@@ -1,5 +1,6 @@
 import _ from 'lodash/fp';
 import findMark, { flatAllMarks } from './marks';
+import findReport, { flatAllReports } from './reports';
 
 const REMARKABLE_TYPES = {
   lesson: 'Lesson',
@@ -28,32 +29,35 @@ const setCourseTerms = (terms, lessons, marks, studentID) => (
   }))(terms)
 );
 
-const setMembersWithoutTerms = (course, marks) => (
+const setMembersWithoutTerms = (course, data) => (
   _.map((student) => ({
     student,
-    lessons: setCourseLessons(course.lessons, marks, student.id),
-    courseMark: findMark(marks, student.id, course.id, REMARKABLE_TYPES.course),
+    lessons: setCourseLessons(course.lessons, data.marks, student.id),
+    report: findReport(data.reports, student.id, course.id),
+    courseMark: findMark(data.marks, student.id, course.id, REMARKABLE_TYPES.course),
   }))(course.students)
 );
 
-const setMembersWithTerms = (course, marks, selectedTerm) => (
+const setMembersWithTerms = (course, data, selectedTerm) => (
   _.map((student) => ({
     student,
     terms: setCourseTerms(
-      filterTerms(course.terms, selectedTerm), course.lessons, marks, student.id,
+      filterTerms(course.terms, selectedTerm), course.lessons, data.marks, student.id,
     ),
-    lessons: setCourseLessons(filterLessons(course.lessons), marks, student.id),
-    courseMark: findMark(marks, student.id, course.id, REMARKABLE_TYPES.course),
+    lessons: setCourseLessons(filterLessons(course.lessons), data.marks, student.id),
+    report: findReport(data.reports, student.id, course.id),
+    courseMark: findMark(data.marks, student.id, course.id, REMARKABLE_TYPES.course),
   }))(course.students)
 );
 
 const getCourseMembers = (course, selectedTerm) => {
   const marks = flatAllMarks(course.students);
+  const reports = flatAllReports(course.students);
   if (_.isEmpty(course.terms)) {
-    return setMembersWithoutTerms(course, marks);
+    return setMembersWithoutTerms(course, { marks, reports });
   }
 
-  return setMembersWithTerms(course, marks, selectedTerm);
+  return setMembersWithTerms(course, { marks, reports }, selectedTerm);
 };
 
 export default getCourseMembers;
