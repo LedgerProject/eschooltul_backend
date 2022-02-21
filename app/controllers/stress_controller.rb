@@ -8,7 +8,7 @@ class StressController < ApplicationController
               "#{generate_task_param('file', file_name)}"\
               "#{generate_task_param('rps', params[:rps])}"\
               "#{generate_task_param('time', params[:time])}"\
-              "#{generate_task_param('fake', params[:fake])}"\
+              "#{generate_task_param('mock', params[:mock])}"\
 
     Thread.new { system(command) }
     render plain: "Task created, files will be named #{file_name}"

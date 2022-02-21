@@ -28,29 +28,29 @@ _It will clear and generate new data based on the args. When the command finishe
 
 This is the main task and is used to stress the apiroom endpoint. This task will generate two files, one is an HTML file and the other a JSON file. Both will have the same information. while the HTML will be used to display the data using a line chart, the JSON is just the raw data.
 
-This task will perform concurrent POST requests to the apiroom endpoint in _ESTOOL_APIROOM_ENDPOINT_ environment variable. It will accept four arguments: file, rps, time and fake.
+This task will perform concurrent POST requests to the apiroom endpoint in _ESTOOL_APIROOM_ENDPOINT_ environment variable. It will accept four arguments: file, rps, time and mock.
 
 
 
 * **file**: the name of the output file in which the stress data will be stored (without extension). It will generate two files with this name but a different extension (HTML and JSON).
 * **rps**: also known as requests per second. This will tell the task to perform N concurrent requests every second.
 * **time**: the number of seconds to perform the stress
-* **fake**: a boolean indicating whether to use fake data or reports from the database. If present, a random hash and id will be generated and used. If not present, reports from the database will be used and updated with the corresponding transaction_id.
-* **help: **shows the help message for each argument.
+* **mock**: a boolean indicating whether to use mock data or reports from the database. If present, a random hash and id will be generated and used. If not present, reports from the database will be used and updated with the corresponding transaction_id.
+* **help**: shows the help message for each argument.
 
 Here is an example of the command: 
 ```
-rake stress:apiroom -- --rps 50 --time 30 --file result_50rps_30time --fake
+rake stress:apiroom -- --rps 50 --time 30 --file result_50rps_30time --mock
 ```
 
-This will use fake data (random hash and id) due to the use of the **fake** argument. This example will perform the stress for 30 seconds and each second it will send 50 concurrent requests for a total of 50*30 = 1500 requests. After the stress test, metrics will be stored in **result_50rps_30time.html **and **result_50rps_30time.json** which can be accessed through the mounted folder in **_/var/lib/dokku/data/storage/eschooltul/results/_**.
+This will use mock data (random hash and id) due to the use of the **mock** argument. This example will perform the stress for 30 seconds and each second it will send 50 concurrent requests for a total of 50*30 = 1500 requests. After the stress test, metrics will be stored in **result_50rps_30time.html** and **result_50rps_30time.json** which can be accessed through the mounted folder in **_/var/lib/dokku/data/storage/eschooltul/results/_**.
 
 Finally, as requested, we have created a controller with basic auth to launch this task.
 
 
 ![alt_text](images/image1.png "image_tooltip")
 
-Just change localhost and port to point to the machine. The controller will generate a pair of files called **result_&lt;timestamp> **by itself so no file param is needed.
+Just change localhost and port to point to the machine. The controller will generate a pair of files called **result_&lt;timestamp>** by itself so no file param is needed.
 
 ![alt_text](images/image2.png "image_tooltip")
 
@@ -107,7 +107,7 @@ Once inside, connect to Postgresql:
 
 
 ```
-psql -U postgres. 
+psql -U postgres
 ```
 
 
@@ -115,7 +115,7 @@ Then select the correct database:
 
 
 ```
-\c eschooltul_database. 
+\c eschooltul_database 
 ```
 
 
@@ -124,7 +124,7 @@ Now we can do queries to select the user or list reports to get the ID.
 
 ## Retrieving the result
 
-Once the stress test finishes and result files are created we can download them into our computer to visualize the HTML or the JSON using **scp **command: 
+Once the stress test finishes and result files are created we can download them into our computer to visualize the HTML or the JSON using **scp** command: 
 
 
 ```
