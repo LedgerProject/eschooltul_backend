@@ -15,7 +15,7 @@ gem "net-imap"
 gem "net-pop"
 gem "net-smtp"
 gem "pg", ">= 0.18", "< 2.0"
-gem "puma", "~> 5.0" # Use Puma as the app server
+gem "puma", "~> 5.6" # Use Puma as the app server
 gem "rails", "~> 6.1"
 gem "rails-i18n"
 gem "ransack" # Search
